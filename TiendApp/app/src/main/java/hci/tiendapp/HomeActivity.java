@@ -20,6 +20,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     //hola
+    //chau
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
