@@ -6,9 +6,8 @@
     <item
         android:title="@string/search_action"
         android:id="@+id/search_bar"
-        android:icon="@drawable/ic_search"
+        android:icon="@drawable/ic_search_white_24dp"
         app:showAsAction="ifRoom"
 
         />
-
 </menu>
