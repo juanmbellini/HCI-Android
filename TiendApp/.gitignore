@@ -1,6 +1,8 @@
 .gradle
 /.idea/gradle.xml
 /.idea/misc.xml
+.idea
+/.idea
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
