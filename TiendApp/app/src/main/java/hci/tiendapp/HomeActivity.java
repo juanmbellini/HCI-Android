@@ -1,12 +1,12 @@
 package hci.tiendapp;
 
-import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,9 +17,14 @@ import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private String[] mPlanetTitles = {"Earth", "Mars", "Venus"};
+    private String[] mPlanetTitles = {"Home", "Hombres", "Mujeres", "Infantiles", "Bebes"};
+    private int[] icons = {R.drawable.ic_home, R.drawable.ic_men_category, R.drawable.ic_women_category, R.drawable.ic_kids_category, R.drawable.ic_babies_category};
+    String name = "Juan Marcos Bellini";
+    String email = "jbellini@itba.edu.ar";
+    int profile = R.drawable.logo2;
 
-    private ListView mDrawerList;
+
+    private RecyclerView mDrawerList;
     private CharSequence mTitle;
 
     private DrawerLayout drawerLayout;
@@ -33,16 +38,22 @@ public class HomeActivity extends AppCompatActivity {
 
         mTitle = "test";
         drawerLayout = (DrawerLayout) findViewById(R.id.navigation_drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mDrawerList = (RecyclerView) findViewById(R.id.left_drawer);
+        mDrawerList.setHasFixedSize(true);
+
+        RecyclerView.Adapter mAdapter= new MyAdapter(mPlanetTitles, icons, name, email, profile);
+
+        mDrawerList.setAdapter(mAdapter);//new ArrayAdapter<String>(this, R.layout.navigation_drawer_option, mPlanetTitles));
+
+        mDrawerList.setLayoutManager(new LinearLayoutManager(this));
 
 
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.asd, mPlanetTitles));
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             }
-        });
+        });*/
 
         drawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -55,8 +66,8 @@ public class HomeActivity extends AppCompatActivity {
         drawerLayout.setFitsSystemWindows(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        //getSupportActionBar().setIcon(R.drawable.ic_menu);
 
+        //mDrawerList.addHeaderView(findViewById(R.id.drawer_header));
     }
 
 
@@ -101,7 +112,7 @@ public class HomeActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.app_name, Toast.LENGTH_SHORT).show();
 
         // Highlight the selected item, update the title, and close the drawer
-        mDrawerList.setItemChecked(position, true);
+        //mDrawerList.setItemChecked(position, true);
         setTitle(mPlanetTitles[position]);
         drawerLayout.closeDrawer(mDrawerList);
     }
