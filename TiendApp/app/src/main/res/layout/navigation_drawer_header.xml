@@ -2,56 +2,59 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
+    android:id="@+id/drawer_header"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="192dp"
-    android:background="@color/colorPrimary"
+    android:layout_height="178dp"
+    android:background="@drawable/drawer_header_background_image"
     android:padding="16dp"
     android:layout_gravity="bottom"
     android:weightSum="1">
 
+    <!--
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/drawer_header_background_image"
         android:alpha="127"/>
-
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
 
         <TextView
             android:id="@+id/drawer_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
             android:textColor="@color/textColorPrimary"
             android:textSize="14sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:id="@+id/drawer_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="5dp"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="14sp"
+            android:textStyle="normal"
             />
-
-
-
-
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Header"
-        android:textColor="@color/textColorPrimary"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/logo2"
+        android:id="@+id/user_image"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

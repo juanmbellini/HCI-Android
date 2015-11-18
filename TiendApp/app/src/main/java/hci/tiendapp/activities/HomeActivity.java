@@ -1,25 +1,31 @@
-package hci.tiendapp;
+package hci.tiendapp.activities;
 
-import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import hci.tiendapp.R;
+
+import static android.widget.Toast.LENGTH_LONG;
+
 public class HomeActivity extends AppCompatActivity {
 
-    private String[] mPlanetTitles = {"Earth", "Mars", "Venus"};
+    private Toolbar toolbar;
 
-    private ListView mDrawerList;
+
+    private RecyclerView mDrawerList;
     private CharSequence mTitle;
 
     private DrawerLayout drawerLayout;
@@ -30,19 +36,33 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+/*
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.app_name);*/
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         mTitle = "test";
         drawerLayout = (DrawerLayout) findViewById(R.id.navigation_drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mDrawerList = (RecyclerView) findViewById(R.id.left_drawer);
+        mDrawerList.setHasFixedSize(true);
+
+        RecyclerView.Adapter mAdapter= new MyAdapter();
+
+        mDrawerList.setAdapter(mAdapter);//new ArrayAdapter<String>(this, R.layout.navigation_drawer_option, mPlanetTitles));
+
+        mDrawerList.setLayoutManager(new LinearLayoutManager(this));
 
 
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.asd, mPlanetTitles));
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             }
-        });
+        });*/
 
         drawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -53,9 +73,6 @@ public class HomeActivity extends AppCompatActivity {
 
         drawerLayout.setDrawerListener(drawerToggle);
         drawerLayout.setFitsSystemWindows(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        //getSupportActionBar().setIcon(R.drawable.ic_menu);
 
     }
 
@@ -63,7 +80,6 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home_menu, menu);
-
         return true;
     }
 
@@ -84,8 +100,9 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         // Pass the event to ActionBarDrawerToggle, if it returns
-        // true, then it has handled the app icon touch event
+        // true, then it has handled the app navigationDrawerOptionIcon touch event
         if (drawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
@@ -101,16 +118,12 @@ public class HomeActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.app_name, Toast.LENGTH_SHORT).show();
 
         // Highlight the selected item, update the title, and close the drawer
-        mDrawerList.setItemChecked(position, true);
-        setTitle(mPlanetTitles[position]);
+        //mDrawerList.setItemChecked(position, true);
+        //setTitle(mPlanetTitles[position]);
         drawerLayout.closeDrawer(mDrawerList);
     }
 
-    @Override
-    public void setTitle(CharSequence title) {
-        mTitle = title;
-        getSupportActionBar().setTitle(mTitle);
-    }
+
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
@@ -119,6 +132,15 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    // TODO ver si con esto funciona el custom tool bar
+    private class ToolBarItemClickListener implements android.support.v7.widget.Toolbar.OnMenuItemClickListener {
+
+
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            return false;
+        }
+    }
 
 
 }
