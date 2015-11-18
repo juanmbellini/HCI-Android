@@ -207,7 +207,7 @@ public class HomeActivity extends AppCompatActivity {
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView =
-                (SearchView) menu.findItem(R.id.search_bar).getActionView();
+                (SearchView) menu.findItem(R.id.home_tool_bar_search_bar).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
 
@@ -263,13 +263,15 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    //TODO ver esto que onda
+    /*
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
         unregisterReceiver(broadcastReceiver);
 
-    }
+    }*/
 
     // TODO ver si con esto funciona el custom tool bar
     private class ToolBarItemClickListener implements android.support.v7.widget.Toolbar.OnMenuItemClickListener {
