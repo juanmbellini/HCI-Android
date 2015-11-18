@@ -1,5 +1,7 @@
 package hci.tiendapp.activities;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -8,10 +10,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import hci.tiendapp.R;
 
@@ -27,9 +31,22 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
 
+    private int layoutId;
+    private Activity childActivity;
+
+    public MyDrawerActivity(int layoutId) {
+        this.layoutId = layoutId;
+    }
+
+    public void setContext(Activity childActivity) {
+        this.childActivity = childActivity;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
+
+        setContentView(layoutId);
 
         // Sets up the action bar
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -38,16 +55,20 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
         // Sets up the navigation drawer
         drawerLayout = (DrawerLayout) findViewById(R.id.navigation_drawer_layout);
         drawerList = (RecyclerView) findViewById(R.id.left_drawer);
-        RecyclerView.Adapter drawerAdapter = new MyAdapter(this);
+        RecyclerView.Adapter drawerAdapter = new MyAdapter(childActivity);
         drawerList.setAdapter(drawerAdapter);
         drawerList.setLayoutManager(new LinearLayoutManager(this));
-        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close);
+
+        drawerToggle = new ActionBarDrawerToggle(childActivity, drawerLayout, R.string.drawer_open, R.string.drawer_close);
+
         drawerLayout.setDrawerListener(drawerToggle);
         drawerLayout.setFitsSystemWindows(true);
+        drawerToggle.setDrawerIndicatorEnabled(false);
+
     }
 
     @Override
-    public void onPostCreate(Bundle savedInstanceState) {
+    protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         drawerToggle.syncState();
     }

@@ -29,6 +29,10 @@
             android:name=".activities.CategoriesActivity"
              >
 
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.HomeActivity" />
+
         </activity>
 
 

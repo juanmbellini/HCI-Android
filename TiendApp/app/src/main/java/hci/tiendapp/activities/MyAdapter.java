@@ -1,6 +1,7 @@
 package hci.tiendapp.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,6 +24,7 @@ import java.util.List;
 
 import hci.tiendapp.R;
 import hci.tiendapp.TiendApp;
+import hci.tiendapp.constants.Constants;
 
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
@@ -56,17 +58,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             // Here we set the appropriate view in accordance with the the view type as passed when the holder object is created
 
             if(ViewType == TYPE_ITEM) {
-                textView = (TextView) itemView.findViewById(R.id.drawer_option_name); // Creating TextView object with the id of textView from item_row.xml
-                imageView = (ImageView) itemView.findViewById(R.id.drawer_option_icon);// Creating ImageView object with the id of ImageView from item_row.xml
-                Holderid = 1;                                               // setting holder id as 1 as the object being populated are of type item row
+                textView = (TextView) itemView.findViewById(R.id.drawer_option_name);
+                imageView = (ImageView) itemView.findViewById(R.id.drawer_option_icon);
+                Holderid = 1; // Holder Id for items
             }
             else{
 
 
-                Name = (TextView) itemView.findViewById(R.id.drawer_name);         // Creating Text View object from header.xml for name
-                email = (TextView) itemView.findViewById(R.id.drawer_email);       // Creating Text View object from header.xml for email
-                profile = (ImageView) itemView.findViewById(R.id.user_image);// Creating Image view object from header.xml for profile pic
-                Holderid = 0;                                                // Setting holder id = 0 as the object being populated are of type header view
+                Name = (TextView) itemView.findViewById(R.id.drawer_name);
+                email = (TextView) itemView.findViewById(R.id.drawer_email);
+                profile = (ImageView) itemView.findViewById(R.id.user_image);
+                Holderid = 0; // Holder Id for header
             }
         }
 
@@ -77,9 +79,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             if (v.getId() == R.id.drawer_header) {
                 return;
             }
+            // TODO crear el intent que sea necesario
+            //Toast.makeText(context, "The Item Clicked is: " +  getLayoutPosition(), Toast.LENGTH_LONG).show();
 
-            Toast.makeText(context, "The Item Clicked is: " + getPosition(), Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(context, CategoriesActivity.class);
+            intent.putExtra(Constants.genderSelection,"Hola");
+            context.startActivity(intent);
+
         }
+
+
+
     }
 
 
@@ -88,7 +98,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         //super();
 
         this.context =  passedContext;
-
     }
 
 
