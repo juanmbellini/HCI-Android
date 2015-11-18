@@ -26,7 +26,7 @@
     <string name="cancel_repeating_alarm">Cancel Repeating Alarm</string>
 
 
-
+    <string name="drawer_option_orders">Mis pedidos</string>
     <string name="title_activity_catalogue">catalogue</string>
 
 </resources>

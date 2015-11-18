@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import hci.tiendapp.activities.HomeActivity;
+
 public class AlarmNotificationReceiver extends BroadcastReceiver {
 
     @Override
