@@ -22,6 +22,13 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
+
+
+
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -45,6 +52,9 @@ public class HomeActivity extends AppCompatActivity {
     private PendingIntent alarmNotificationReceiverPendingIntent;
     private final static int INTERVAL = 30000;
     public final static String TAG = "Alarm";
+
+    //Broadcast variable
+    private BroadcastReceiver broadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +162,22 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 */
+        broadcastReceiver = new BroadcastReceiver() {
+            public void onReceive(Context context, Intent intent) {
+
+                if (intent.getAction().equals(Intent.ACTION_BATTERY_LOW)) {
+                    Toast.makeText(HomeActivity.this, "Battery low", Toast.LENGTH_LONG).show();
+                    }
+                if (intent.getAction().equals(Intent.ACTION_POWER_DISCONNECTED)){
+                    Toast.makeText(HomeActivity.this, "Battery not charging", Toast.LENGTH_LONG).show();
+                }
+                if (intent.getAction().equals(Intent.ACTION_POWER_CONNECTED)){
+                    Toast.makeText(HomeActivity.this, "Battery charging", Toast.LENGTH_LONG).show();
+                }
+
+            };
+        };
+
     }
 
 
@@ -214,6 +240,12 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        unregisterReceiver(broadcastReceiver);
+    }
 
 
 }
