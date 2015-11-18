@@ -17,7 +17,7 @@
         layout="@layout/tool_bar"/>-->
 
     <TextView android:text="Hello WorldDDASDASDASDASDASDASDASDASDASDASDASDASDASDASASD!" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" android:id="@+id/hola_mundo"/>
 
 
     <include

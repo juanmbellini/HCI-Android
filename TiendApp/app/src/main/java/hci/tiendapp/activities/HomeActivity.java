@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import hci.tiendapp.R;
@@ -50,9 +51,14 @@ public class HomeActivity extends AppCompatActivity {
         mDrawerList = (RecyclerView) findViewById(R.id.left_drawer);
         mDrawerList.setHasFixedSize(true);
 
-        RecyclerView.Adapter mAdapter= new MyAdapter();
+        RecyclerView.Adapter mAdapter= new MyAdapter(this);
 
-        mDrawerList.setAdapter(mAdapter);//new ArrayAdapter<String>(this, R.layout.navigation_drawer_option, mPlanetTitles));
+        mDrawerList.setAdapter(mAdapter);
+
+
+
+
+
 
         mDrawerList.setLayoutManager(new LinearLayoutManager(this));
 
@@ -73,6 +79,8 @@ public class HomeActivity extends AppCompatActivity {
 
         drawerLayout.setDrawerListener(drawerToggle);
         drawerLayout.setFitsSystemWindows(true);
+
+        drawerToggle.syncState();
 
     }
 

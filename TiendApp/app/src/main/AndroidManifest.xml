@@ -24,9 +24,9 @@
             </intent-filter>
         </activity>
 
-        <!-- Categories Activity -->
+        <!-- CategoriesActivity Activity -->
         <activity
-            android:name=".Categories"
+            android:name=".activities.CategoriesActivity"
              >
 
         </activity>
@@ -41,7 +41,7 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="hci.tiendapp.Categories" />
+                android:value=".activities.CategoriesActivity" />
         </activity>
 
 
