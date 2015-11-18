@@ -11,9 +11,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import java.text.DateFormat;
+import java.util.Date;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.SystemClock;
+import android.util.Log;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -29,6 +38,13 @@ public class HomeActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
+
+
+    //Alarm variables
+    private AlarmManager alarmManager;
+    private PendingIntent alarmNotificationReceiverPendingIntent;
+    private final static int INTERVAL = 30000;
+    public final static String TAG = "Alarm";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +84,74 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         //mDrawerList.addHeaderView(findViewById(R.id.drawer_header));
+
+
+
+        //Alarm management
+        //TODO Make buttons for the id's
+        /*
+        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        Intent alarmNotificationReceiverIntent =
+                new Intent(HomeActivity.this, AlarmNotificationReceiver.class);
+        alarmNotificationReceiverPendingIntent =
+                PendingIntent.getBroadcast(HomeActivity.this, 0, alarmNotificationReceiverIntent, 0);
+
+        final Button setSingleAlarmButton = (Button) findViewById(R.id.set_single_alarm);
+        setSingleAlarmButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alarmManager.set(AlarmManager.RTC_WAKEUP,
+                        System.currentTimeMillis() + INTERVAL,
+                        alarmNotificationReceiverPendingIntent);
+
+                Log.d(TAG, "Single alarm set on:" +  DateFormat.getDateTimeInstance().format(new Date()));
+                Toast.makeText(HomeActivity.this, "Single alarm set", Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
+
+        final Button setRepeatingAlarmButton = (Button) findViewById(R.id.set_repeating_alarm);
+        setRepeatingAlarmButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME,
+                        SystemClock.elapsedRealtime() + INTERVAL,
+                        INTERVAL,
+                        alarmNotificationReceiverPendingIntent);
+
+                Log.d(TAG, "Repating alarm set on:" +  DateFormat.getDateTimeInstance().format(new Date()));
+                Toast.makeText(HomeActivity.this, "Repeating alarm set", Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
+
+        final Button setInexactRepeatingAlarmButton = (Button) findViewById(R.id.set_inexact_repeating_alarm);
+        setInexactRepeatingAlarmButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME,
+                        SystemClock.elapsedRealtime() + INTERVAL,
+                        AlarmManager.INTERVAL_FIFTEEN_MINUTES,
+                        alarmNotificationReceiverPendingIntent);
+
+                Log.d(TAG, "Inexact repeating alarm set on:" +  DateFormat.getDateTimeInstance().format(new Date()));
+                Toast.makeText(HomeActivity.this, "Inexact repeating alarm set", Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
+
+        final Button cancelRepeatingAlarmButton = (Button) findViewById(R.id.cancel_repeating_alarm);
+        cancelRepeatingAlarmButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alarmManager.cancel(alarmNotificationReceiverPendingIntent);
+
+                Toast.makeText(HomeActivity.this, "Repeating alarm cancelled", Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
+*/
     }
 
 

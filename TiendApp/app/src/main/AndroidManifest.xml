@@ -43,7 +43,8 @@
                 android:value="hci.tiendapp.Categories" />
         </activity>
 
-
+        <receiver android:name=".AlarmNotificationReceiver" >
+        </receiver>
 
     </application>
 
