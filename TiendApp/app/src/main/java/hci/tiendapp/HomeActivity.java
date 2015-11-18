@@ -24,8 +24,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.IntentFilter;
-import android.os.BatteryManager;
+import android.app.SearchManager;
+import android.support.v7.widget.SearchView;
+
 
 
 
@@ -177,13 +178,20 @@ public class HomeActivity extends AppCompatActivity {
 
             };
         };
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home_menu, menu);
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search_bar).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
 
         return true;
     }
