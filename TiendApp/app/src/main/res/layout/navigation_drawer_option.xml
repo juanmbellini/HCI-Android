@@ -27,6 +27,7 @@
         android:paddingLeft="16dp"
         android:paddingTop="24dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/colorPrimaryDark"
         android:text="Test"
         android:id="@+id/drawer_option_name"/>
 
