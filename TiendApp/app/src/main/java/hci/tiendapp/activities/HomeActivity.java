@@ -41,7 +41,7 @@ public class HomeActivity extends MyDrawerActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
 
         this.txt_hello = (TextView) findViewById(R.id.txt_hello);
         this.btn_en = (Button) findViewById(R.id.btn_en);
