@@ -206,6 +206,7 @@ public class HomeActivity extends AppCompatActivity {
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
         SearchView searchView =
                 (SearchView) menu.findItem(R.id.home_tool_bar_search_bar).getActionView();
         searchView.setSearchableInfo(
