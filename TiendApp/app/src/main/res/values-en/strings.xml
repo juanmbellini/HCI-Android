@@ -11,19 +11,19 @@
 
 
     <!-- Navigation Drawer Stuff -->
-    <string name="drawer_open">Abrir</string>
-    <string name="drawer_close">Cerrar</string>
-    <string name="drawer_option_home">Inicio</string>
-    <string name="drawer_option_men">Hombres</string>
-    <string name="drawer_option_women">Mujeres</string>
-    <string name="drawer_option_kids">Infantiles</string>
-    <string name="drawer_option_babies">Bebes</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="drawer_option_home">Home</string>
+    <string name="drawer_option_men">Men</string>
+    <string name="drawer_option_women">Women</string>
+    <string name="drawer_option_kids">Children</string>
+    <string name="drawer_option_babies">Babies</string>
 
 
     <!-- Fixed Tabs Stuff -->
-    <string name="tab_1">Categorias</string>
-    <string name="tab_2">Novedades</string>
-    <string name="tab_3">Ofertas</string>
+    <string name="tab_1">Categories</string>
+    <string name="tab_2">New-Ins</string>
+    <string name="tab_3">Sale</string>
 
     <!-- Alarm management -->
     <string name="set_single_alarm">Set Single Alarm</string>
@@ -32,12 +32,10 @@
     <string name="cancel_repeating_alarm">Cancel Repeating Alarm</string>
 
 
-    <string name="btn_en">Ingles</string>
-    <string name="btn_es">Español</string>
-    <string name="hello_world">Hola</string>
-
-
-    <string name="drawer_option_orders">Mis pedidos</string>
+    <string name="drawer_option_orders">My orders</string>
     <string name="title_activity_catalogue">Catalogue</string>
+    <string name="btn_en">English</string>
+    <string name="btn_es">Spanish</string>
+    <string name="hello_world">Hello</string>
 
 </resources>
