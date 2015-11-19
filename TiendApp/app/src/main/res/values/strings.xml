@@ -6,7 +6,7 @@
     <string name="sort_action">Ordenar</string>
     <string name="more_action">Más</string>
     <string name="search_action">Buscar</string>
-    <string name="search_hint">Busca</string>
+    <string name="search_hint">Buscar...</string>
     <string name="search_result">Resultados</string>
 
 
@@ -18,6 +18,12 @@
     <string name="drawer_option_women">Mujeres</string>
     <string name="drawer_option_kids">Infantiles</string>
     <string name="drawer_option_babies">Bebes</string>
+
+
+    <!-- Fixed Tabs Stuff -->
+    <string name="tab_1">Categorias</string>
+    <string name="tab_2">Novedades</string>
+    <string name="tab_3">Ofertas</string>
 
     <!-- Alarm management -->
     <string name="set_single_alarm">Set Single Alarm</string>

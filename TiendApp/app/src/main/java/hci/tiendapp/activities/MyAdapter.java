@@ -82,8 +82,33 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             // TODO crear el intent que sea necesario
             //Toast.makeText(context, "The Item Clicked is: " +  getLayoutPosition(), Toast.LENGTH_LONG).show();
 
+            String option = null;
+            int position = getLayoutPosition();
+
+            if (position == 1 || position == 6) {
+                return;
+            }
+
+            switch (position) {
+                case 2:
+                    option = Constants.menCategory;
+                    break;
+                case 3:
+                    option = Constants.womenCategory;
+                    break;
+                case 4:
+                    option = Constants.kidsCategory;
+                    break;
+                case 5:
+                    option = Constants.babiesCategory;
+                    break;
+                default:
+                    return;
+            }
+
+
             Intent intent = new Intent(context, CategoriesActivity.class);
-            intent.putExtra(Constants.genderSelection,"Hola");
+            intent.putExtra(Constants.genderSelection,option);
             context.startActivity(intent);
 
         }
