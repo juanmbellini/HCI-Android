@@ -3,12 +3,14 @@ package hci.tiendapp.activities;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ public class HomeActivity extends MyDrawerActivity implements View.OnClickListen
     private TextView txt_hello;
     private Button btn_en, btn_es;
     private Locale myLocale;
+    public int fllag = 0;
 
 
     public HomeActivity() {
@@ -122,6 +125,15 @@ public class HomeActivity extends MyDrawerActivity implements View.OnClickListen
         txt_hello.setText(R.string.hello_world);
         btn_en.setText(R.string.btn_en);
         btn_es.setText(R.string.btn_es);
+
+        //Refresh
+        if (fllag != 0){
+            fllag -= fllag;
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }
+
     }
 
     @Override
@@ -130,9 +142,11 @@ public class HomeActivity extends MyDrawerActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.btn_en:
                 lang = "en";
+                fllag = 1;
                 break;
             case R.id.btn_es:
                 lang = "es";
+                fllag = 1;
                 break;
             default:
                 break;
