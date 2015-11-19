@@ -1,6 +1,7 @@
 package hci.tiendapp.activities;
 
 import android.app.Activity;
+import android.app.LocalActivityManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -57,13 +58,13 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
         drawerList = (RecyclerView) findViewById(R.id.left_drawer);
         RecyclerView.Adapter drawerAdapter = new MyAdapter(childActivity);
         drawerList.setAdapter(drawerAdapter);
-        drawerList.setLayoutManager(new LinearLayoutManager(this));
+        drawerList.setLayoutManager(new LinearLayoutManager(childActivity));
 
         drawerToggle = new ActionBarDrawerToggle(childActivity, drawerLayout, R.string.drawer_open, R.string.drawer_close);
 
         drawerLayout.setDrawerListener(drawerToggle);
         drawerLayout.setFitsSystemWindows(true);
-        drawerToggle.setDrawerIndicatorEnabled(false);
+        drawerToggle.setDrawerIndicatorEnabled(childActivity.getClass() == HomeActivity.class);
 
     }
 
