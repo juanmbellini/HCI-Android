@@ -25,24 +25,20 @@ import java.util.List;
 import hci.tiendapp.R;
 import hci.tiendapp.constants.Constants;
 
-public class CategoriesActivity extends AppCompatActivity {
+public class CategoriesActivity extends MyDrawerActivity {
 
 
     private TabHost tabHost;
 
-/*
+
     public CategoriesActivity() {
-        super(R.layout.activity_categories);
+        super(R.layout.activity_categories, R.id.categories_layout);
         super.setContext(this);
-    }*/
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_categories);
-
-
 
 
 
@@ -74,7 +70,6 @@ public class CategoriesActivity extends AppCompatActivity {
         ts3.setContent(R.id.categories_tab_content_sale);
         tabHost.addTab(ts3);
 
-        //TODO ver que onda con el drawer
 
 
 

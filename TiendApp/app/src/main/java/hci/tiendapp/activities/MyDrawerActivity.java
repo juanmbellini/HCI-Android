@@ -12,7 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
+import android.view.GestureDetector;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -33,10 +35,13 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
     private ActionBarDrawerToggle drawerToggle;
 
     private int layoutId;
+    private int childId;
+
     private Activity childActivity;
 
-    public MyDrawerActivity(int layoutId) {
+    public MyDrawerActivity(int layoutId, int childId) {
         this.layoutId = layoutId;
+        this.childId = childId;
     }
 
     public void setContext(Activity childActivity) {
@@ -48,12 +53,15 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
         super.onCreate(savedInstance);
 
         setContentView(layoutId);
+        View childView = findViewById(childId);
+        setContentView(R.layout.navigation_drawer);
 
         // Sets up the action bar
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Sets up the navigation drawer
+
         drawerLayout = (DrawerLayout) findViewById(R.id.navigation_drawer_layout);
         drawerList = (RecyclerView) findViewById(R.id.left_drawer);
         RecyclerView.Adapter drawerAdapter = new MyAdapter(childActivity);
@@ -65,6 +73,9 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
         drawerLayout.setDrawerListener(drawerToggle);
         drawerLayout.setFitsSystemWindows(true);
         drawerToggle.setDrawerIndicatorEnabled(childActivity.getClass() == HomeActivity.class);
+        drawerLayout.addView(childView, 0);
+
+
 
     }
 
