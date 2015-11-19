@@ -6,6 +6,9 @@
     <string name="sort_action">Ordenar</string>
     <string name="more_action">Más</string>
     <string name="search_action">Buscar</string>
+    <string name="search_hint">Busca</string>
+    <string name="search_result">Resultados</string>
+
 
     <!-- Navigation Drawer Stuff -->
     <string name="drawer_open">open</string>
@@ -15,8 +18,15 @@
     <string name="drawer_option_women">Mujeres</string>
     <string name="drawer_option_kids">Infantiles</string>
     <string name="drawer_option_babies">Bebes</string>
-    <string name="drawer_option_orders">Mis pedidos</string>
 
+    <!-- Alarm management -->
+    <string name="set_single_alarm">Set Single Alarm</string>
+    <string name="set_repeating_alarm">Set Repeating Alarm</string>
+    <string name="set_inexact_repeating_alarm">Set Inexact Repeating Alarm</string>
+    <string name="cancel_repeating_alarm">Cancel Repeating Alarm</string>
+
+
+    <string name="drawer_option_orders">Mis pedidos</string>
     <string name="title_activity_catalogue">catalogue</string>
 
 </resources>

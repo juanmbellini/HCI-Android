@@ -1,0 +1,51 @@
+﻿Merge remote-tracking branch 'origin/master'
+
+Conflicts:
+	TiendApp/app/src/main/java/hci/tiendapp/activities/HomeActivity.java
+	TiendApp/app/src/main/res/values/strings.xml
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 3 and 2 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   TiendApp/app/src/main/AndroidManifest.xml
+#	modified:   TiendApp/app/src/main/java/hci/tiendapp/AlarmNotificationReceiver.java
+#	deleted:    TiendApp/app/src/main/java/hci/tiendapp/MyAdapter.java
+#	deleted:    TiendApp/app/src/main/java/hci/tiendapp/NavigationDrawerOptions.java
+#	new file:   TiendApp/app/src/main/java/hci/tiendapp/TiendApp.java
+#	renamed:    TiendApp/app/src/main/java/hci/tiendapp/Categories.java -> TiendApp/app/src/main/java/hci/tiendapp/activities/CategoriesActivity.java
+#	renamed:    TiendApp/app/src/main/java/hci/tiendapp/HomeActivity.java -> TiendApp/app/src/main/java/hci/tiendapp/activities/HomeActivity.java
+#	new file:   TiendApp/app/src/main/java/hci/tiendapp/activities/MyAdapter.java
+#	new file:   TiendApp/app/src/main/java/hci/tiendapp/activities/MyDrawerActivity.java
+#	new file:   TiendApp/app/src/main/res/drawable-hdpi/ic_orders.png
+#	new file:   TiendApp/app/src/main/res/drawable-ldpi/ic_orders.png
+#	new file:   TiendApp/app/src/main/res/drawable-mdpi/ic_orders.png
+#	new file:   TiendApp/app/src/main/res/drawable-tvdpi/ic_orders.png
+#	new file:   TiendApp/app/src/main/res/drawable-xhdpi/ic_orders.png
+#	new file:   TiendApp/app/src/main/res/drawable-xxxhdpi/ic_orders.png
+#	modified:   TiendApp/app/src/main/res/layout/activity_categories.xml
+#	modified:   TiendApp/app/src/main/res/layout/activity_home.xml
+#	modified:   TiendApp/app/src/main/res/layout/navigation_drawer_option.xml
+#	new file:   TiendApp/app/src/main/res/layout/tool_bar.xml
+#	modified:   TiendApp/app/src/main/res/menu/catalogue_menu.xml
+#	new file:   TiendApp/app/src/main/res/menu/categories_menu.xml
+#	modified:   TiendApp/app/src/main/res/menu/home_menu.xml
+#	deleted:    TiendApp/app/src/main/res/menu/navigation_drawer_items.xml
+#	modified:   TiendApp/app/src/main/res/values/strings.xml
+#	modified:   TiendApp/app/src/main/res/values/styles.xml
+#	modified:   TiendApp/gradle.properties
+#	modified:   TiendApp/gradlew
+#
+

@@ -20,8 +20,6 @@ import java.net.URL;
 
 public class Service{
 
-    JSONObject requestResult = new JSONObject();
-
     /*
      * To convert the InputStream to String we use the BufferedReader.readLine()
      * method. We iterate until the BufferedReader return null which means
@@ -33,20 +31,22 @@ public class Service{
 
     }
 
-    public void connect(String urlString){
+    public static JSONObject connect(String urlString){
+
+        JSONObject requestResult = new JSONObject();
         URL url;
         try {
             url = new URL(urlString);
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            return;
+            return null;
         }
         HttpURLConnection urlConnection;
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
         } catch (IOException e) {
             e.printStackTrace();
-            return;
+            return null;
         }
         try {
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
@@ -56,9 +56,10 @@ public class Service{
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
+        return requestResult;
     }
 
-    private String readStream(InputStream is) {
+    private static String readStream(InputStream is) {
         try {
             ByteArrayOutputStream bo = new ByteArrayOutputStream();
             int i = is.read();

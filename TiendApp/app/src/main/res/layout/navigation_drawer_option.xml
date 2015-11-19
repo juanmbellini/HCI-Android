@@ -2,13 +2,14 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
 
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:paddingBottom="8dp"
     android:paddingTop="8dp"
-    android:background="@android:color/transparent"
-    android:text="New Text">
+    android:background="?attr/selectableItemBackground"
+    android:text="New Text"
+    android:clickable="true">
 
 
 
