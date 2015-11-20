@@ -1,30 +1,22 @@
 package hci.tiendapp.activities;
 
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -34,38 +26,44 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.nio.charset.MalformedInputException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import hci.tiendapp.R;
 import hci.tiendapp.backend.Category;
+import hci.tiendapp.backend.SubCategory;
 import hci.tiendapp.constants.Constants;
 import hci.tiendapp.util.UtilClass;
 
-public class CategoriesActivity extends MyDrawerActivity {
+/**
+ * Created by JuanMarcos on 19/11/15.
+ */
+public class SubCategoriesActivity extends MyDrawerActivity {
 
-    String genderOption;        // Used to restore categories if returning to this activity
+    String genderOption;        // Used to restore activity state if returning to this activity
+    String categoryId;          // Used to restore activity state if returning to this activity
+    String categotyName;        // Used to restore activity state if returning to this activity
+
     ArrayAdapter adapter;
-    private TabHost tabHost;
+    TabHost tabHost;
 
 
-    public CategoriesActivity() {
-        super(R.layout.activity_categories, R.id.categories_layout);
+    public SubCategoriesActivity() {
+
+        super(R.layout.activity_sub_category, R.id.sub_categories_layout);
         super.setContext(this);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         adapter = new ArrayAdapter<Category>(this, R.layout.categories_list_item, new ArrayList<Category>());
 
-
         // Sets up the fixed tabs
-        tabHost = (TabHost) findViewById(R.id.categories_tab_host);
+        tabHost = (TabHost) findViewById(R.id.sub_categories_tab_host);
         tabHost.setup();
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
@@ -78,18 +76,18 @@ public class CategoriesActivity extends MyDrawerActivity {
 
 
         TabHost.TabSpec ts1 = tabHost.newTabSpec("Tab1");
-        ts1.setIndicator(getResources().getString(R.string.categories_tab_1));
-        ts1.setContent(R.id.categories_tab_content_categories);
+        ts1.setIndicator(getResources().getString(R.string.sub_categories_tab_1));
+        ts1.setContent(R.id.sub_categories_tab_content_sub_categories);
         tabHost.addTab(ts1);
 
         TabHost.TabSpec ts2 = tabHost.newTabSpec("Tab2");
-        ts2.setIndicator(getResources().getString(R.string.categories_tab_2));
-        ts2.setContent(R.id.categories_tab_content_news);
+        ts2.setIndicator(getResources().getString(R.string.sub_categories_tab_2));
+        ts2.setContent(R.id.sub_categories_tab_content_news);
         tabHost.addTab(ts2);
 
         TabHost.TabSpec ts3 = tabHost.newTabSpec("Tab3");
-        ts3.setIndicator(getResources().getString(R.string.categories_tab_3));
-        ts3.setContent(R.id.categories_tab_content_sale);
+        ts3.setIndicator(getResources().getString(R.string.sub_categories_tab_3));
+        ts3.setContent(R.id.sub_categories_tab_content_sale);
         tabHost.addTab(ts3);
 
 
@@ -97,11 +95,15 @@ public class CategoriesActivity extends MyDrawerActivity {
 
         Intent intent = getIntent();
         String intentOption = intent.getStringExtra(Constants.genderSelection);
+        String intentCategoryId = intent.getStringExtra(Constants.categorySelectionId);
+        String intentCategoryName = intent.getStringExtra(Constants.categorySelectionName);
 
 
-        if (intentOption == null) {
+        if (intentOption == null || intentCategoryName == null || intentCategoryId == null) {
             if (savedInstanceState != null) {
                 genderOption = savedInstanceState.getString("option");
+                categoryId = savedInstanceState.getString("categoryId");
+                categotyName = savedInstanceState.getString("categoryName");
             }
             else {
                 // Shouldn't get here, but in case...
@@ -110,43 +112,18 @@ public class CategoriesActivity extends MyDrawerActivity {
             }
         } else {
             GetCategoriesTask asyncTask = new GetCategoriesTask();
-            asyncTask.execute(intentOption);
+            asyncTask.execute(intentOption, intentCategoryId);
             genderOption = intentOption;
         }
 
 
-        final String sendingOption = genderOption;
+
+        ((TextView)findViewById(R.id.sub_categories_list_title)).setText(intent.getStringExtra(Constants.categorySelectionName));
+
 
         ListView l = (ListView) findViewById(R.id.categories_list);
         l.setAdapter(adapter);
-        l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Category selectedCategory = (Category) adapter.getItem(position);
-                Intent intent = new Intent(CategoriesActivity.this, SubCategoriesActivity.class);
-                intent.putExtra(Constants.genderSelection, sendingOption);
-                intent.putExtra(Constants.categorySelectionId, selectedCategory.getId() + "");
-                intent.putExtra(Constants.categorySelectionName, selectedCategory.getName());
-                startActivity(intent);
-
-            }
-        });
-
-
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        genderOption = savedInstanceState.getString("option");
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-
-        outState.putString("option", genderOption);
-        super.onSaveInstanceState(outState);
 
     }
 
@@ -160,25 +137,22 @@ public class CategoriesActivity extends MyDrawerActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == android.R.id.home) {
-            //onBackPressed();
-            NavUtils.navigateUpFromSameTask(this);
+            onBackPressed();
             return true;
         }
+
         return super.onOptionsItemSelected(item);
 
     }
 
-    private class GetCategoriesTask extends AsyncTask<String, Long, Collection<Category>> {
 
-        final String baseURL = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllCategories&filters=";
-        final String[] filters = {
-            "[ {\"id\": 1, \"value\": \"Masculino\"}, {\"id\": 2, \"value\": \"Adulto\"}]",     // Men request
-                    "[ {\"id\": 1, \"value\": \"Femenino\"}]",                                  // Women request
-                    "[ {\"id\": 2, \"value\": \"Infantil\"}]",                                  // Kids request
-                    "[ {\"id\": 2, \"value\": \"Bebe\"}]"                                      // Babies request
-        };
+    private class GetCategoriesTask extends AsyncTask<String, Long, Collection<SubCategory>> {
 
-        private String setUp(String sectionId) {
+        final String baseURL = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllSubcategories&id=";
+
+
+        private String setUp(String sectionId, String categoryId) {
+
 
             int id = 0;
             switch (sectionId) {
@@ -196,19 +170,19 @@ public class CategoriesActivity extends MyDrawerActivity {
                     id = 3;
                     break;
                 default:
-                    CategoriesActivity.this.finish();
+                    SubCategoriesActivity.this.finish();
                     throw new RuntimeException("Algo anduvo mal");
             }
 
             String encodedString = null;
             try {
-                encodedString = URLEncoder.encode(filters[id], "utf-8");
+                encodedString = URLEncoder.encode(Constants.sectionFilters[id], "utf-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            return baseURL + encodedString;
-
+            return baseURL + categoryId + "&filters=" + encodedString;
         }
+
 
         private String getCategoryJSON(URLConnection urlConnection) {
 
@@ -217,7 +191,7 @@ public class CategoriesActivity extends MyDrawerActivity {
             try {
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 JSONObject aux = new JSONObject(UtilClass.readStream(in));
-                result = aux.getString("categories");
+                result = aux.getString("subcategories");
                 if (result == null) {
                     throw new RuntimeException("Wrong Method");
                 }
@@ -229,12 +203,10 @@ public class CategoriesActivity extends MyDrawerActivity {
         }
 
 
-
-
         @Override
-        protected Collection<Category> doInBackground(String... params) {
+        protected Collection<SubCategory> doInBackground(String... params) {
 
-            String requestURL = setUp(params[0]);
+            String requestURL = setUp(params[0], params[1]);
 
             System.out.println(requestURL);
 
@@ -263,20 +235,17 @@ public class CategoriesActivity extends MyDrawerActivity {
 
 
             Gson parser = new Gson();
-            Type dataSetListType = new TypeToken<Collection<Category>>() {}.getType();
+            Type dataSetListType = new TypeToken<Collection<SubCategory>>() {}.getType();
             return parser.fromJson(result, dataSetListType);
         }
 
         @Override
-        protected void onPostExecute(Collection<Category> categories) {
-            super.onPostExecute(categories);
+        protected void onPostExecute(Collection<SubCategory> subCategories) {
+            super.onPostExecute(subCategories);
             adapter.clear();
-            adapter.addAll(categories);
+            adapter.addAll(subCategories);
         }
-
-
     }
-
 
 
 }

@@ -38,6 +38,17 @@
 
         </activity>
 
+        <!-- CategoriesActivity Activity -->
+        <activity
+            android:name=".activities.SubCategoriesActivity"
+            >
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.CategoriesActivity" />
+
+        </activity>
+
         <!-- Catalogue Activity -->
         <activity
             android:name=".Catalogue"

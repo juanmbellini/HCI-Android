@@ -1,7 +1,6 @@
 package hci.tiendapp.activities;
 
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,26 +8,16 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-import java.text.DateFormat;
-import java.util.Date;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.os.SystemClock;
-import android.util.Log;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.app.SearchManager;
@@ -40,8 +29,6 @@ import android.support.v7.widget.SearchView;
 
 
 import hci.tiendapp.R;
-
-import static android.widget.Toast.LENGTH_LONG;
 
 public class HomeActivity2 extends AppCompatActivity {
    
@@ -88,7 +75,7 @@ public class HomeActivity2 extends AppCompatActivity {
         mDrawerList = (RecyclerView) findViewById(R.id.left_drawer);
         mDrawerList.setHasFixedSize(true);
 
-        RecyclerView.Adapter mAdapter= new MyAdapter(this);
+        RecyclerView.Adapter mAdapter= new MyDrawerActivity.MyAdapter(this);
 
         mDrawerList.setAdapter(mAdapter);
 

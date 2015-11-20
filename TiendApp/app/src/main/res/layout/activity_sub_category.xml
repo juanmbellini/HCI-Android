@@ -2,26 +2,21 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:id="@+id/categories_layout"
+
+    android:id="@+id/sub_categories_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="activities.CategoriesActivity">
-
-
-
-
-
+    tools:context="activities.SubCategoriesActivity">
 
     <TabHost
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/categories_tab_host"
+        android:id="@+id/sub_categories_tab_host"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
@@ -47,39 +42,39 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:id="@+id/categories_tab_content_categories"
+                    android:id="@+id/sub_categories_tab_content_sub_categories"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:layout_marginLeft="@dimen/content_horizontal_margin"
-                    android:layout_marginRight="@dimen/content_horizontal_margin"
-                    android:layout_marginBottom="30dp">
+                    android:layout_marginRight="@dimen/content_horizontal_margin">
 
 
-                        <TextView
-                            android:id="@+id/categories_list_title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/categories_title"
-                            android:layout_marginTop="@dimen/title_margin_top"
-                            android:textSize="@dimen/title_size"
-                            android:textStyle="bold"
-                            />
+                    <TextView
+                        android:id="@+id/sub_categories_list_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_marginTop="@dimen/title_margin_top"
+                        android:textSize="@dimen/title_size"
+                        android:textStyle="bold"
+                        />
 
-                        <ListView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:id="@+id/categories_list">
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:paddingBottom="30dp"
+                        android:id="@+id/categories_list">
 
-                        </ListView>
+                    </ListView>
 
 
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/categories_tab_content_news"
+                    android:id="@+id/sub_categories_tab_content_news"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
@@ -93,7 +88,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/categories_tab_content_sale"
+                    android:id="@+id/sub_categories_tab_content_sale"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
@@ -109,8 +104,5 @@
             </FrameLayout>
         </LinearLayout>
     </TabHost>
-
-
-
 
 </RelativeLayout>

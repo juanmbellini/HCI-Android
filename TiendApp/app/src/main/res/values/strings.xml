@@ -20,10 +20,21 @@
     <string name="drawer_option_babies">Bebes</string>
 
 
-    <!-- Fixed Tabs Stuff -->
-    <string name="tab_1">Categorias</string>
-    <string name="tab_2">Novedades</string>
-    <string name="tab_3">Ofertas</string>
+    <!-- Categories Fixed Tabs Stuff -->
+    <string name="categories_tab_1">Categorías</string>
+    <string name="categories_tab_2">Novedades</string>
+    <string name="categories_tab_3">Ofertas</string>
+
+    <!-- Sub Categories Fixed Tabs Stuff -->
+    <string name="sub_categories_tab_1">Sub-Categorías</string>
+    <string name="sub_categories_tab_2">Novedades</string>
+    <string name="sub_categories_tab_3">Ofertas</string>
+
+
+    <!-- Categories Activity -->
+    <string name="categories_title">Categorías</string>
+
+
 
     <!-- Alarm management -->
     <string name="set_single_alarm">Set Single Alarm</string>
