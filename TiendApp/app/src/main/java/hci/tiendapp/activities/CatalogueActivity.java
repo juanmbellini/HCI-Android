@@ -73,7 +73,7 @@ public class CatalogueActivity extends MyDrawerActivity {
         public class Holder {
             ImageView image;
             TextView name;
-            TextView price
+            TextView price;
         }
 
 

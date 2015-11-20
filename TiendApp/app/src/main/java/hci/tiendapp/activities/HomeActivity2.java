@@ -35,7 +35,7 @@ import hci.tiendapp.R;
 
 import static android.widget.Toast.LENGTH_LONG;
 
-public class HomeActivity2 extends AppCompatActivity implements View.OnClickListener {
+public class HomeActivity2 extends AppCompatActivity{
 
 
 
@@ -71,15 +71,8 @@ public class HomeActivity2 extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.navigation_drawer);
 
 
-            this.txt_hello = (TextView)findViewById(R.id.txt_hello);
-            this.btn_en = (Button)findViewById(R.id.btn_en);
-            this.btn_es = (Button)findViewById(R.id.btn_es);
 
 
-            this.btn_en.setOnClickListener(this);
-            this.btn_es.setOnClickListener(this);
-
-            loadLocale();
 
 
 /*
@@ -271,11 +264,7 @@ public class HomeActivity2 extends AppCompatActivity implements View.OnClickList
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
 
-        if (myLocale != null){
-            newConfig.locale = myLocale;
-            Locale.setDefault(myLocale);
-            getBaseContext().getResources().updateConfiguration(newConfig, getBaseContext().getResources().getDisplayMetrics());
-        }
+
     }
 
     @Override
@@ -332,56 +321,5 @@ public class HomeActivity2 extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public void loadLocale()
-    {
-        String langPref = "Language";
-        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
-        String language = prefs.getString(langPref, "");
-        changeLang(language);
-    }
 
-    public void saveLocale(String lang)
-    {
-        String langPref = "Language";
-        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(langPref, lang);
-        editor.commit();
-    }
-
-    public void changeLang(String lang)
-    {
-        if (lang.equalsIgnoreCase(""))
-            return;
-        myLocale = new Locale(lang);
-        saveLocale(lang);
-        Locale.setDefault(myLocale);
-        android.content.res.Configuration config = new android.content.res.Configuration();
-        config.locale = myLocale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-        updateTexts();
-    }
-
-    private void updateTexts()
-    {
-        txt_hello.setText(R.string.hello_world);
-        btn_en.setText(R.string.btn_en);
-        btn_es.setText(R.string.btn_es);
-    }
-
-    @Override
-    public void onClick(View v) {
-        String lang = "es";
-        switch (v.getId()) {
-            case R.id.btn_en:
-                lang = "en";
-                break;
-            case R.id.btn_es:
-                lang = "es";
-                break;
-            default:
-                break;
-        }
-        changeLang(lang);
-    }
 }

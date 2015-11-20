@@ -18,6 +18,8 @@
     <string name="drawer_option_women">Mujeres</string>
     <string name="drawer_option_kids">Infantiles</string>
     <string name="drawer_option_babies">Bebes</string>
+    <string name="drawer_option_orders">Mis pedidos</string>
+    <string name="drawer_option_settings">Configuración</string>
 
     <!-- Categories Fixed Tabs Stuff -->
     <string name="categories_tab_1">Categorías</string>
@@ -51,14 +53,18 @@
     <string name="set_inexact_repeating_alarm">Set Inexact Repeating Alarm</string>
     <string name="cancel_repeating_alarm">Cancel Repeating Alarm</string>
 
+    <!-- Catalogue -->
+    <string name="title_activity_catalogue">Catalogue</string>
+
     <!-- Languages -->
     <string name="btn_en">Ingles</string>
     <string name="btn_es">Español</string>
     <string name="hello_world">Hola</string>
+    <string name="languages">Idiomas</string>
+    <string name="settings">Ajustes</string>
 
 
-    <string name="drawer_option_orders">Mis pedidos</string>
-    <string name="title_activity_catalogue">Catalogue</string>
+
 
 
 </resources>
