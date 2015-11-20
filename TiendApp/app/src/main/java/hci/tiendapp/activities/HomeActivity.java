@@ -10,17 +10,11 @@ import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import java.util.Locale;
-
-
-
 
 import java.util.Locale;
+
 
 import hci.tiendapp.R;
 
@@ -34,7 +28,7 @@ public class HomeActivity extends MyDrawerActivity implements View.OnClickListen
     private Button btn_en, btn_es;
     private Locale myLocale;
     public int fllag = 0;
-
+    private View btn;
 
     public HomeActivity() {
         super(R.layout.activity_home, R.id.home_layout);
@@ -45,6 +39,8 @@ public class HomeActivity extends MyDrawerActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    //    Intent k = new Intent(HomeActivity.this, ProductActivity.class);
+    //    startActivity(k);
 
         this.txt_hello = (TextView) findViewById(R.id.txt_hello);
         this.btn_en = (Button) findViewById(R.id.btn_en);
@@ -108,8 +104,10 @@ public class HomeActivity extends MyDrawerActivity implements View.OnClickListen
 
     public void changeLang(String lang)
     {
-        if (lang.equalsIgnoreCase(""))
+        if (lang.equalsIgnoreCase("")) {
+            fllag -= fllag;
             return;
+        }
         myLocale = new Locale(lang);
         saveLocale(lang);
         Locale.setDefault(myLocale);
