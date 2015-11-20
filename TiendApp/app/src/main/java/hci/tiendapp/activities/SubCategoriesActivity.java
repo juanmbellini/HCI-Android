@@ -28,7 +28,6 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import hci.tiendapp.R;
 import hci.tiendapp.backend.Category;
@@ -184,7 +183,7 @@ public class SubCategoriesActivity extends MyDrawerActivity {
         }
 
 
-        private String getCategoryJSON(URLConnection urlConnection) {
+        private String getSubCategoryJSON(URLConnection urlConnection) {
 
             String result = null;
 
@@ -231,7 +230,7 @@ public class SubCategoriesActivity extends MyDrawerActivity {
                 System.out.println("Disconnected");
             }
 
-            String result = getCategoryJSON(urlConnection);                // Filters fetched data
+            String result = getSubCategoryJSON(urlConnection);                // Filters fetched data
 
 
             Gson parser = new Gson();

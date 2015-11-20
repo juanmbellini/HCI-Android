@@ -20,10 +20,17 @@
     <string name="drawer_option_babies">Babies</string>
 
 
-    <!-- Fixed Tabs Stuff -->
-    <string name="tab_1">Categories</string>
-    <string name="tab_2">New-Ins</string>
-    <string name="tab_3">Sale</string>
+    <!-- Categories Fixed Tabs Stuff -->
+    <string name="categories_tab_1">Categories</string>
+    <string name="categories_tab_2">New-Ins</string>
+    <string name="categories_tab_3">Sale</string>
+
+
+    <!-- Sub Categories Fixed Tabs Stuff -->
+    <string name="sub_categories_tab_1">Sub-Categories</string>
+    <string name="sub_categories_tab_2">New-Ins</string>
+    <string name="sub_categories_tab_3">Sale</string>
+
 
 
     <!-- Fixed Tabs Stuff - Products -->

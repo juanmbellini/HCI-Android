@@ -1,12 +1,15 @@
 package hci.tiendapp.activities;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.View;
@@ -17,11 +20,15 @@ import java.util.Locale;
 
 
 import hci.tiendapp.R;
+import hci.tiendapp.backend.Service;
+import hci.tiendapp.background.AlarmReceiver;
+import hci.tiendapp.background.ProductsService;
 
 /**
  * Created by JuanMarcos on 19/11/15.
  */
 public class HomeActivity extends MyDrawerActivity implements View.OnClickListener {
+
 
     //Language variables
     private TextView txt_hello;
@@ -52,6 +59,17 @@ public class HomeActivity extends MyDrawerActivity implements View.OnClickListen
 
         loadLocale();
 
+        ProductsService service = new ProductsService();
+        this.startService(new Intent(this, ProductsService.class));
+
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Intent intent = new Intent(HomeActivity.this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(HomeActivity.this, 0 , intent, PendingIntent.FLAG_ONE_SHOT);
+       // alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 10000, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 5000, 5000, pendingIntent);
+        System.out.println("Alarm set");
+        
 
 
 

@@ -42,7 +42,7 @@
     <!-- Products - Other  -->
     <string name="prod_title">Titulo</string>
     <string name="prod_brand">Marca</string>
-    <string name="add_to_shopping_bag">AGREGAR A CARRITO</string>
+    <string name="add_to_shopping_bag">AGREGAR AL CARRITO</string>
 
 
     <!-- Alarm management -->

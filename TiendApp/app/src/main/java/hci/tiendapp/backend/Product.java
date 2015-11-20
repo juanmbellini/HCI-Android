@@ -1,16 +1,25 @@
 package hci.tiendapp.backend;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * Created by Julian on 11/18/2015.
  */
 public class Product {
 
+    @Expose
     private int id;
+    @Expose
     private String name;
-    private int price;
+    @Expose
+    private double price;
+    @Expose
     private String[] imageUrl;
+    @Expose
     private Category category;
+    @Expose
     private SubCategory subcategory;
+    @Expose
     private Attribute[] attributes;
 
     public Product(int id, String name, int price, String[] imageUrl, Category category, SubCategory subcategory, Attribute[] attributes) {
