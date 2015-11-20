@@ -1,5 +1,7 @@
 package hci.tiendapp.activities;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,9 +14,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -24,14 +29,15 @@ import android.app.SearchManager;
 import android.support.v7.widget.SearchView;
 
 
-
-
-
+import java.util.Locale;
 
 import hci.tiendapp.R;
 
-public class HomeActivity2 extends AppCompatActivity {
-   
+import static android.widget.Toast.LENGTH_LONG;
+
+public class HomeActivity2 extends AppCompatActivity implements View.OnClickListener {
+
+
 
     private Toolbar toolbar;
 
@@ -52,14 +58,29 @@ public class HomeActivity2 extends AppCompatActivity {
     //Broadcast variable
     private BroadcastReceiver broadcastReceiver;
 
+    //Language variables
+    private TextView txt_hello;
+    private Button btn_en, btn_es;
+    private Locale myLocale;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_home);
         RelativeLayout r = (RelativeLayout) findViewById(R.id.home_layout);
-
         setContentView(R.layout.navigation_drawer);
+
+
+            this.txt_hello = (TextView)findViewById(R.id.txt_hello);
+            this.btn_en = (Button)findViewById(R.id.btn_en);
+            this.btn_es = (Button)findViewById(R.id.btn_es);
+
+
+            this.btn_en.setOnClickListener(this);
+            this.btn_es.setOnClickListener(this);
+
+            loadLocale();
+
 
 /*
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
@@ -249,6 +270,12 @@ public class HomeActivity2 extends AppCompatActivity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         drawerToggle.onConfigurationChanged(newConfig);
+
+        if (myLocale != null){
+            newConfig.locale = myLocale;
+            Locale.setDefault(myLocale);
+            getBaseContext().getResources().updateConfiguration(newConfig, getBaseContext().getResources().getDisplayMetrics());
+        }
     }
 
     @Override
@@ -303,5 +330,58 @@ public class HomeActivity2 extends AppCompatActivity {
         public boolean onMenuItemClick(MenuItem item) {
             return false;
         }
+    }
+
+    public void loadLocale()
+    {
+        String langPref = "Language";
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
+        String language = prefs.getString(langPref, "");
+        changeLang(language);
+    }
+
+    public void saveLocale(String lang)
+    {
+        String langPref = "Language";
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(langPref, lang);
+        editor.commit();
+    }
+
+    public void changeLang(String lang)
+    {
+        if (lang.equalsIgnoreCase(""))
+            return;
+        myLocale = new Locale(lang);
+        saveLocale(lang);
+        Locale.setDefault(myLocale);
+        android.content.res.Configuration config = new android.content.res.Configuration();
+        config.locale = myLocale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        updateTexts();
+    }
+
+    private void updateTexts()
+    {
+        txt_hello.setText(R.string.hello_world);
+        btn_en.setText(R.string.btn_en);
+        btn_es.setText(R.string.btn_es);
+    }
+
+    @Override
+    public void onClick(View v) {
+        String lang = "es";
+        switch (v.getId()) {
+            case R.id.btn_en:
+                lang = "en";
+                break;
+            case R.id.btn_es:
+                lang = "es";
+                break;
+            default:
+                break;
+        }
+        changeLang(lang);
     }
 }

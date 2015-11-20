@@ -16,42 +16,44 @@
     <include
         layout="@layout/tool_bar"/>-->
 
-    <TextView android:text="Hello WorldDDASDASDASDASDASDASDASDASDASDASDASDASDASDASASD!" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:id="@+id/hola_mundo"/>
 
-<!--
-    <include
-        tools:context=".HomeActivity"
-        layout="@layout/navigation_drawer"/>-->
-
-
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
+        <TextView
+            android:id="@+id/txt_hello"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/hello_world" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="105dp"
-        android:layout_above="@+id/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="61dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center">
 
+            <Button
+                android:id="@+id/btn_en"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btn_en" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="210dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="96dp"
-        android:id="@+id/button" />
+            <Button
+                android:id="@+id/btn_es"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btn_es" />
 
+        </LinearLayout>
 
-
+    </LinearLayout>
 
 
 </RelativeLayout>
