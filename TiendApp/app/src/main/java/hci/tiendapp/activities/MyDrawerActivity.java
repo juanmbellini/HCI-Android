@@ -183,9 +183,6 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
                 String option = null;
                 int position = getLayoutPosition();
 
-                if (position == 6) {
-                    return;
-                }
 
                 switch (position) {
                     case 1:
@@ -205,6 +202,12 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
                     case 5:
                         option = Constants.babiesCategory;
                         break;
+                    case 6:
+                        return;
+                    case 7:
+                        Intent intent = new Intent(context, SettingsActivity.class);
+                        context.startActivity(intent);
+                        return;
                     default:
                         return;
                 }
@@ -216,8 +219,6 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
                 context.startActivity(intent);
 
             }
-
-
 
         }
 
@@ -432,6 +433,11 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
                 currentOption = R.string.drawer_option_orders;
                 currentIcon = R.drawable.ic_orders;
                 list.add(new NavigationDrawerMainOption(6, currentOption, currentIcon));
+
+                // Now adding Settings
+                currentOption = R.string.drawer_option_settings;
+                currentIcon = R.drawable.ic_settings_black_24dp;
+                list.add(new NavigationDrawerMainOption(7, currentOption, currentIcon));
             }
 
             /**
