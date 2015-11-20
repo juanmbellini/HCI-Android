@@ -3,10 +3,13 @@ package hci.tiendapp.background;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -22,7 +25,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 
 import hci.tiendapp.TiendApp;
@@ -225,4 +230,17 @@ public class ProductsService  extends Service {
     }
 
 
+    /**
+     * Created by JuanMarcos on 20/11/15.
+     */
+    public class AlarmReceiver extends BroadcastReceiver {
+
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            System.out.println("Ring");
+            Log.d("Alarm", "Alarm at: " + DateFormat.getDateTimeInstance().format(new Date()));
+            httpThreadIsRunning = false;
+        }
+    }
 }

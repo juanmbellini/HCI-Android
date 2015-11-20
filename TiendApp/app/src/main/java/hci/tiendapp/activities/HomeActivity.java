@@ -20,8 +20,6 @@ import java.util.Locale;
 
 
 import hci.tiendapp.R;
-import hci.tiendapp.backend.Service;
-import hci.tiendapp.background.AlarmReceiver;
 import hci.tiendapp.background.ProductsService;
 
 /**
@@ -64,12 +62,12 @@ public class HomeActivity extends MyDrawerActivity implements View.OnClickListen
 
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        Intent intent = new Intent(HomeActivity.this, AlarmReceiver.class);
+        Intent intent = new Intent(HomeActivity.this, ProductsService.AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(HomeActivity.this, 0 , intent, PendingIntent.FLAG_ONE_SHOT);
        // alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 10000, pendingIntent);
         alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 5000, 5000, pendingIntent);
         System.out.println("Alarm set");
-        
+
 
 
 

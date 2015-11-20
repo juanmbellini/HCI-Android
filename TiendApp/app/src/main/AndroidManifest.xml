@@ -17,7 +17,7 @@
 
         <service android:name=".background.ProductsService"/>
         <receiver
-            android:name="hci.tiendapp.background.AlarmReceiver"
+            android:name=".background.ProductsService$AlarmReceiver"
             android:exported="true"
             android:process=":remote"
             />
