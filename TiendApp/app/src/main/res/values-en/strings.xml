@@ -25,6 +25,17 @@
     <string name="tab_2">New-Ins</string>
     <string name="tab_3">Sale</string>
 
+
+    <!-- Fixed Tabs Stuff - Products -->
+    <string name="tab_1_pro">General</string>
+    <string name="tab_2_pro">Details</string>
+
+    <!-- Products - Other  -->
+    <string name="prod_title">Title</string>
+    <string name="prod_brand">Brand</string>
+    <string name="add_to_shopping_bag">ADD TO SHOPPING BAG</string>
+
+
     <!-- Alarm management -->
     <string name="set_single_alarm">Set Single Alarm</string>
     <string name="set_repeating_alarm">Set Repeating Alarm</string>
@@ -34,6 +45,9 @@
 
     <string name="drawer_option_orders">My orders</string>
     <string name="title_activity_catalogue">Catalogue</string>
+
+
+    <!-- Languages -->
     <string name="btn_en">English</string>
     <string name="btn_es">Spanish</string>
     <string name="hello_world">Hello</string>

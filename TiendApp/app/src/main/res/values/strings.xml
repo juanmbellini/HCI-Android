@@ -20,10 +20,21 @@
     <string name="drawer_option_babies">Bebes</string>
 
 
-    <!-- Fixed Tabs Stuff -->
+    <!-- Fixed Tabs Stuff - Categories -->
     <string name="tab_1">Categorias</string>
     <string name="tab_2">Novedades</string>
     <string name="tab_3">Ofertas</string>
+
+
+    <!-- Products - Fixed Tabs Stuff  -->
+    <string name="tab_1_pro">General</string>
+    <string name="tab_2_pro">Detalles</string>
+
+    <!-- Products - Other  -->
+    <string name="prod_title">Titulo</string>
+    <string name="prod_brand">Marca</string>
+    <string name="add_to_shopping_bag">AGREGAR A CARRITO</string>
+
 
     <!-- Alarm management -->
     <string name="set_single_alarm">Set Single Alarm</string>
@@ -31,7 +42,7 @@
     <string name="set_inexact_repeating_alarm">Set Inexact Repeating Alarm</string>
     <string name="cancel_repeating_alarm">Cancel Repeating Alarm</string>
 
-
+    <!-- Languages -->
     <string name="btn_en">Ingles</string>
     <string name="btn_es">Español</string>
     <string name="hello_world">Hola</string>
@@ -39,5 +50,6 @@
 
     <string name="drawer_option_orders">Mis pedidos</string>
     <string name="title_activity_catalogue">Catalogue</string>
+
 
 </resources>
