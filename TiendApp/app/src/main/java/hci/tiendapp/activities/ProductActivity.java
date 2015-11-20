@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.NumberPicker;
 import android.widget.TabHost;
 
 import hci.tiendapp.R;
@@ -55,7 +56,9 @@ public class ProductActivity extends MyDrawerActivity {
         String option = intent.getStringExtra(Constants.genderSelection);
 
 
-
+        NumberPicker numberPicker = (NumberPicker) findViewById(R.id.numberPicker);
+        numberPicker.setMaxValue(100);
+        numberPicker.setMinValue(0);
     }
 
     @Override

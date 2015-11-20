@@ -53,13 +53,13 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_es" />
 
-    <TextView
+    <!--TextView
         android:id="@+id/txt_hello"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/hello_world"
-        android:layout_weight="0.08" />
+        android:layout_weight="0.08" /-->
 
 
 </LinearLayout>
