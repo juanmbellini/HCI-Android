@@ -213,7 +213,7 @@ public class ProductsService  extends Service {
 
 
     private class HttpThread extends Thread {
-        static final long DELAY = 15000;
+        static final long DELAY = 1200000; // 20 minutes till data becomes obsoletes
 
         @Override
         public void run() {

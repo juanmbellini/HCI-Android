@@ -432,6 +432,8 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
                 currentOption = R.string.drawer_option_orders;
                 currentIcon = R.drawable.ic_orders;
                 list.add(new NavigationDrawerMainOption(6, currentOption, currentIcon));
+
+
             }
 
             /**
