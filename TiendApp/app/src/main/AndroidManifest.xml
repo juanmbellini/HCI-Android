@@ -3,6 +3,8 @@
     package="hci.tiendapp" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+
     <application
         android:name=".TiendApp"
         android:allowBackup="true"
@@ -10,15 +12,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+        <service android:name=".background.ProductsService" />
+
+        <receiver
+            android:name=".background.ProductsService$AlarmReceiver"
+            android:exported="true"
+            android:process=":remote" />
 
         <!-- Home Activity -->
         <activity
             android:name=".activities.HomeActivity"
-            android:theme="@style/AppTheme"
-            >
+            android:theme="@style/AppTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
+
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
 
@@ -28,37 +37,38 @@
         </activity>
 
         <!-- CategoriesActivity Activity -->
-        <activity
-            android:name=".activities.CategoriesActivity"
-             >
-
+        <activity android:name=".activities.CategoriesActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.HomeActivity" />
+        </activity>
 
+        <!-- SubCategoriesActivity Activity -->
+        <activity android:name=".activities.SubCategoriesActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.CategoriesActivity" />
         </activity>
 
         <!-- Catalogue Activity -->
         <activity
             android:name=".Catalogue"
             android:label="@string/title_activity_catalogue"
-            android:theme="@style/AppTheme"
-            >
-
+            android:theme="@style/AppTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.CategoriesActivity" />
         </activity>
 
-
         <!-- Searchable activity -->
         <activity
-        android:name=".SearchResultsActivity"
-        android:label="@string/app_name">
+            android:name=".SearchResultsActivity"
+            android:label="@string/app_name" >
 
             <!-- to identify this activity as "searchable" -->
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
@@ -67,11 +77,16 @@
                 android:resource="@xml/searchable" />
         </activity>
 
-
         <!-- Alarms -->
         <receiver android:name=".AlarmNotificationReceiver" >
         </receiver>
 
+        <activity android:name=".activities.CarritoActivity" >
+        </activity>
+        <activity android:name=".activities.ProductActivity" >
+        </activity>
+        <activity android:name=".activities.SettingsActivity" >
+        </activity>
     </application>
 
 </manifest>

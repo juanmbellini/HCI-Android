@@ -1,0 +1,74 @@
+<resources>
+
+    <string name="app_name">TiendApp</string>
+
+    <!-- Menu / Actionbar items -->
+    <string name="filter_action">Filter</string>
+    <string name="sort_action">Sort</string>
+    <string name="more_action">More</string>
+    <string name="search_action">Search</string>
+    <string name="search_hint">Search...</string>
+    <string name="search_result">Results</string>
+
+
+    <!-- Navigation Drawer Stuff -->
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="drawer_option_home">Home</string>
+    <string name="drawer_option_men">Men</string>
+    <string name="drawer_option_women">Women</string>
+    <string name="drawer_option_kids">Children</string>
+    <string name="drawer_option_babies">Babies</string>
+    <string name="drawer_option_orders">My orders</string>
+    <string name="drawer_option_settings">Settings</string>
+
+
+    <!-- Categories Fixed Tabs Stuff -->
+    <string name="categories_tab_1">Categories</string>
+    <string name="categories_tab_2">New-Ins</string>
+    <string name="categories_tab_3">Sale</string>
+
+
+    <!-- Sub Categories Fixed Tabs Stuff -->
+    <string name="sub_categories_tab_1">Sub-Categories</string>
+    <string name="sub_categories_tab_2">New-Ins</string>
+    <string name="sub_categories_tab_3">Sale</string>
+
+
+
+    <!-- Fixed Tabs Stuff - Products -->
+    <string name="tab_1_pro">General</string>
+    <string name="tab_2_pro">Details</string>
+
+    <!-- Products - Layout  -->
+    <string name="prod_title">Title</string>
+    <string name="prod_brand">Brand</string>
+    <string name="add_to_shopping_bag">ADD TO SHOPPING BAG</string>
+    <string name="prod_age">Age</string>
+    <string name="prod_sex">Sex</string>
+    <string name="prod_color">Color</string>
+    <string name="prod_material">Material</string>
+    <string name="prod_style">Style</string>
+    <string name="prod_occasion">Occasion</string>
+    <string name="prod_sizes_disp">Sizes disponible</string>
+
+
+    <!-- Alarm management -->
+    <string name="set_single_alarm">Set Single Alarm</string>
+    <string name="set_repeating_alarm">Set Repeating Alarm</string>
+    <string name="set_inexact_repeating_alarm">Set Inexact Repeating Alarm</string>
+    <string name="cancel_repeating_alarm">Cancel Repeating Alarm</string>
+
+
+    <!-- Catalogue -->
+    <string name="title_activity_catalogue">Catalogue</string>
+
+
+    <!-- Languages -->
+    <string name="btn_en">English</string>
+    <string name="btn_es">Spanish</string>
+    <string name="hello_world">Hello</string>
+    <string name="languages">Languages</string>
+    <string name="settings">Settings</string>
+
+</resources>
