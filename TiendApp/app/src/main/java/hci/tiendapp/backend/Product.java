@@ -23,5 +23,31 @@ public class Product {
         this.attributes = attributes;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public String[] getImageUrl() {
+        return imageUrl;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public SubCategory getSubcategory() {
+        return subcategory;
+    }
+
+    public Attribute[] getAttributes() {
+        return attributes;
+    }
 }
