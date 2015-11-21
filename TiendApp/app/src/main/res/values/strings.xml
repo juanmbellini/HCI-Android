@@ -52,8 +52,7 @@
     <string name="prod_style">Estilo</string>
     <string name="prod_occasion">Ocasión</string>
     <string name="prod_sizes_disp">Talles disponibles</string>
-
-
+    <string name="prod_price">Precio</string>
 
     <!-- Alarm management -->
     <string name="set_single_alarm">Set Single Alarm</string>

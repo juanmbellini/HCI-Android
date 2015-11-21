@@ -56,9 +56,6 @@ public class ProductActivity extends MyDrawerActivity {
         String option = intent.getStringExtra(Constants.genderSelection);
 
 
-//       NumberPicker numberPicker = (NumberPicker) findViewById(R.id.numberPicker);
-//        numberPicker.setMaxValue(100);
-//        numberPicker.setMinValue(0);
     }
 
     @Override
