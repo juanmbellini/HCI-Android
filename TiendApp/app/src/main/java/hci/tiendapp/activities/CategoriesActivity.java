@@ -115,6 +115,28 @@ public class CategoriesActivity extends MyDrawerActivity {
         }
 
 
+        String title = null;
+
+        switch (genderOption) {
+            case Constants.menCategory:
+                title = "Hombres";
+                break;
+            case Constants.womenCategory:
+                title = "Mujeres";
+                break;
+            case Constants.kidsCategory:
+                title = "Infantiles";
+                break;
+            case Constants.babiesCategory:
+                title = "Bebes";
+                break;
+
+        }
+        if (title != null) {
+            getSupportActionBar().setTitle(title);
+        }
+
+
         final String sendingOption = genderOption;
 
         ListView l = (ListView) findViewById(R.id.categories_list);

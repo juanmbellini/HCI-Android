@@ -4,7 +4,10 @@
 
     <string name="filter_action">Filtrar</string>
     <string name="sort_action">Ordenar</string>
-    <string name="more_action">Más</string>
+    <string name="list_view_action">Lista</string>
+    <string name="grid_view_action">Grilla</string>
+
+
     <string name="search_action">Buscar</string>
     <string name="search_hint">Buscar...</string>
     <string name="search_result">Resultados</string>
@@ -62,6 +65,9 @@
     <string name="hello_world">Hola</string>
     <string name="languages">Idiomas</string>
     <string name="settings">Ajustes</string>
+
+    <!-- Util Stuff -->
+    <string name="loading_message">Cargando</string>
 
 
 

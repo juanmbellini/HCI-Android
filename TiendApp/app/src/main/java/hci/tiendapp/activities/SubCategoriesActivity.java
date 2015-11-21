@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
@@ -113,15 +115,43 @@ public class SubCategoriesActivity extends MyDrawerActivity {
             GetCategoriesTask asyncTask = new GetCategoriesTask();
             asyncTask.execute(intentOption, intentCategoryId);
             genderOption = intentOption;
+
         }
 
+        String title = null;
 
+        switch (genderOption) {
+            case Constants.menCategory:
+                title = "Hombres";
+                break;
+            case Constants.womenCategory:
+                title = "Mujeres";
+                break;
+            case Constants.kidsCategory:
+                title = "Infantiles";
+                break;
+            case Constants.babiesCategory:
+                title = "Bebes";
+                break;
+
+        }
+        if (title != null) {
+            getSupportActionBar().setTitle(title);
+        }
 
         ((TextView)findViewById(R.id.sub_categories_list_title)).setText(intent.getStringExtra(Constants.categorySelectionName));
 
 
         ListView l = (ListView) findViewById(R.id.categories_list);
         l.setAdapter(adapter);
+        l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(SubCategoriesActivity.this, CatalogueActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
     }

@@ -7,7 +7,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Binder;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -54,6 +56,13 @@ public class ProductsService  extends Service {
 
     private AlarmReceiver ObsolteDataAlarmReceiver = new AlarmReceiver();
 
+    private final IBinder binder = new ProductsServiceBinder();
+
+
+    public Collection<Product> getProducts() {
+        return products;
+    }
+
 
     private void setAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -78,7 +87,7 @@ public class ProductsService  extends Service {
 
     private void saveDataLocally(String data) {
 
-        SharedPreferences preferences = getSharedPreferences(TiendApp.getContext() + "_preferences", MODE_PRIVATE);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(TiendApp.getContext());
         preferences.edit().putString("products_collection", data);
 
     }
@@ -206,7 +215,8 @@ public class ProductsService  extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+
+        return binder;
     }
 
 
@@ -230,6 +240,14 @@ public class ProductsService  extends Service {
     }
 
 
+    public class ProductsServiceBinder extends Binder {
+
+        public ProductsService getService() {
+            return ProductsService.this;
+        }
+    }
+
+
     /**
      * Created by JuanMarcos on 20/11/15.
      */
@@ -243,4 +261,6 @@ public class ProductsService  extends Service {
             httpThreadIsRunning = false;
         }
     }
+
+
 }

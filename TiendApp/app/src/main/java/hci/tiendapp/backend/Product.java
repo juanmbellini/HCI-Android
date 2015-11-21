@@ -33,4 +33,31 @@ public class Product {
     }
 
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public String[] getImageUrl() {
+        return imageUrl;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public SubCategory getSubcategory() {
+        return subcategory;
+    }
+
+    public Attribute[] getAttributes() {
+        return attributes;
+    }
 }

@@ -41,17 +41,6 @@ public class HomeActivity extends MyDrawerActivity {
         //    Intent k = new Intent(HomeActivity.this, ProductActivity.class);
         //    startActivity(k);
 
-
-        ProductsService service = new ProductsService();
-        this.startService(new Intent(this, ProductsService.class));
-
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        Intent intent = new Intent(HomeActivity.this, ProductsService.AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(HomeActivity.this, 0 , intent, PendingIntent.FLAG_ONE_SHOT);
-        // alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 10000, pendingIntent);
-        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 5000, 5000, pendingIntent);
-        System.out.println("Alarm set");
     }
 
     @Override
