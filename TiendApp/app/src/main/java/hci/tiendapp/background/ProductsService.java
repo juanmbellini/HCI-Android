@@ -1,8 +1,8 @@
 package hci.tiendapp.background;
 
 import android.app.AlarmManager;
+import android.app.Application;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -37,7 +37,7 @@ import hci.tiendapp.util.UtilClass;
 /**
  * Created by JuanMarcos on 20/11/15.
  */
-public class ProductsService  extends Service {
+public class ProductsService  extends Application {
 
     private static long waitTimeTillDataIsObsolete = 25000;
 
@@ -181,30 +181,8 @@ public class ProductsService  extends Service {
         httpThread = new HttpThread();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (!httpThreadIsRunning) {
-            httpThread.interrupt();
-        }
-    }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-
-        if(!httpThreadIsRunning) {
-            httpThreadIsRunning = true;
-            httpThread.start();
-        }
-        /*if (!alarm) {
-            setAlarm();
-        }*/
-        return super.onStartCommand(intent, flags, startId);
-    }
-
 
     @Nullable
-    @Override
     public IBinder onBind(Intent intent) {
         return null;
     }

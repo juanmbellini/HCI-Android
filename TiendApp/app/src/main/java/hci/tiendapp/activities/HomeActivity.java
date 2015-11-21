@@ -42,10 +42,6 @@ public class HomeActivity extends MyDrawerActivity {
             //startActivity(k);
 
 
-        ProductsService service = new ProductsService();
-        this.startService(new Intent(this, ProductsService.class));
-
-
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent intent = new Intent(HomeActivity.this, ProductsService.AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(HomeActivity.this, 0 , intent, PendingIntent.FLAG_ONE_SHOT);
