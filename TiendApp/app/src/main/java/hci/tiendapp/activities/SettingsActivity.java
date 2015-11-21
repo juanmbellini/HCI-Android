@@ -101,9 +101,8 @@ public class SettingsActivity extends MyDrawerActivity implements View.OnClickLi
         //Refresh
         if (fllag != 0){
             fllag -= fllag;
-            Intent intent = getIntent();
-            finish();
-            startActivity(intent);
+            Intent k = new Intent(SettingsActivity.this, HomeActivity.class);
+            startActivity(k);
         }
 
     }
