@@ -105,8 +105,8 @@ public class CategoriesActivity extends MyDrawerActivity {
             }
             else {
                 // Shouldn't get here, but in case...
-                startActivity(new Intent(this, HomeActivity.class));
-
+                UtilClass.goHome(CategoriesActivity.this, Constants.noReEstablishInformation);
+                return;
             }
         } else {
             GetCategoriesTask asyncTask = new GetCategoriesTask();

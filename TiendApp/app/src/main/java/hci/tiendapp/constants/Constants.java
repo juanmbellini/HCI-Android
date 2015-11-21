@@ -7,6 +7,11 @@ package hci.tiendapp.constants;
  */
 public class Constants {
 
+    public static final String goHome = "goHome";
+    public static final String noReEstablishInformation = "noReEstablishInformation";
+    public static final String noResponseFromGettingProductTitles = "noResponseFromGettingProductTitles";
+
+
     public static final String genderSelection = "genderSelection";
 
     public static final String menCategory = "menCategory";
@@ -16,6 +21,14 @@ public class Constants {
 
     public static final String categorySelectionId = "categorySelectionId";
     public static final String categorySelectionName = "categorySelectionName";
+
+    public static final String subCategorySelectionId = "subCategorySelectionId";
+    public static final String subCategorySelectionName = "subCategorySelectionName";
+
+
+
+    public static final String productId = "productId";
+    public static final String productName = "productName";
 
     public static final String[] sectionFilters = {
             "[ {\"id\": 1, \"value\": \"Masculino\"}, {\"id\": 2, \"value\": \"Adulto\"}]",     // Men request

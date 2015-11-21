@@ -108,7 +108,8 @@ public class SubCategoriesActivity extends MyDrawerActivity {
             }
             else {
                 // Shouldn't get here, but in case...
-                startActivity(new Intent(this, HomeActivity.class));
+                UtilClass.goHome(SubCategoriesActivity.this, Constants.noReEstablishInformation);
+                return;
 
             }
         } else {

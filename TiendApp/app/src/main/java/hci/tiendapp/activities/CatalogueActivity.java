@@ -52,6 +52,7 @@ import hci.tiendapp.backend.Product;
 import hci.tiendapp.backend.SubCategory;
 import hci.tiendapp.background.DrawImageAsyncTask;
 import hci.tiendapp.background.ProductsService;
+import hci.tiendapp.constants.Constants;
 import hci.tiendapp.customviews.HorizontalListView;
 import hci.tiendapp.util.UtilClass;
 
@@ -250,7 +251,7 @@ public class CatalogueActivity extends MyDrawerActivity {
 
         @Override
         public Object getItem(int position) {
-            return position;
+            return products.get(position);
         }
 
         @Override
@@ -273,7 +274,7 @@ public class CatalogueActivity extends MyDrawerActivity {
 
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
 
             View view = inflater.inflate(layout, null);
             ImageView image = (ImageView) view.findViewById(R.id.product_image);
@@ -281,9 +282,12 @@ public class CatalogueActivity extends MyDrawerActivity {
             TextView price = (TextView) view.findViewById(R.id.product_price);
 
 
-
-            new DrawImageAsyncTask(context, image, 70, 70).execute(products.get(position).getImageUrl()[0], position + "");
-
+            String[] productImages = products.get(position).getImageUrl();
+            if (productImages.length == 0) {
+                image.setImageResource(R.drawable.no_picture);
+            } else {
+                new DrawImageAsyncTask(context, image, 70, 70).execute(products.get(position).getImageUrl()[0], position + "");
+            }
             name.setText(products.get(position).getName());
             price.setText("$" + products.get(position).getPrice());
 
@@ -294,7 +298,12 @@ public class CatalogueActivity extends MyDrawerActivity {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(CatalogueActivity.this, ProductActivity.class);
+                    Product result = (Product)adapter.getItem(position);
+                    intent.putExtra(Constants.productId, result.getId() + "");
+                    intent.putExtra(Constants.productName, result.getName());
+                    startActivity(intent);
+
                 }
             });
             return view;
@@ -303,7 +312,7 @@ public class CatalogueActivity extends MyDrawerActivity {
 
     private class GetProductsAsyncTask extends AsyncTask<String, Long, Collection<Product>> {
 
-        private static final String baseURL = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllProducts";
+        private final String baseURL = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllProducts";
 
 
         private String getDataFromJSON(URLConnection urlConnection, String property) {

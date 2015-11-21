@@ -47,6 +47,7 @@
     <!-- Products - Layout  -->
     <string name="prod_title">Titulo</string>
     <string name="prod_brand">Marca</string>
+    <string name="qty_abreviation">Cant.</string>
     <string name="add_to_shopping_bag">AGREGAR AL CARRITO</string>
     <string name="prod_age">Edad</string>
     <string name="prod_sex">Género</string>
@@ -63,8 +64,6 @@
     <string name="set_inexact_repeating_alarm">Set Inexact Repeating Alarm</string>
     <string name="cancel_repeating_alarm">Cancel Repeating Alarm</string>
 
-    <!-- Catalogue -->
-    <string name="title_activity_catalogue">Catalogue</string>
 
     <!-- Languages -->
     <string name="btn_en">Ingles</string>
