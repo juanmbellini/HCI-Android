@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import java.nio.channels.ConnectionPendingException;
 
-import static hci.tiendapp.backend.Service.connect;
+import static hci.tiendapp.backend.ApiConnection.connect;
 
 /**
  * Created by Julian on 11/18/2015.

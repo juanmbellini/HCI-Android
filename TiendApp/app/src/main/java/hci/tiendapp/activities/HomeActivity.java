@@ -41,6 +41,7 @@ public class HomeActivity extends MyDrawerActivity {
         //    Intent k = new Intent(HomeActivity.this, ProductActivity.class);
         //    startActivity(k);
 
+
     }
 
     @Override

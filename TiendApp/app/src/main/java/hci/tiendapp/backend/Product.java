@@ -32,7 +32,6 @@ public class Product {
         this.attributes = attributes;
     }
 
-
     public int getId() {
         return id;
     }
@@ -52,6 +51,7 @@ public class Product {
     public Category getCategory() {
         return category;
     }
+
 
     public SubCategory getSubcategory() {
         return subcategory;

@@ -1,9 +1,7 @@
 package hci.tiendapp.backend;
 
-import android.app.Activity;
-import android.widget.Toast;
+import android.app.Application;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,16 +16,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class Service{
+public class ApiConnection extends Application {
 
-    /*
-     * To convert the InputStream to String we use the BufferedReader.readLine()
-     * method. We iterate until the BufferedReader return null which means
-     * there's no more data to read. Each line will appended to a StringBuilder
-     * and returned as String.
-     */
-
-    public Service(){
+        Products products = new Products();
+    public ApiConnection(){
 
     }
 

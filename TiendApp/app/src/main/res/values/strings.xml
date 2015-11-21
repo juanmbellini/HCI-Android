@@ -44,11 +44,18 @@
     <string name="tab_1_pro">General</string>
     <string name="tab_2_pro">Detalles</string>
 
-    <!-- Products - Other  -->
+    <!-- Products - Layout  -->
     <string name="prod_title">Titulo</string>
     <string name="prod_brand">Marca</string>
     <string name="add_to_shopping_bag">AGREGAR AL CARRITO</string>
-
+    <string name="prod_age">Edad</string>
+    <string name="prod_sex">Género</string>
+    <string name="prod_color">Color</string>
+    <string name="prod_material">Material</string>
+    <string name="prod_style">Estilo</string>
+    <string name="prod_occasion">Ocasión</string>
+    <string name="prod_sizes_disp">Talles disponibles</string>
+    <string name="prod_price">Precio</string>
 
     <!-- Alarm management -->
     <string name="set_single_alarm">Set Single Alarm</string>

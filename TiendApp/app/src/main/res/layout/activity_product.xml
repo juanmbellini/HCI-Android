@@ -52,30 +52,55 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="@string/prod_title"
                         android:textColor="#000000"
                         android:textSize="30sp"
                         android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="15dp"
                         />
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="36dp"
+                        android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="@string/prod_brand"
                         android:textColor="#000000"
                         android:textSize="24sp"
                         android:layout_marginTop="2dp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="15dp"
                         />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@android:color/darker_gray"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="330dp"
+                        android:id="@+id/imageView"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="@string/prod_price"
+                        android:layout_gravity="right"
+                        android:textColor="#000000"
+                        android:textSize="24sp"
+                        android:id="@+id/price"
+                        android:layout_above="@+id/button"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="10dp" />
+
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -91,6 +116,9 @@
                             android:layout_alignParentBottom="true"
                             android:id="@+id/button" />
 
+
+
+
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -102,30 +130,117 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="@string/prod_title"
                         android:textColor="#000000"
                         android:textSize="30sp"
                         android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="15dp"
                         />
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="36dp"
+                        android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="@string/prod_brand"
                         android:textColor="#000000"
                         android:textSize="24sp"
                         android:layout_marginTop="2dp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="15dp"
                         />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@android:color/darker_gray"/>
+
+
+                    <!-- Layout for details -->
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/prod_brand"
+                        android:textColor="@color/productText"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="30dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/prod_age"
+                        android:textColor="@color/productText"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/prod_sex"
+                        android:textColor="@color/productText"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/prod_color"
+                        android:textColor="@color/productText"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/prod_material"
+                        android:textColor="@color/productText"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/prod_style"
+                        android:textColor="@color/productText"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/prod_occasion"
+                        android:textColor="@color/productText"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/prod_sizes_disp"
+                        android:textColor="@color/productText"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        />
+
+
+
+
+
+
+
+
+
+
+
 
                     <RelativeLayout
                         android:layout_width="match_parent"

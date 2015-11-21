@@ -476,6 +476,7 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
                     this.navigationDrawerOptionIcon = navigationDrawerOptionIcon;
                 }
             }
+
         }
     }
 }
