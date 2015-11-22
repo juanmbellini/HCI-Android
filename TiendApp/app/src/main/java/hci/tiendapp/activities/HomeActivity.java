@@ -9,6 +9,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 
 
+import hci.tiendapp.LoginActivity;
 import hci.tiendapp.R;
 
 /**
@@ -27,8 +28,8 @@ public class HomeActivity extends MyDrawerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //    Intent k = new Intent(HomeActivity.this, ProductActivity.class);
-        //    startActivity(k);
+           // Intent k = new Intent(HomeActivity.this, LoginActivity.class);
+           // startActivity(k);
 
 
 

@@ -86,6 +86,20 @@
 
     <!-- Util Stuff -->
     <string name="loading_message">Cargando</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Correo</string>
+    <string name="prompt_password">Contraseña (opcional)</string>
+    <string name="action_sign_in">Ingresar</string>
+    <string name="action_sign_in_short">Ingresar</string>
+    <string name="error_invalid_email">Correo invalido</string>
+    <string name="error_invalid_password">Contraseña demasiado corto</string>
+    <string name="error_incorrect_password">Contraseña incorrecto</string>
+    <string name="error_field_required">Campo requerido</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
 
 
 
