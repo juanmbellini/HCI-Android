@@ -25,6 +25,16 @@ public class Constants {
     public static final String subCategorySelectionId = "subCategorySelectionId";
     public static final String subCategorySelectionName = "subCategorySelectionName";
 
+    public static final String comingFrom = "comingFrom";
+    public static final String comingFromNoWhere = "comingFromNoWhere";
+    public static final String comingFromSearchBar = "comingFromSearchBar";
+    public static final String comingFromCategories = "comingFromCategories";
+    public static final String comingFromSubCategories = "comingFromSubCategories";
+    public static final String comingFromHome = "comingFromHome";
+
+
+
+    public static final String searchQuery = "searchQuery";
 
 
     public static final String productId = "productId";

@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import hci.tiendapp.Catalogue;
 import hci.tiendapp.R;
 import hci.tiendapp.backend.Category;
 import hci.tiendapp.constants.Constants;
@@ -115,23 +116,8 @@ public class CategoriesActivity extends MyDrawerActivity {
         }
 
 
-        String title = null;
+        String title = sectionSelector(genderOption);
 
-        switch (genderOption) {
-            case Constants.menCategory:
-                title = "Hombres";
-                break;
-            case Constants.womenCategory:
-                title = "Mujeres";
-                break;
-            case Constants.kidsCategory:
-                title = "Infantiles";
-                break;
-            case Constants.babiesCategory:
-                title = "Bebes";
-                break;
-
-        }
         if (title != null) {
             getSupportActionBar().setTitle(title);
         }
@@ -146,11 +132,21 @@ public class CategoriesActivity extends MyDrawerActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Category selectedCategory = (Category) adapter.getItem(position);
-                Intent intent = new Intent(CategoriesActivity.this, SubCategoriesActivity.class);
-                intent.putExtra(Constants.genderSelection, sendingOption);
-                intent.putExtra(Constants.categorySelectionId, selectedCategory.getId() + "");
-                intent.putExtra(Constants.categorySelectionName, selectedCategory.getName());
-                startActivity(intent);
+
+                if (selectedCategory.getId() == -1) {
+                    Intent intent = new Intent(CategoriesActivity.this, CatalogueActivity.class);
+                    intent.putExtra(Constants.comingFrom,Constants.comingFromCategories);
+                    startActivity(intent);
+
+                } else {
+
+                    Intent intent = new Intent(CategoriesActivity.this, SubCategoriesActivity.class);
+                    intent.putExtra(Constants.genderSelection, sendingOption);
+                    intent.putExtra(Constants.categorySelectionId, selectedCategory.getId() + "");
+                    intent.putExtra(Constants.categorySelectionName, selectedCategory.getName());
+                    startActivity(intent);
+                }
+
 
             }
         });
@@ -175,6 +171,7 @@ public class CategoriesActivity extends MyDrawerActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.categories_menu, menu);
+        super.onCreateOptionsMenu(menu);
         return true;
     }
 
@@ -190,15 +187,33 @@ public class CategoriesActivity extends MyDrawerActivity {
 
     }
 
+    private String sectionSelector(String id) {
+
+        String title = null;
+
+        switch (id) {
+            case Constants.menCategory:
+                title = getString(R.string.gender_men);
+                break;
+            case Constants.womenCategory:
+                title = getString(R.string.gender_women);
+                break;
+            case Constants.kidsCategory:
+                title = getString(R.string.gender_kids);
+                break;
+            case Constants.babiesCategory:
+                title = getString(R.string.gender_babies);
+                break;
+        }
+
+        return title;
+
+    }
+
     private class GetCategoriesTask extends AsyncTask<String, Long, Collection<Category>> {
 
         final String baseURL = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllCategories&filters=";
-        final String[] filters = {
-            "[ {\"id\": 1, \"value\": \"Masculino\"}, {\"id\": 2, \"value\": \"Adulto\"}]",     // Men request
-                    "[ {\"id\": 1, \"value\": \"Femenino\"}]",                                  // Women request
-                    "[ {\"id\": 2, \"value\": \"Infantil\"}]",                                  // Kids request
-                    "[ {\"id\": 2, \"value\": \"Bebe\"}]"                                      // Babies request
-        };
+
 
         private String setUp(String sectionId) {
 
@@ -224,7 +239,7 @@ public class CategoriesActivity extends MyDrawerActivity {
 
             String encodedString = null;
             try {
-                encodedString = URLEncoder.encode(filters[id], "utf-8");
+                encodedString = URLEncoder.encode(Constants.sectionFilters[id], "utf-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -285,8 +300,11 @@ public class CategoriesActivity extends MyDrawerActivity {
 
 
             Gson parser = new Gson();
-            Type dataSetListType = new TypeToken<Collection<Category>>() {}.getType();
-            return parser.fromJson(result, dataSetListType);
+            Type dataSetListType = new TypeToken<List<Category>>() {}.getType();
+            List<Category> list = parser.fromJson(result, dataSetListType);
+            list.add(0,new Category(-1,
+                    CategoriesActivity.this.getString(R.string.all_in ) + " " + sectionSelector(params[0])));
+            return list;
         }
 
         @Override

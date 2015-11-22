@@ -6,6 +6,7 @@
     <string name="sort_action">Ordenar</string>
     <string name="list_view_action">Lista</string>
     <string name="grid_view_action">Grilla</string>
+    <string name="share_action">Compartir</string>
 
 
     <string name="search_action">Buscar</string>
@@ -35,14 +36,25 @@
     <string name="sub_categories_tab_3">Ofertas</string>
 
 
-    <!-- Categories Activity -->
-    <string name="categories_title">Categorías</string>
-
-
-
     <!-- Products - Fixed Tabs Stuff  -->
     <string name="tab_1_pro">General</string>
     <string name="tab_2_pro">Detalles</string>
+
+
+
+    <!--Genders and Ages -->
+    <string name="gender_men">Hombres</string>
+    <string name="gender_women">Mujeres</string>
+    <string name="gender_kids">Infantiles</string>
+    <string name="gender_babies">Bebes</string>
+
+
+
+    <!-- Categories Layout -->
+    <string name="categories_title">Categorías</string>
+    <string name="all_in">Todo en</string>
+
+
 
     <!-- Products - Layout  -->
     <string name="prod_title">Titulo</string>

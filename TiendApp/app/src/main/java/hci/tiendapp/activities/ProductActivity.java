@@ -92,6 +92,7 @@ public class ProductActivity extends MyDrawerActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.product_menu, menu);
+        super.onCreateOptionsMenu(menu);
         return true;
     }
 

@@ -1,6 +1,7 @@
 package hci.tiendapp.activities;
 
 import android.app.ProgressDialog;
+import android.app.SearchManager;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
@@ -79,7 +80,6 @@ public class CatalogueActivity extends MyDrawerActivity {
 
 
 
-
     }
 
     @Override
@@ -120,6 +120,7 @@ public class CatalogueActivity extends MyDrawerActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.catalogue_menu, menu);
+        super.onCreateOptionsMenu(menu);
         return true;
     }
 
@@ -158,10 +159,19 @@ public class CatalogueActivity extends MyDrawerActivity {
 
     }
 
+
     private void setDisplay() {
 
         Intent intent = getIntent();
         listDisplay = intent.getBooleanExtra("list_display", true);
+        String comingFrom = intent.getStringExtra(Constants.comingFrom);
+        String query = "";
+        if (comingFrom == null || comingFrom == "") {
+            comingFrom = Constants.comingFromNoWhere;
+        }
+        if (comingFrom.equals(Constants.comingFromSearchBar)) {
+            query = intent.getStringExtra(Constants.searchQuery);
+        }
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 
@@ -171,10 +181,10 @@ public class CatalogueActivity extends MyDrawerActivity {
 
             if (listDisplay) {
                 g.setVisibility(View.GONE);
-                adapter = new CatalogueAdapter(this, R.layout.catalogue_list);
+                adapter = new CatalogueAdapter(this, R.layout.catalogue_list, comingFrom, query);
             } else {
                 l.setVisibility(View.GONE);
-                adapter = new CatalogueAdapter(this, R.layout.catalogue_grid);
+                adapter = new CatalogueAdapter(this, R.layout.catalogue_grid, comingFrom, query);
             }
 
             g.setAdapter(adapter);
@@ -203,10 +213,10 @@ public class CatalogueActivity extends MyDrawerActivity {
 
             if (listDisplay) {
                 g.setVisibility(View.GONE);
-                adapter = new CatalogueAdapter(this, R.layout.catalogue_list);
+                adapter = new CatalogueAdapter(this, R.layout.catalogue_list, comingFrom, query);
             } else {
                 l.setVisibility(View.GONE);
-                adapter = new CatalogueAdapter(this, R.layout.catalogue_grid);
+                adapter = new CatalogueAdapter(this, R.layout.catalogue_grid, comingFrom, query);
             }
 
             l.setAdapter(adapter);
@@ -230,15 +240,26 @@ public class CatalogueActivity extends MyDrawerActivity {
         Context context;
         int layout;
         List<Product> products = new ArrayList<Product>();
+        String comingFrom;
+        String searchQuery;
 
 
         private LayoutInflater inflater = null;
 
-        public CatalogueAdapter(Context context, int layout) {
+        public CatalogueAdapter(Context context, int layout, String comingFrom) {
+
+            this(context, layout, comingFrom, null);
+
+        }
+
+        public CatalogueAdapter(Context context, int layout, String comingFrom, String searchQuery) {
+
             this.context = context;
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             this.layout = layout;
-            new GetProductsAsyncTask().execute();
+            this.comingFrom = comingFrom;
+            this.searchQuery = searchQuery;
+            new GetProductsAsyncTask().execute(comingFrom, searchQuery);
 
         }
 
@@ -317,6 +338,7 @@ public class CatalogueActivity extends MyDrawerActivity {
                     intent.putExtra(Constants.productName, result.getName());
                     startActivity(intent);
 
+
                 }
             });
             return view;
@@ -375,9 +397,69 @@ public class CatalogueActivity extends MyDrawerActivity {
 
         }
 
-        private String getProducts(int total) {
+        private String getProductsByName(int total, String query) {
+
+            String requestURL = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetProductsByName&page_size=" + total + "&name=" + query;
+            return fetchDesiredProducts(requestURL);
+
+        }
+
+        private String getAllProducts(int total) {
+            return fetchDesiredProducts(baseURL + "&page_size=" + total);
+        }
+
+        private String fetchDesiredProducts(String requestURL) {
+
+            URL url = null;
+            try {
+                url = new URL(requestURL);      // Creates an URL object based on the filter sent
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                return null;
+            }
+
+            HttpURLConnection urlConnection = null;
+            try {
+                urlConnection = (HttpURLConnection) url.openConnection();   // Get's data from API
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            } finally {
+                if (urlConnection != null) {
+                    urlConnection.disconnect();                     // Finishes connection
+                    System.out.println("Disconnected");
+                }
+
+            }
 
 
+            return getDataFromJSON(urlConnection, "products");                // Filters fetched data
+
+
+        }
+
+        private String getProducts(String ... args) {
+
+            //String requestURL =
+
+            int total = getProductsQuantity();
+            String result = "";
+            switch (args[0]) {
+
+                case Constants.comingFromSearchBar:
+                    result = getProductsByName(total, args[1]);
+                    break;
+                case Constants.comingFromNoWhere:
+                default:
+                    result = getAllProducts(total);
+
+
+            }
+            return result;
+        }
+
+
+            /*
             URL url = null;
             try {
                 url = new URL(baseURL + "&page_size=" + total);      // Creates an URL object based on the filter sent
@@ -401,8 +483,10 @@ public class CatalogueActivity extends MyDrawerActivity {
             }
 
 
-            return getDataFromJSON(urlConnection, "products");                // Filters fetched data
-        }
+            return getDataFromJSON(urlConnection, "products");                // Filters fetched data*/
+
+
+
 
         private Collection<Product> fromJSONToCollection(String JSON) {
 
@@ -419,8 +503,10 @@ public class CatalogueActivity extends MyDrawerActivity {
 
 
             Collection<Product> products;
+            String comingFrom = params[0];
+            String searchQuery = params[1];
 
-            String result = getProducts(getProductsQuantity());
+            String result = getProducts(comingFrom, searchQuery);
             if (result != null) {
 
                 products = fromJSONToCollection(result);
@@ -432,12 +518,20 @@ public class CatalogueActivity extends MyDrawerActivity {
 
         @Override
         protected void onPostExecute(Collection<Product> products) {
+            if (products == null || products.isEmpty() || adapter == null) {
+                return;
+            }
             super.onPostExecute(products);
             adapter.clear();
             adapter.addAll(products);
             adapter.notifyDataSetChanged();
         }
     }
+
+
+
+
+
 
     private class DrawImageForCatalogueAsyncTask extends DrawImageAsyncTask {
 

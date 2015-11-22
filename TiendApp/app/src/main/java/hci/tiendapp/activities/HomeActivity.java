@@ -2,6 +2,7 @@ package hci.tiendapp.activities;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -30,6 +31,8 @@ public class HomeActivity extends MyDrawerActivity {
         //    startActivity(k);
 
 
+
+
     }
 
     @Override
@@ -41,15 +44,8 @@ public class HomeActivity extends MyDrawerActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home_menu, menu);
+        super.onCreateOptionsMenu(menu);
 
-        // Associate searchable configuration with the SearchView
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.tool_bar_search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
 
         return true;
     }

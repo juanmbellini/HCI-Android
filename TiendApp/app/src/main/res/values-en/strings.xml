@@ -5,9 +5,9 @@
     <!-- Menu / Actionbar items -->
     <string name="filter_action">Filter</string>
     <string name="sort_action">Sort</string>
-
     <string name="list_view_action">List</string>
     <string name="grid_view_action">Grid</string>
+    <string name="share_action">Share</string>
 
 
 
@@ -40,10 +40,25 @@
     <string name="sub_categories_tab_3">Sale</string>
 
 
-
     <!-- Fixed Tabs Stuff - Products -->
     <string name="tab_1_pro">General</string>
     <string name="tab_2_pro">Details</string>
+
+
+    <!--Genders and Ages -->
+    <string name="gender_men">Men</string>
+    <string name="gender_women">Women</string>
+    <string name="gender_kids">Kids</string>
+    <string name="gender_babies">Babies</string>
+
+
+
+    <!-- Categories Layout -->
+    <string name="categories_title">Categories</string>
+    <string name="all_in">All in</string>
+
+
+
 
     <!-- Products - Layout  -->
     <string name="prod_title">Title</string>

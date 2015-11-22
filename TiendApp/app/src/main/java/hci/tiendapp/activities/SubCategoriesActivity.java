@@ -30,6 +30,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import hci.tiendapp.R;
 import hci.tiendapp.backend.Category;
@@ -40,11 +41,12 @@ import hci.tiendapp.util.UtilClass;
 /**
  * Created by JuanMarcos on 19/11/15.
  */
+
 public class SubCategoriesActivity extends MyDrawerActivity {
 
-    String genderOption;        // Used to restore activity state if returning to this activity
-    String categoryId;          // Used to restore activity state if returning to this activity
-    String categotyName;        // Used to restore activity state if returning to this activity
+    private String genderOption;        // Used to restore activity state if returning to this activity
+    private String categoryId;          // Used to restore activity state if returning to this activity
+    private String categoryName;        // Used to restore activity state if returning to this activity
 
     ArrayAdapter adapter;
     TabHost tabHost;
@@ -104,7 +106,7 @@ public class SubCategoriesActivity extends MyDrawerActivity {
             if (savedInstanceState != null) {
                 genderOption = savedInstanceState.getString("option");
                 categoryId = savedInstanceState.getString("categoryId");
-                categotyName = savedInstanceState.getString("categoryName");
+                categoryName = savedInstanceState.getString("categoryName");
             }
             else {
                 // Shouldn't get here, but in case...
@@ -114,7 +116,7 @@ public class SubCategoriesActivity extends MyDrawerActivity {
             }
         } else {
             GetCategoriesTask asyncTask = new GetCategoriesTask();
-            asyncTask.execute(intentOption, intentCategoryId);
+            asyncTask.execute(intentOption, intentCategoryId, intentCategoryName);
             genderOption = intentOption;
 
         }
@@ -148,8 +150,20 @@ public class SubCategoriesActivity extends MyDrawerActivity {
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(SubCategoriesActivity.this, CatalogueActivity.class);
-                startActivity(intent);
+
+
+               SubCategory selectedSubCategory = (SubCategory) adapter.getItem(position);
+
+                if (selectedSubCategory.getId() == -1) {
+                    Intent intent = new Intent(SubCategoriesActivity.this, CatalogueActivity.class);
+                    intent.putExtra(Constants.comingFrom,Constants.comingFromSubCategories);
+                    startActivity(intent);
+
+                } else {
+
+                    Intent intent = new Intent(SubCategoriesActivity.this, CatalogueActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -160,6 +174,7 @@ public class SubCategoriesActivity extends MyDrawerActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.categories_menu, menu);
+        super.onCreateOptionsMenu(menu);
         return true;
     }
 
@@ -265,8 +280,10 @@ public class SubCategoriesActivity extends MyDrawerActivity {
 
 
             Gson parser = new Gson();
-            Type dataSetListType = new TypeToken<Collection<SubCategory>>() {}.getType();
-            return parser.fromJson(result, dataSetListType);
+            Type dataSetListType = new TypeToken<List<SubCategory>>() {}.getType();
+            List<SubCategory> list = parser.fromJson(result, dataSetListType);
+            list.add(0,new SubCategory(-1, SubCategoriesActivity.this.getString(R.string.all_in ) + " " + params[2]));
+            return list;
         }
 
         @Override

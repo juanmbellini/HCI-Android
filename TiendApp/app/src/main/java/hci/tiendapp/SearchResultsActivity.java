@@ -10,14 +10,18 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 
+import hci.tiendapp.R;
+import hci.tiendapp.activities.CatalogueActivity;
+import hci.tiendapp.constants.Constants;
+
 public class SearchResultsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result);
         handleIntent(getIntent());
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -26,7 +30,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView =
-                (SearchView) menu.findItem(R.id.search_bar).getActionView();
+                (SearchView) menu.findItem(R.id.tool_bar_search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
 
@@ -42,7 +46,12 @@ public class SearchResultsActivity extends AppCompatActivity {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            //use the query to search
+            Intent intentForCatalogueActivity = new Intent(this, CatalogueActivity.class);
+            intentForCatalogueActivity.putExtra(Constants.comingFrom, Constants.comingFromSearchBar);
+            intentForCatalogueActivity.putExtra(Constants.searchQuery, query);
+            startActivity(intentForCatalogueActivity);
+            onBackPressed();
+
         }
     }
 }

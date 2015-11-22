@@ -1,6 +1,7 @@
 package hci.tiendapp.activities;
 
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -12,7 +13,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -125,6 +128,21 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
         getIntent();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.tool_bar_search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
+        return true;
+    }
+
     public static class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         private static final int TYPE_HEADER = 0;  // Declaring Variable to Understand which View is being worked on
@@ -177,17 +195,19 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
                 if (v.getId() == R.id.drawer_header) {
                     return;
                 }
-                // TODO crear el intent que sea necesario
-                //Toast.makeText(context, "The Item Clicked is: " +  getLayoutPosition(), Toast.LENGTH_LONG).show();
 
                 String option = null;
                 int position = getLayoutPosition();
 
+                ((MyDrawerActivity)context).drawerLayout.closeDrawers();
 
                 switch (position) {
                     case 1:
                         if (context.getClass() != HomeActivity.class) {
-                            context.startActivity(new Intent(context, HomeActivity.class));
+                            //context.startActivity(new Intent(context, HomeActivity.class));
+                            Intent intent = new Intent(context, HomeActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(intent);
                         }
                         return;
                     case 2:
@@ -212,7 +232,7 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
                         return;
                 }
 
-                ((MyDrawerActivity)context).drawerLayout.closeDrawers();
+
 
                 Intent intent = new Intent(context, CategoriesActivity.class);
                 intent.putExtra(Constants.genderSelection,option);

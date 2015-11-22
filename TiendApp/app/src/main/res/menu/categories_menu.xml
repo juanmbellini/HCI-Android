@@ -9,7 +9,8 @@
         android:title="@string/search_action"
         android:id="@+id/tool_bar_search"
         android:icon="@drawable/ic_search_white_24dp"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView"
 
         />
 </menu>
