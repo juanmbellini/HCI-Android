@@ -15,6 +15,8 @@
 
 
 
+
+
     <TabHost
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -36,259 +38,181 @@
                 android:background="@color/colorPrimary"/>
 
 
+            <TextView
+                android:id="@+id/prod_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/title_size"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="15dp"
+                android:minLines="2"
+                android:maxLines="2"
+                />
+
+            <View style="@style/Divider"/>
+
+
+
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
-                <LinearLayout
+
+
+                <ScrollView
                     android:id="@+id/products_tab_content_general"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:fillViewport="true">
 
-
-                    <TextView
-                        android:id="@+id/prod_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="@dimen/title_size"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="15dp"
-                        android:minLines="2"
-                        android:maxLines="2"
-                        />
-
-                   <!-- <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="@string/prod_brand"
-                        android:textColor="#000000"
-                        android:textSize="24sp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="15dp"
-                        /> -->
-
-                    <View style="@style/Divider"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:baselineAligned="false"
+                        android:measureWithLargestChild="false"
+                        android:nestedScrollingEnabled="false">
 
-                        <!--<Gallery
-                            android:id="@+id/prod_image_gallery"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
 
-                        <ImageView
-                            android:id="@+id/prod_current_image"
+
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="330dp"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentLeft="true"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentEnd="true" /> -->
-                        <!--
-                        <com.daimajia.slider.library.SliderLayout
-                            android:id="@+id/prod_images_slider"
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            app:pager_animation="Accordion"
-                            app:auto_cycle="false"
-                            app:indicator_visibility="visible"/>
-
-
-                        <com.daimajia.slider.library.Indicators.PagerIndicator
-                            android:id="@+id/custom_indicator"
-                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            app:selected_color="#0095BF"
-                            app:unselected_color="#55333333"
-                            app:selected_drawable="@drawable/logo2"
-                            app:shape="oval"
-                            app:selected_padding_left="5dp"
-                            app:selected_padding_right="5dp"
-                            app:unselected_padding_left="5dp"
-                            app:unselected_padding_right="5dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_alignParentBottom="true"
-                            app:selected_width="6dp"
-                            app:selected_height="6dp"
-                            app:unselected_width="6dp"
-                            app:unselected_height="6dp"
-                            android:layout_marginBottom="20dp"
-                            />
+                            android:layout_marginTop="@dimen/content_horizontal_margin"
+                            android:layout_marginRight="@dimen/content_horizontal_margin"
+                            android:layout_marginLeft="@dimen/content_horizontal_margin"
+                            android:background="@color/textColorPrimary"
+                            android:paddingTop="10dp"
+                            android:orientation="vertical"
+                            android:gravity="center">
 
-                        <com.daimajia.slider.library.Indicators.PagerIndicator
-                            android:id="@+id/custom_indicator2"
-                            style="@style/AndroidImageSlider_Corner_Oval_Orange"
-                            android:layout_centerHorizontal="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginBottom="20dp"
-                            />-->
-                        
-                        
+                            <ImageView
+                                android:id="@+id/prod_no_picture"
+                                android:layout_width="200dp"
+                                android:layout_height="200dp"
+                                android:src="@drawable/no_picture"
+                                android:visibility="gone"/>
+
+
+                            <com.daimajia.slider.library.SliderLayout
+                                android:id="@+id/prod_images_slider"
+                                android:layout_marginTop="5dp"
+                                android:layout_width="200dp"
+                                android:layout_height="200dp"
+
+                                app:auto_cycle="false"
+                                app:indicator_visibility="visible"/>
+
+
+
+
+
+                            <com.daimajia.slider.library.Indicators.PagerIndicator
+                                android:id="@+id/custom_indicator"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                app:selected_color="@color/prod_vertical_gallery_selected"
+                                app:unselected_color="@color/prod_vertical_gallery_unselected"
+                                app:shape="oval"
+                                app:selected_padding_left="2dp"
+                                app:selected_padding_right="2dp"
+                                app:unselected_padding_left="2dp"
+                                app:unselected_padding_right="2dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_alignParentBottom="true"
+                                app:selected_width="8dp"
+                                app:selected_height="8dp"
+                                app:unselected_width="8dp"
+                                app:unselected_height="8dp"/>
+
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:paddingBottom="72dp"
+                            android:gravity="bottom">
+
+                            <include
+                                android:id="@+id/general_buying_controls"
+                                layout="@layout/buying_controls"/>
+
+
+                        </RelativeLayout>
+
                     </LinearLayout>
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="bottom">
-
-                        <include
-                            layout="@layout/buying_controls"/>
-
-
-                    </RelativeLayout>
 
 
 
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="bottom">
+                </ScrollView>
 
 
-                        <include layout="@layout/add_to_cart_button"
-                        />
-                    </RelativeLayout>
 
 
-                </LinearLayout>
-
-                <LinearLayout
+                <ScrollView
                     android:id="@+id/products_tab_content_details"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:fillViewport="true"
+                    >
 
-                    <TextView
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="@string/prod_title"
-                        android:textColor="#000000"
-                        android:textSize="30sp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="15dp"
-                        />
+                        android:orientation="vertical"
+                        android:baselineAligned="false"
+                        android:measureWithLargestChild="false"
+                        android:nestedScrollingEnabled="false">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="@string/prod_brand"
-                        android:textColor="#000000"
-                        android:textSize="24sp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="15dp"
-                        />
+                        <include
+                            layout="@layout/product_details"/>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@android:color/darker_gray"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:paddingBottom="72dp"
+                            android:gravity="bottom">
+
+                            <include
+                                android:id="@+id/details_buying_controls"
+                                layout="@layout/buying_controls"/>
 
 
-                    <!-- Layout for details -->
+                        </RelativeLayout>
+                    </LinearLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/prod_brand"
-                        android:textColor="@color/productText"
-                        android:textSize="18sp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="30dp"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/prod_age"
-                        android:textColor="@color/productText"
-                        android:textSize="18sp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/prod_sex"
-                        android:textColor="@color/productText"
-                        android:textSize="18sp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/prod_color"
-                        android:textColor="@color/productText"
-                        android:textSize="18sp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/prod_material"
-                        android:textColor="@color/productText"
-                        android:textSize="18sp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/prod_style"
-                        android:textColor="@color/productText"
-                        android:textSize="18sp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/prod_occasion"
-                        android:textColor="@color/productText"
-                        android:textSize="18sp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/prod_sizes_disp"
-                        android:textColor="@color/productText"
-                        android:textSize="18sp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        />
+                </ScrollView>
 
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="bottom">
-
-
-                        <include layout="@layout/add_to_cart_button"
-                            />
-                    </RelativeLayout>
-
-
-                </LinearLayout>
 
             </FrameLayout>
         </LinearLayout>
     </TabHost>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+
+        <include layout="@layout/add_to_cart_button" />
+    </RelativeLayout>
 
 </RelativeLayout>

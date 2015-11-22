@@ -3,13 +3,18 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
     android:layout_marginLeft="@dimen/content_horizontal_margin"
-    android:layout_marginRight="@dimen/content_horizontal_margin">
+    android:layout_marginRight="@dimen/content_horizontal_margin"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:clipToPadding="false"
+        android:layout_marginTop="5dp"
+        android:paddingBottom="10dp">
 
         <ImageView
             android:id="@+id/prod_add_to_favorites"
@@ -20,38 +25,44 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:alpha="0.50"
             android:paddingRight="5dp"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:clickable="true"/>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <!--<RelativeLayout
+            android:layout_width="120dp"
+            android:layout_height="40dp"
             android:paddingRight="5dp"
             android:elevation="6dp"
-            android:layout_marginLeft="30dp">
+            android:layout_marginLeft="30dp"> -->
 
             <Spinner
+                style="@style/Spinner"
                 android:id="@+id/prod_quantity_selection"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:dropDownSelector="@drawable/ic_arrow_drop_down"/>
+                android:layout_marginLeft="30dp"
+
+                android:elevation="3dp"
+                android:minWidth="100dp"
+                android:paddingStart="15dp"
+
+                />
 
 
-        </RelativeLayout>
+        <!--</RelativeLayout>-->
 
 
 
 
         <TextView
             android:id="@+id/prod_price"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#000000"
             android:textSize="24sp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="10dp"
             android:text="$123"
             android:layout_marginLeft="30dp" />
 

@@ -6,11 +6,11 @@
     android:id="@+id/prod_add_to_cart_button"
     android:layout_width="match_parent"
     android:layout_height="64dp"
-    android:background="@color/colorAccentTransparent"
+    android:background="@color/colorAccent"
     android:textAlignment="center"
-    android:layout_alignParentBottom="true"
     android:gravity="center"
-    android:clickable="true">
+    android:clickable="true"
+    android:alpha="0.85">
 
 
     <RelativeLayout

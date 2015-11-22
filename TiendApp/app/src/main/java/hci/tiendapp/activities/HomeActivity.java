@@ -1,26 +1,14 @@
 package hci.tiendapp.activities;
 
-import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
-import java.util.Locale;
 
 
 import hci.tiendapp.R;
-import hci.tiendapp.background.ProductsService;
 
 /**
  * Created by JuanMarcos on 19/11/15.
@@ -59,7 +47,7 @@ public class HomeActivity extends MyDrawerActivity {
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
         SearchView searchView =
-                (SearchView) menu.findItem(R.id.home_tool_bar_search_bar).getActionView();
+                (SearchView) menu.findItem(R.id.tool_bar_search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
 

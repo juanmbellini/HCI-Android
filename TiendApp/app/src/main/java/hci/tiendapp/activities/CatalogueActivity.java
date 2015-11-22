@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -83,8 +84,18 @@ public class CatalogueActivity extends MyDrawerActivity {
 
     @Override
     protected void onPause() {
+
+        adapter.clear();
+        adapter.notifyDataSetChanged();
         adapter = null; // Saves memory
         super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+
+        adapter = null;
+        super.onStop();
     }
 
     @Override
@@ -232,6 +243,8 @@ public class CatalogueActivity extends MyDrawerActivity {
         }
 
 
+
+
         public void clear() {
             products = new ArrayList<Product>();
         }
@@ -286,7 +299,7 @@ public class CatalogueActivity extends MyDrawerActivity {
             if (productImages.length == 0) {
                 image.setImageResource(R.drawable.no_picture);
             } else {
-                new DrawImageAsyncTask(context, image, 70, 70).execute(products.get(position).getImageUrl()[0], position + "");
+                new DrawImageForCatalogueAsyncTask(context, image, 70, 70).execute(products.get(position).getImageUrl()[0]); //, position + "");
             }
             name.setText(products.get(position).getName());
             price.setText("$" + products.get(position).getPrice());
@@ -425,4 +438,30 @@ public class CatalogueActivity extends MyDrawerActivity {
             adapter.notifyDataSetChanged();
         }
     }
+
+    private class DrawImageForCatalogueAsyncTask extends DrawImageAsyncTask {
+
+        ImageView imageView;
+
+        public DrawImageForCatalogueAsyncTask(Context context, ImageView imageView, int width, int height) {
+            super(context, width, height);
+            this.imageView = imageView;
+
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+
+            if (bitmap != null) {
+                imageView.setImageBitmap(bitmap);
+            } else {
+                imageView.setImageResource(R.drawable.no_picture);
+            }
+
+        }
+
+
+    }
+
 }

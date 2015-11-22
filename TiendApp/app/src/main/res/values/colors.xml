@@ -3,11 +3,19 @@
     <color name="colorPrimary">#212121</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="navigationBarColor">#000000</color>
-    <color name="textColorPrimary">#FFFFFF</color>
-    <color name="Text">#424242</color>
     <color name="colorAccent">#607D8B</color>
     <color name="colorAccentTransparent">#DF607D8B</color>
+
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="text">#424242</color>
+    <color name="text_grey">#878787</color>
+
     <color name="windowBackground">#FAFAFA</color>
+
     <color name="blue">#1560BD</color>
-    <color name="productText">#AAAAAA</color>
+
+
+
+    <color name="prod_vertical_gallery_selected">#454545</color>
+    <color name="prod_vertical_gallery_unselected">#BCBCBC</color>
 </resources>

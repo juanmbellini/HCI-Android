@@ -14,4 +14,14 @@
 
 
         />
+
+    <item
+        android:title="@string/search_action"
+        android:id="@+id/tool_bar_share"
+        android:icon="@drawable/ic_share_white_24dp"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+
+
+        />
 </menu>

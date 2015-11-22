@@ -225,7 +225,6 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
 
 
         MyAdapter(Context passedContext){
-            //super();
 
             this.context =  passedContext;
         }

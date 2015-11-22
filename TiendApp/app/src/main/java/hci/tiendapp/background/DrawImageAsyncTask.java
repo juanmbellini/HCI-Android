@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -20,17 +21,17 @@ import hci.tiendapp.R;
 public class DrawImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
 
     private Context context;
-    private ImageView imageView;
     private int width;
     private int height;
 
+    protected String imageURL = "";
 
 
 
-    public DrawImageAsyncTask(Context context, ImageView imageView, int width, int height) {
+
+    public DrawImageAsyncTask(Context context, int width, int height) {
         super();
         this.context = context;
-        this.imageView = imageView;
         this.width = width;
         this.height = height;
 
@@ -78,6 +79,7 @@ public class DrawImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
     @Override
     protected Bitmap doInBackground(String... params) {
         try {
+            imageURL = params[0];
             return BitmapFactory.decodeStream((InputStream) new URL(params[0]).getContent());
 
         } catch (Exception e) {
@@ -89,12 +91,6 @@ public class DrawImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
     @Override
     protected void onPostExecute(Bitmap bitmap) {
         super.onPostExecute(bitmap);
-
-        decodeSampledBitmapFromResource(Resources.getSystem(),imageView.getId(), width, height);
-
-        if (bitmap != null) {
-            imageView.setImageBitmap(bitmap);
-        }
 
     }
 

@@ -1,7 +1,5 @@
 package hci.tiendapp.activities;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -32,8 +30,6 @@ import android.support.v7.widget.SearchView;
 import java.util.Locale;
 
 import hci.tiendapp.R;
-
-import static android.widget.Toast.LENGTH_LONG;
 
 public class HomeActivity2 extends AppCompatActivity{
 
@@ -243,7 +239,7 @@ public class HomeActivity2 extends AppCompatActivity{
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
         SearchView searchView =
-                (SearchView) menu.findItem(R.id.home_tool_bar_search_bar).getActionView();
+                (SearchView) menu.findItem(R.id.tool_bar_search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
 

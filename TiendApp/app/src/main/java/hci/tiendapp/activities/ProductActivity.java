@@ -1,19 +1,31 @@
 package hci.tiendapp.activities;
 
-import android.app.Activity;
-import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.Menu;
-import android.widget.Adapter;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.NumberPicker;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.daimajia.slider.library.Indicators.PagerIndicator;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -26,10 +38,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Collection;
 
 import hci.tiendapp.R;
 import hci.tiendapp.backend.Product;
+import hci.tiendapp.background.DrawImageAsyncTask;
 import hci.tiendapp.constants.Constants;
 import hci.tiendapp.util.UtilClass;
 
@@ -37,10 +49,10 @@ public class ProductActivity extends MyDrawerActivity {
 
 
     private Product displayedProduct;
+    private int quantitySelected = 0;
 
-    private TabHost tabHost;
 
-
+    private ProgressDialog progressDialog;
 
 
     public ProductActivity() {
@@ -64,13 +76,55 @@ public class ProductActivity extends MyDrawerActivity {
         }
 
 
+        progressDialog = new ProgressDialog(ProductActivity.this);
+        progressDialog.setMessage(getString(R.string.loading_message));
+        progressDialog.show();
         new GetProductAsyncTask().execute(prodId);
 
 
 
 
+
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.product_menu, menu);
+        return true;
+    }
+
+
+    @Override
+    protected void onPause() {
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+
+
+
+        } else {
+
+
+        }
+
+
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+
+        super.onStop();
+    }
+
+
+
+    private void setVerticalLayout() {
+
+
         // Sets up the fixed tabs
-        tabHost = (TabHost) findViewById(R.id.products_tab_host);
+        TabHost tabHost = (TabHost) findViewById(R.id.products_tab_host);
         tabHost.setup();
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
@@ -92,48 +146,215 @@ public class ProductActivity extends MyDrawerActivity {
         ts2.setContent(R.id.products_tab_content_details);
         tabHost.addTab(ts2);
 
+        // Sets title
+        TextView prodTitle = (TextView) findViewById(R.id.prod_title);
+        prodTitle.setText(displayedProduct.getName());
+
+        // Sets buying controls
+        RelativeLayout generalBuyingControls = (RelativeLayout) findViewById(R.id.general_buying_controls);
+        RelativeLayout detailsBuyingControls = (RelativeLayout) findViewById(R.id.details_buying_controls);
+        TextView generalProdPrice = (TextView) generalBuyingControls.findViewById(R.id.prod_price);
+        TextView detailsProdPrice = (TextView) detailsBuyingControls.findViewById(R.id.prod_price);
+        final Spinner generalSpinner = (Spinner) generalBuyingControls.findViewById(R.id.prod_quantity_selection);
+        final Spinner detailsSpinner = (Spinner) detailsBuyingControls.findViewById(R.id.prod_quantity_selection);
+
+        final AdapterView.OnItemSelectedListener spinnerOnItemSelectedListener =
+                new AdapterView.OnItemSelectedListener() {
+
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent,
+                                               View view, int position, long id) {
+
+                        quantitySelected = position + 1;
+                        generalSpinner.setSelection(position);
+                        detailsSpinner.setSelection(position);
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                };
+
+
+        final String[] quantities = new String[20];
+        for (int i = 0 ; i < quantities.length; i++) {
+            quantities[i] = getResources().getString(R.string.qty_abreviation) + ": " + (i + 1);
+        }
+        final ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,R.layout.quantity_spinner_item, quantities);
+        spinnerAdapter.setDropDownViewResource(R.layout.custom_spinner);
+
+        generalSpinner.setAdapter(spinnerAdapter);
+        detailsSpinner.setAdapter(spinnerAdapter);
+
+        generalSpinner.setSelection(0);
+        detailsSpinner.setSelection(0);
+
+        generalSpinner.setOnItemSelectedListener(spinnerOnItemSelectedListener);
+        detailsSpinner.setOnItemSelectedListener(spinnerOnItemSelectedListener);
+
+        generalProdPrice.setText("$" + displayedProduct.getPrice());
+        detailsProdPrice.setText("$" + displayedProduct.getPrice());
+
+
+        //Sets Images
+        SliderLayout sliderLayout = (SliderLayout) findViewById(R.id.prod_images_slider);
+        PagerIndicator sliderPagerIndicator = (PagerIndicator) findViewById(R.id.custom_indicator);
+        sliderLayout.stopAutoCycle();
+        sliderLayout.setCustomIndicator(sliderPagerIndicator);
+
+
+        if(displayedProduct.getImageUrl().length == 0) {
+            sliderLayout.setVisibility(View.GONE);
+            sliderPagerIndicator.setVisibility(View.GONE);
+            findViewById(R.id.prod_no_picture).setVisibility(View.VISIBLE);
+        } else {
+            for (String each : displayedProduct.getImageUrl()) {
+                new DrawImageAsyncTaskForSlider(this,sliderLayout,1,1).execute(each);
+
+            }
+        }
+
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_menu, menu);
-        return true;
+    private void setHorizontalLayout() {
+
+        // Sets title
+        TextView prodTitle = (TextView) findViewById(R.id.prod_title);
+        prodTitle.setText(displayedProduct.getName());
+
+        // Sets buying controls
+        RelativeLayout upperBuyingControls = (RelativeLayout) findViewById(R.id.upper_buying_controls);
+        RelativeLayout lowerBuyingControls = (RelativeLayout) findViewById(R.id.lower_buying_controls);
+        TextView generalProdPrice = (TextView) upperBuyingControls.findViewById(R.id.prod_price);
+        TextView detailsProdPrice = (TextView) lowerBuyingControls.findViewById(R.id.prod_price);
+        final Spinner upperSpinner = (Spinner) upperBuyingControls.findViewById(R.id.prod_quantity_selection);
+        final Spinner lowerSpinner = (Spinner) lowerBuyingControls.findViewById(R.id.prod_quantity_selection);
+
+        final AdapterView.OnItemSelectedListener spinnerOnItemSelectedListener =
+                new AdapterView.OnItemSelectedListener() {
+
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent,
+                                               View view, int position, long id) {
+
+                        quantitySelected = position + 1;
+                        upperSpinner.setSelection(position);
+                        lowerSpinner.setSelection(position);
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                };
+
+
+        final String[] quantities = new String[20];
+        for (int i = 0 ; i < quantities.length; i++) {
+            quantities[i] = getResources().getString(R.string.qty_abreviation) + ": " + (i + 1);
+        }
+        final ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,R.layout.quantity_spinner_item, quantities);
+        spinnerAdapter.setDropDownViewResource(R.layout.custom_spinner);
+
+        upperSpinner.setAdapter(spinnerAdapter);
+        lowerSpinner.setAdapter(spinnerAdapter);
+
+        upperSpinner.setSelection(0);
+        lowerSpinner.setSelection(0);
+
+        upperSpinner.setOnItemSelectedListener(spinnerOnItemSelectedListener);
+        lowerSpinner.setOnItemSelectedListener(spinnerOnItemSelectedListener);
+
+        generalProdPrice.setText("$" + displayedProduct.getPrice());
+        detailsProdPrice.setText("$" + displayedProduct.getPrice());
+
+
+        // Set Images
+
+        LinearLayout picHolder = (LinearLayout) findViewById(R.id.prod_pictures_holder);
+        int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 130, getResources().getDisplayMetrics());
+        LinearLayout.LayoutParams picParams = new LinearLayout.LayoutParams(size,size);
+        size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,10,getResources().getDisplayMetrics());
+        picParams.setMargins(0,size,0,0);
+
+
+        if (displayedProduct.getImageUrl().length == 0) {
+
+            ImageView noPictureImage = new ImageView(this);
+            noPictureImage.setImageResource(R.drawable.no_picture);
+            noPictureImage.setLayoutParams(picParams);
+            picHolder.addView(noPictureImage);
+        } else {
+
+            for (String each : displayedProduct.getImageUrl()) {
+                ImageView image = new ImageView(this);
+                new DrawImageAsyncTaskForLandScapeMode(this, 70, 70, image, picHolder, picParams).execute(each);
+
+            }
+        }
+
     }
 
 
-    private void setImages() {
 
-
-
-    }
 
     private void setLayout() {
 
         getSupportActionBar().setTitle(displayedProduct.getName());
-        TextView prodTitle = (TextView) findViewById(R.id.prod_title);
-        TextView prodPrice = (TextView) findViewById(R.id.prod_price);
-        Spinner spinner = (Spinner) findViewById(R.id.prod_quantity_selection);
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+
+            setVerticalLayout();
+
+        } else {
+
+            setHorizontalLayout();
+        }
+        progressDialog.dismiss();
 
 
+    }
 
 
-        //ImageView imageView;
-        //imageView.setOnClickListener();
+    private class MySpinnerCustomAdapter extends ArrayAdapter<String> {
 
-        prodTitle.setText(displayedProduct.getName());
-        prodPrice.setText("$" + displayedProduct.getPrice());
 
-        String[] quantities = new String[20];
-        for (int i = 0 ; i < quantities.length; i++) {
-            quantities[i] = getResources().getString(R.string.qty_abreviation) +": " + (i + 1);
+        String[] elements;
+
+        public MySpinnerCustomAdapter(Context context, int txtViewResource, String[] elements) {
+
+            super(context, txtViewResource);
+            this.elements = elements;
         }
 
-       // Integer[] quantities = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,R.layout.quantity_spinner_item, quantities);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(spinnerAdapter);
+        @Override
+        public View getDropDownView(int position, View convertView, ViewGroup parent) {
 
+            return getCustomView(position, convertView, parent);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            return getCustomView(position, convertView, parent);
+        }
+
+
+        public View getCustomView(int position, View convertView, ViewGroup parent) {
+
+            LayoutInflater inflater = getLayoutInflater();
+            View spinner = inflater.inflate(R.layout.custom_spinner, parent, false);
+            TextView text = (TextView) spinner.findViewById(R.id.custom_spinner_text);
+
+            text.setText(elements[position]);
+
+
+            return spinner;
+        }
     }
 
 
@@ -161,12 +382,6 @@ public class ProductActivity extends MyDrawerActivity {
         }
 
 
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            //TODO agregar loading dialog
-        }
 
         @Override
         protected Product doInBackground(String... params) {
@@ -202,7 +417,6 @@ public class ProductActivity extends MyDrawerActivity {
         @Override
         protected void onPostExecute(Product product) {
             super.onPostExecute(product);
-            // TODO apagar dialog
 
             if (product == null) {
 
@@ -214,6 +428,61 @@ public class ProductActivity extends MyDrawerActivity {
 
             displayedProduct = product;
             setLayout();
+        }
+    }
+
+    private class DrawImageAsyncTaskForSlider extends DrawImageAsyncTask {
+
+        SliderLayout sliderLayout;
+
+
+        public DrawImageAsyncTaskForSlider(Context context, SliderLayout sliderLayout, int width, int height) {
+            super(context, width, height);
+            this.sliderLayout = sliderLayout;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+
+            if (bitmap != null) {
+
+                sliderLayout.addSlider((new DefaultSliderView(ProductActivity.this)).image(imageURL));
+            }
+
+
+        }
+    }
+
+    private class DrawImageAsyncTaskForLandScapeMode extends DrawImageAsyncTask {
+
+        ImageView imageView;
+        LinearLayout picHolder;
+        LinearLayout.LayoutParams picParams;
+
+
+        public DrawImageAsyncTaskForLandScapeMode(Context context, int width, int height,
+                                                  ImageView imageView, LinearLayout picHolder,
+                                                  LinearLayout.LayoutParams picParams) {
+            super(context, width, height);
+            this.imageView = imageView;
+            this.picHolder = picHolder;
+            this.picParams = picParams;
+
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+
+            if (bitmap != null) {
+
+                imageView.setImageBitmap(bitmap);
+                imageView.setLayoutParams(picParams);
+                picHolder.addView(imageView);
+
+
+            }
         }
     }
 

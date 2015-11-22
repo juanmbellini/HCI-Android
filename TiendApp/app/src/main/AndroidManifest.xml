@@ -63,6 +63,7 @@
                 android:value=".activities.SubCategoriesActivity" />
         </activity>
 
+        <!-- Catalogue Activity -->
         <activity
             android:name=".activities.ProductActivity"
             android:theme="@style/AppTheme" >
