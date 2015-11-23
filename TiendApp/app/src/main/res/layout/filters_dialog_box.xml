@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:background="@color/windowBackground"
+    android:measureWithLargestChild="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <TableLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/content_horizontal_margin"
+            android:layout_marginRight="@dimen/content_horizontal_margin"
+            android:layout_marginTop="@dimen/content_vertical_margin"
+            android:stretchColumns="2"
+            android:paddingBottom="72dp"
+
+
+            >
+            <TableRow
+                android:id="@+id/section_filter_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+
+
+                <TextView
+                    android:id="@+id/section_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/section_filter"/>
+
+                <Spinner
+                    style="@style/Spinner"
+                    android:id="@+id/section_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:clickable="true"
+                    android:gravity="right"
+                    android:paddingStart="15dp"
+                    android:elevation="1dp"
+                    android:paddingLeft="15dp"
+                    android:layout_alignParentRight="true" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/category_filter_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <TextView
+                    android:id="@+id/category_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/category_filter"/>
+
+
+                <Spinner
+                    style="@style/Spinner"
+                    android:id="@+id/category_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="right"
+                    android:paddingStart="15dp"
+                    android:paddingLeft="15dp"
+
+                    />
+
+            </TableRow>
+
+
+            <TableRow
+                android:id="@+id/sub_category_filter_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <TextView
+                    android:id="@+id/sub_category_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sub_category_filter"/>
+
+                <Spinner
+                    style="@style/Spinner"
+                    android:id="@+id/sub_category_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="right"
+                    android:paddingStart="15dp"
+                    android:paddingLeft="15dp"
+
+                    />
+
+
+
+            </TableRow>
+
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/brand_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/brand_filter"/>
+
+                <Spinner
+                    style="@style/Spinner"
+                    android:id="@+id/brand_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="right"
+                    android:paddingStart="15dp"
+                    android:paddingLeft="15dp"
+
+                    />
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/color_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/color_filter"/>
+
+                <Spinner
+                    style="@style/Spinner"
+                    android:id="@+id/color_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="right"
+                    android:paddingStart="15dp"
+                    android:paddingLeft="15dp"
+
+                    />
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/size_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/size_filter"/>
+
+                <Spinner
+                    style="@style/Spinner"
+                    android:id="@+id/size_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="right"
+                    android:paddingStart="15dp"
+                    android:paddingLeft="15dp"
+
+                    />
+
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/occasion_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/occasion_filter"/>
+
+
+                <Spinner
+                    style="@style/Spinner"
+                    android:id="@+id/occasion_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="right"
+                    android:paddingStart="15dp"
+                    android:paddingLeft="15dp"
+
+                    />
+
+
+
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/recommended_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/recommended_filter"/>
+
+                <CheckBox
+                    android:id="@+id/recommended_check_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="right"
+                    android:checked="false"
+                    android:buttonTint="@color/text_grey"
+                    />
+
+
+
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/on_sale_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/on_sale_filter"/>
+
+                <CheckBox
+                    android:id="@+id/on_sale_check_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="right"
+                    android:buttonTint="@color/text_grey"/>
+
+
+
+            </TableRow>
+
+
+        </TableLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/windowBackground"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/filters_cancel_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="@string/cancel_button"
+                />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/filters_OK_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="@string/ok_button"/>
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+</RelativeLayout>

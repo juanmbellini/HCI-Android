@@ -75,11 +75,46 @@
     <string name="prod_price">Price</string>
 
 
+    <!--Orders-->
+    <string name="order_activity_name">Mis Pedidos</string>
+    <string name="order">Pedido</string>
+    <string name="order_state">Estado</string>
+    <string name="order_buying_date">Fecha de compra</string>
+    <string name="order_total">Total</string>
+    <string name="order_details">Detalles</string>
+
+    <string name="order_created">Creada</string>
+    <string name="order_confirmed">Confirmada</string>
+    <string name="order_shiped">Despachada</string>
+    <string name="order_delivered">Entregada</string>
+
+
     <!-- Alarm management -->
     <string name="set_single_alarm">Set Single Alarm</string>
     <string name="set_repeating_alarm">Set Repeating Alarm</string>
     <string name="set_inexact_repeating_alarm">Set Inexact Repeating Alarm</string>
     <string name="cancel_repeating_alarm">Cancel Repeating Alarm</string>
+
+
+    <!-- Filters -->
+    <string name="section_filter">Section</string>
+    <string name="category_filter">Category</string>
+    <string name="sub_category_filter">Sub-Category</string>
+    <string name="brand_filter">Brand</string>
+    <string name="color_filter">Color</string>
+    <string name="size_filter">Size</string>
+    <string name="occasion_filter">Occasion</string>
+    <string name="recommended_filter">Recommended</string>
+    <string name="on_sale_filter">On sale</string>
+
+    <string name="all_male">All</string>
+    <string name="all_female">All</string>
+
+
+    <!--buttons-->
+    <string name="cancel_button">Cancel</string>
+    <string name="ok_button">OK</string>
+
 
 
 

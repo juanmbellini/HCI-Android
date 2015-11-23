@@ -115,7 +115,7 @@ public class SubCategoriesActivity extends MyDrawerActivity {
 
             }
         } else {
-            GetCategoriesTask asyncTask = new GetCategoriesTask();
+            GetSubCategoriesTask asyncTask = new GetSubCategoriesTask();
             asyncTask.execute(intentOption, intentCategoryId, intentCategoryName);
             genderOption = intentOption;
 
@@ -196,7 +196,7 @@ public class SubCategoriesActivity extends MyDrawerActivity {
     }
 
 
-    private class GetCategoriesTask extends AsyncTask<String, Long, Collection<SubCategory>> {
+    private class GetSubCategoriesTask extends AsyncTask<String, Long, Collection<SubCategory>> {
 
         final String baseURL = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllSubcategories&id=";
 

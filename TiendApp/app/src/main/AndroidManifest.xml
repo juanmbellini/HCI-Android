@@ -22,6 +22,8 @@
             android:exported="true"
             android:process=":remote" />
 
+
+
         <!-- Home Activity -->
         <activity
             android:name=".activities.HomeActivity"

@@ -8,6 +8,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import hci.tiendapp.R;
+import hci.tiendapp.TiendApp;
 import hci.tiendapp.activities.HomeActivity;
 import hci.tiendapp.constants.Constants;
 
@@ -62,5 +64,25 @@ public class UtilClass {
                 throw new RuntimeException("Algo anduvo mal");
         }
         return id;
+    }
+
+    public static String getOrderStatus(int id) {
+
+        String result = "";
+        switch (id) {
+            case 1:
+                result = TiendApp.getContext().getString(R.string.order_created);
+                break;
+            case 2:
+                result = TiendApp.getContext().getString(R.string.order_confirmed);
+                break;
+            case 3:
+                result = TiendApp.getContext().getString(R.string.order_shiped);
+                break;
+            case 4:
+                result = TiendApp.getContext().getString(R.string.order_delivered);
+                break;
+        }
+        return result;
     }
 }

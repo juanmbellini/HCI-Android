@@ -45,6 +45,7 @@
                 android:elevation="3dp"
                 android:minWidth="100dp"
                 android:paddingStart="15dp"
+                android:paddingLeft="15dp"
 
                 />
 

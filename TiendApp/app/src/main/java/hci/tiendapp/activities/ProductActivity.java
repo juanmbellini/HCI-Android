@@ -38,8 +38,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import hci.tiendapp.R;
+import hci.tiendapp.backend.Attribute;
 import hci.tiendapp.backend.Product;
 import hci.tiendapp.background.DrawImageAsyncTask;
 import hci.tiendapp.constants.Constants;
@@ -96,28 +101,6 @@ public class ProductActivity extends MyDrawerActivity {
         return true;
     }
 
-
-    @Override
-    protected void onPause() {
-
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-
-
-
-        } else {
-
-
-        }
-
-
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-
-        super.onStop();
-    }
 
 
 
@@ -300,6 +283,79 @@ public class ProductActivity extends MyDrawerActivity {
 
     }
 
+    private void setDetails() {
+
+        TextView brandText = (TextView) findViewById(R.id.brand_value);
+        TextView ageText = (TextView) findViewById(R.id.age_value);
+        TextView genderText = (TextView) findViewById(R.id.gender_value);
+        TextView colorText = (TextView) findViewById(R.id.color_value);
+        TextView materialText = (TextView) findViewById(R.id.material_value);
+        TextView styleText = (TextView) findViewById(R.id.style_value);
+        TextView occasionText = (TextView) findViewById(R.id.occasion_value);
+        TextView sizesText = (TextView) findViewById(R.id.sizes_value);
+
+        Map<String, List<String>> filters = new HashMap<String,List<String>>();
+
+
+        for (Attribute each : displayedProduct.getAttributes()) {
+
+            insertToMap(filters, "Marca", each);
+            insertToMap(filters, "Edad", each);
+            insertToMap(filters, "Genero", each);
+            insertToMap(filters, "Color", each);
+            insertToMap(filters, "Material", each);
+            insertToMap(filters, "Estilo", each);
+            insertToMap(filters, "Ocasion", each);
+            insertToMap(filters, "Talle", each);
+        }
+
+        brandText.setText(generateString(filters.get("Marca")));
+        ageText.setText(generateString(filters.get("Edad")));
+        genderText.setText(generateString(filters.get("Genero")));
+        colorText.setText(generateString(filters.get("Color")));
+        materialText.setText(generateString(filters.get("Material")));
+        styleText.setText(generateString(filters.get("Estilo")));
+        occasionText.setText(generateString(filters.get("Ocasion")));
+        sizesText.setText(generateString(filters.get("Talle")));
+
+
+    }
+
+    private void insertToMap(Map<String, List<String>> map, String str, Attribute each) {
+
+        if (each.getName().contains(str)) {
+            List<String> aux = map.get(str);
+            if (aux == null) {
+                aux = new ArrayList<String>();
+                map.put(str, aux);
+            }
+            for(String each2 : each.getValues()) {
+                aux.add(each2);
+            }
+        }
+        if (map.get(str) == null) {
+            List<String> aux = new ArrayList<String>();
+            map.put(str, aux);
+        }
+
+    }
+
+
+    private String generateString(List<String> list) {
+
+        String result = "";
+        if (!list.isEmpty()) {
+            result += list.get(0);
+        } else {
+            result = " - ";
+        }
+        for (int i = 1 ; i < list.size() ; i++) {
+            result += " - " + list.get(i);
+        }
+
+        return result;
+    }
+
 
 
 
@@ -315,6 +371,7 @@ public class ProductActivity extends MyDrawerActivity {
 
             setHorizontalLayout();
         }
+        setDetails();
         progressDialog.dismiss();
 
 

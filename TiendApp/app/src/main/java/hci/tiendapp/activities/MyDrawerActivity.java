@@ -91,6 +91,15 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
 
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        DrawerLayout drawer = (DrawerLayout)findViewById(R.id.navigation_drawer_layout);
+        drawer.closeDrawers();
+    }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
