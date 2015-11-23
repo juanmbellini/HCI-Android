@@ -120,12 +120,14 @@
         <receiver android:name=".AlarmNotificationReceiver" >
         </receiver>
 
-        <activity android:name=".activities.CarritoActivity" >
+        <activity
+            android:name=".activities.CarritoActivity"
+            android:label="@string/title_activity_carrito">
         </activity>
         <activity android:name=".activities.SettingsActivity" >
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login" >
 
 
