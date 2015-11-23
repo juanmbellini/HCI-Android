@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,17 +13,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -34,12 +30,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.nio.charset.MalformedInputException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import hci.tiendapp.Catalogue;
 import hci.tiendapp.R;
 import hci.tiendapp.backend.Category;
 import hci.tiendapp.constants.Constants;
@@ -135,7 +129,8 @@ public class CategoriesActivity extends MyDrawerActivity {
 
                 if (selectedCategory.getId() == -1) {
                     Intent intent = new Intent(CategoriesActivity.this, CatalogueActivity.class);
-                    intent.putExtra(Constants.comingFrom,Constants.comingFromCategories);
+                    intent.putExtra(Constants.comingFrom,Constants.comingFromGender);
+                    intent.putExtra(Constants.genderSelection, sendingOption);
                     startActivity(intent);
 
                 } else {
@@ -217,25 +212,7 @@ public class CategoriesActivity extends MyDrawerActivity {
 
         private String setUp(String sectionId) {
 
-            int id = 0;
-            switch (sectionId) {
-
-                case Constants.menCategory:
-                    id = 0;
-                    break;
-                case Constants.womenCategory:
-                    id = 1;
-                    break;
-                case Constants.kidsCategory:
-                    id = 2;
-                    break;
-                case Constants.babiesCategory:
-                    id = 3;
-                    break;
-                default:
-                    CategoriesActivity.this.finish();
-                    throw new RuntimeException("Algo anduvo mal");
-            }
+            int id = UtilClass.getSectionFilterId(CategoriesActivity.this, sectionId);
 
             String encodedString = null;
             try {

@@ -97,9 +97,9 @@ public class SubCategoriesActivity extends MyDrawerActivity {
 
 
         Intent intent = getIntent();
-        String intentOption = intent.getStringExtra(Constants.genderSelection);
-        String intentCategoryId = intent.getStringExtra(Constants.categorySelectionId);
-        String intentCategoryName = intent.getStringExtra(Constants.categorySelectionName);
+        final String intentOption = intent.getStringExtra(Constants.genderSelection);
+        final String intentCategoryId = intent.getStringExtra(Constants.categorySelectionId);
+        final String intentCategoryName = intent.getStringExtra(Constants.categorySelectionName);
 
 
         if (intentOption == null || intentCategoryName == null || intentCategoryId == null) {
@@ -154,16 +154,21 @@ public class SubCategoriesActivity extends MyDrawerActivity {
 
                SubCategory selectedSubCategory = (SubCategory) adapter.getItem(position);
 
+                Intent intent = new Intent(SubCategoriesActivity.this, CatalogueActivity.class);
+                intent.putExtra(Constants.genderSelection, intentOption);
+                intent.putExtra(Constants.categorySelectionId, intentCategoryId);
+                intent.putExtra(Constants.categorySelectionName, intentCategoryName);
+
                 if (selectedSubCategory.getId() == -1) {
-                    Intent intent = new Intent(SubCategoriesActivity.this, CatalogueActivity.class);
-                    intent.putExtra(Constants.comingFrom,Constants.comingFromSubCategories);
-                    startActivity(intent);
+                    intent.putExtra(Constants.comingFrom,Constants.comingFromCategories);
 
                 } else {
-
-                    Intent intent = new Intent(SubCategoriesActivity.this, CatalogueActivity.class);
-                    startActivity(intent);
+                    intent.putExtra(Constants.comingFrom, Constants.comingFromSubCategories);
+                    intent.putExtra(Constants.subCategorySelectionId, selectedSubCategory.getId() + "");
+                    intent.putExtra(Constants.subCategorySelectionName, selectedSubCategory.getName());
                 }
+
+                startActivity(intent);
             }
         });
 

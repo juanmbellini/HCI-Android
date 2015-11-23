@@ -39,4 +39,28 @@ public class UtilClass {
         activity.startActivity(intent);
         return;
     }
+
+    public static  int getSectionFilterId(Activity activity, String sectionId) {
+
+        int id = 0;
+        switch (sectionId) {
+
+            case Constants.menCategory:
+                id = 0;
+                break;
+            case Constants.womenCategory:
+                id = 1;
+                break;
+            case Constants.kidsCategory:
+                id = 2;
+                break;
+            case Constants.babiesCategory:
+                id = 3;
+                break;
+            default:
+                UtilClass.goHome(activity, Constants.wrongParameters);
+                throw new RuntimeException("Algo anduvo mal");
+        }
+        return id;
+    }
 }

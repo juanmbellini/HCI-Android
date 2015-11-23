@@ -10,6 +10,7 @@ public class Constants {
     public static final String goHome = "goHome";
     public static final String noReEstablishInformation = "noReEstablishInformation";
     public static final String noResponseFromGettingProductTitles = "noResponseFromGettingProductTitles";
+    public static final String wrongParameters = "wrongParameters";
 
 
     public static final String genderSelection = "genderSelection";
@@ -28,6 +29,7 @@ public class Constants {
     public static final String comingFrom = "comingFrom";
     public static final String comingFromNoWhere = "comingFromNoWhere";
     public static final String comingFromSearchBar = "comingFromSearchBar";
+    public static final String comingFromGender = "comingFromGender";
     public static final String comingFromCategories = "comingFromCategories";
     public static final String comingFromSubCategories = "comingFromSubCategories";
     public static final String comingFromHome = "comingFromHome";
