@@ -1,11 +1,14 @@
 package hci.tiendapp.activities;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,12 +41,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import hci.tiendapp.Catalogue;
 import hci.tiendapp.R;
-import hci.tiendapp.backend.NotificatorService;
+import hci.tiendapp.backend.Filter;
 import hci.tiendapp.backend.Product;
 import hci.tiendapp.background.DrawImageAsyncTask;
 import hci.tiendapp.constants.Constants;
+import hci.tiendapp.customviews.FiltersDialogBox;
 import hci.tiendapp.customviews.HorizontalListView;
 import hci.tiendapp.util.UtilClass;
 
@@ -53,8 +59,12 @@ import hci.tiendapp.util.UtilClass;
 public class CatalogueActivity extends MyDrawerActivity {
 
 
-    boolean listDisplay = true;
-    CatalogueAdapter adapter;
+    private boolean listDisplay = true;
+    private CatalogueAdapter adapter;
+    private String requestUrl = "";
+
+    private Set<Filter> filtersAvailable = new HashSet<Filter>();
+    private Set<Filter> filtersApplied = new HashSet<Filter>();
 
     public CatalogueActivity() {
         super(R.layout.activity_catalogue, R.id.catalogue_layout);
@@ -66,42 +76,42 @@ public class CatalogueActivity extends MyDrawerActivity {
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
 
-
-
     }
 
     @Override
-    protected void onPause() {
+    protected void onResume() {
 
-        adapter.clear();
-        adapter.notifyDataSetChanged();
-        adapter = null; // Saves memory
-        super.onPause();
-    }
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-    @Override
-    protected void onStop() {
 
-        adapter = null;
-        super.onStop();
-    }
+        String aux = getIntent().getStringExtra(Constants.comingFrom);
 
-    @Override
-    protected void onStart() {
+        if (aux == null || aux.equals("")) {
+
+            // If got here by anywhere (i.e. by pressing back), it shows the last search
+            requestUrl = preferences.getString(Constants.restoreCatalogueRequest, "");
+
+        }
+
+
+
         setDisplay();
-        super.onStart();
+        super.onResume();
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
 
         listDisplay = savedInstanceState.getBoolean("list_display");
+        requestUrl = savedInstanceState.getString(Constants.restoreCatalogueRequest); // TODO hacer verificacion al inicio
+
         super.onRestoreInstanceState(savedInstanceState);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putBoolean("list_display", listDisplay);
+        outState.putString(Constants.restoreCatalogueRequest, requestUrl);
         super.onSaveInstanceState(outState);
     }
 
@@ -140,6 +150,20 @@ public class CatalogueActivity extends MyDrawerActivity {
                 return true;
             }
 
+            case R.id.filter_action: {
+
+                Intent intent = getIntent();
+                String comingFrom = intent.getStringExtra(Constants.comingFrom);
+                String gender = intent.getStringExtra(Constants.genderSelection);
+                String category = intent.getStringExtra(Constants.categorySelectionName);
+                String subCategory = intent.getStringExtra(Constants.subCategorySelectionId);
+
+                Dialog filterDialog = new FiltersDialogBox(this, comingFrom, gender,
+                        category, subCategory, filtersAvailable, filtersApplied);
+                filterDialog.show();
+
+            }
+
         }
 
 
@@ -160,28 +184,30 @@ public class CatalogueActivity extends MyDrawerActivity {
 
         // Filter filter
 
+        if (requestUrl.equals("")) {
 
 
-        if (comingFrom == null || comingFrom == "") {
-            comingFrom = Constants.comingFromNoWhere;
-        } else {
+            if (comingFrom == null || comingFrom == "") {
+                comingFrom = Constants.comingFromNoWhere;
+            } else {
 
-            switch (comingFrom) {
+                switch (comingFrom) {
 
-                case Constants.comingFromSearchBar:
-                    query = intent.getStringExtra(Constants.searchQuery);
-                    break;
-                case Constants.comingFromGender:
-                    gender = intent.getStringExtra(Constants.genderSelection);
-                    break;
-                case Constants.comingFromCategories:
-                    gender = intent.getStringExtra(Constants.genderSelection);
-                    category = intent.getStringExtra(Constants.categorySelectionId);
-                    break;
-                case Constants.comingFromSubCategories:
-                    gender = intent.getStringExtra(Constants.genderSelection);
-                    category = intent.getStringExtra(Constants.categorySelectionName);
-                    subCategory = intent.getStringExtra(Constants.subCategorySelectionId);
+                    case Constants.comingFromSearchBar:
+                        query = intent.getStringExtra(Constants.searchQuery);
+                        break;
+                    case Constants.comingFromGender:
+                        gender = intent.getStringExtra(Constants.genderSelection);
+                        break;
+                    case Constants.comingFromCategories:
+                        gender = intent.getStringExtra(Constants.genderSelection);
+                        category = intent.getStringExtra(Constants.categorySelectionId);
+                        break;
+                    case Constants.comingFromSubCategories:
+                        gender = intent.getStringExtra(Constants.genderSelection);
+                        category = intent.getStringExtra(Constants.categorySelectionName);
+                        subCategory = intent.getStringExtra(Constants.subCategorySelectionId);
+                }
             }
         }
 
@@ -193,10 +219,12 @@ public class CatalogueActivity extends MyDrawerActivity {
 
             if (listDisplay) {
                 g.setVisibility(View.GONE);
-                adapter = new CatalogueAdapter(this, R.layout.catalogue_list, comingFrom, query, gender, category, subCategory);
+                adapter = new CatalogueAdapter(this, R.layout.catalogue_list,
+                        comingFrom, query, gender, category, subCategory, "", requestUrl);
             } else {
                 l.setVisibility(View.GONE);
-                adapter = new CatalogueAdapter(this, R.layout.catalogue_grid, comingFrom, query, gender, category, subCategory);
+                adapter = new CatalogueAdapter(this, R.layout.catalogue_grid,
+                        comingFrom, query, gender, category, subCategory, "", requestUrl);
             }
 
             g.setAdapter(adapter);
@@ -225,10 +253,12 @@ public class CatalogueActivity extends MyDrawerActivity {
 
             if (listDisplay) {
                 g.setVisibility(View.GONE);
-                adapter = new CatalogueAdapter(this, R.layout.catalogue_list, comingFrom, query, gender, category, subCategory);
+                adapter = new CatalogueAdapter(this, R.layout.catalogue_list,
+                        comingFrom, query, gender, category, subCategory, "", requestUrl);
             } else {
                 l.setVisibility(View.GONE);
-                adapter = new CatalogueAdapter(this, R.layout.catalogue_grid, comingFrom, query, gender, category, subCategory);
+                adapter = new CatalogueAdapter(this, R.layout.catalogue_grid,
+                        comingFrom, query, gender, category, subCategory, "", requestUrl);
             }
 
             l.setAdapter(adapter);
@@ -257,13 +287,16 @@ public class CatalogueActivity extends MyDrawerActivity {
         String gender;
         String category;
         String subCategory;
+        String filters;
+        String requestURL;
 
 
         private LayoutInflater inflater = null;
 
 
         public CatalogueAdapter(Context context, int layout, String comingFrom, String searchQuery,
-                                String gender, String category, String subCategory) {
+                                String gender, String category, String subCategory, String filters,
+                                String requestURL) {
 
             this.context = context;
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -273,9 +306,13 @@ public class CatalogueActivity extends MyDrawerActivity {
             this.gender = gender;
             this.category = category;
             this.subCategory = subCategory;
-            new GetProductsAsyncTask().execute(comingFrom, searchQuery, gender, category, subCategory);
+            this.filters = filters;
+            this.requestURL = requestURL;
+            new GetProductsAsyncTask().execute(comingFrom, searchQuery, gender, category, subCategory, filters, requestURL);
 
         }
+
+
 
 
 
@@ -364,19 +401,30 @@ public class CatalogueActivity extends MyDrawerActivity {
         private final String baseURL = "http://eiffel.itba.edu.ar/hci/service3/Catalog.groovy?method=GetAllProducts";
 
 
-        private String getDataFromJSON(URLConnection urlConnection, String property) {
+        private String inputStreamToString(URLConnection urlConnection) {
 
-            String result = null;
+            String result = "";
+            try {
+                InputStream in = new BufferedInputStream((urlConnection.getInputStream()));
+                result = UtilClass.readStream(in);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
 
+
+        private String getDataFromJSON(String JSON, String property) {
+
+            String result = "";
 
             try {
-                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                JSONObject aux = new JSONObject(UtilClass.readStream(in));
+                JSONObject aux = new JSONObject(JSON);
                 result = aux.getString(property);
                 if (result == null) {
                     throw new RuntimeException("Wrong Method");
                 }
-            } catch (IOException | JSONException e) {
+            } catch  (JSONException e) {
                 e.printStackTrace();
             }
             return result;
@@ -406,8 +454,9 @@ public class CatalogueActivity extends MyDrawerActivity {
                 }
 
             }
+            String response = inputStreamToString(urlConnection);
 
-            return Integer.parseInt(getDataFromJSON(urlConnection, "total"));
+            return Integer.parseInt(getDataFromJSON(response, "total"));
 
         }
 
@@ -466,6 +515,14 @@ public class CatalogueActivity extends MyDrawerActivity {
         }
 
         private String fetchDesiredProducts(String requestURL) {
+            CatalogueActivity.this.requestUrl = requestURL;
+
+
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(CatalogueActivity.this);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(Constants.restoreCatalogueRequest,requestURL);
+            editor.apply();
+
 
             System.out.println(requestURL);
 
@@ -491,36 +548,58 @@ public class CatalogueActivity extends MyDrawerActivity {
 
             }
 
+            String response = inputStreamToString(urlConnection);
 
-            return getDataFromJSON(urlConnection, "products");                // Filters fetched data
+            setAvailableFilters(response);
+            return getDataFromJSON(response, "products");                // Filters fetched data
 
 
         }
 
-        private String getProducts(String ... args) {
 
-            //String requestURL =
+        private void setAvailableFilters(String response) {
+
+            String filters = getDataFromJSON(response,"filters");
+            System.out.println("Filtros: " + filters);
+
+            Gson parser = new Gson();
+            Type dataSetListType = new TypeToken<Set<Filter>>() {
+            }.getType();
+            filtersAvailable = (Set<Filter>) parser.fromJson(filters, dataSetListType);
+
+        }
+
+
+        private String getProducts (String comingFrom, String searchQuery, String gender,
+            String category, String subCategory, String filters, String requestURL) {
+
+
 
             int total = getProductsQuantity();
+
+            if (!requestUrl.equals("")) {
+                return fetchDesiredProducts(requestURL);
+            }
+
             String result = "";
-            switch (args[0]) {
+            switch (comingFrom) {
 
                 case Constants.comingFromGender:
-                    result = getAllProductsWithGenderFilter(total, args[2]);
+                    result = getAllProductsWithGenderFilter(total, gender);
                     break;
                 case Constants.comingFromCategories:
-                    result = getProductsByCategoryId(total, args[2], args[3]);
+                    result = getProductsByCategoryId(total, gender, category);
                     break;
                 case Constants.comingFromSubCategories:
-                    result = getProductsBySubCategoryId(total, args[2],args[4]);
+                    result = getProductsBySubCategoryId(total, gender, subCategory);
                     break;
                 case Constants.comingFromSearchBar:
-                    result = getProductsByName(total, args[1]);
+                    result = getProductsByName(total, searchQuery);
                     break;
                 case Constants.comingFromNoWhere:
                 default:
                     result = getAllProducts(total);
-                    
+
             }
             return result;
         }
@@ -547,8 +626,11 @@ public class CatalogueActivity extends MyDrawerActivity {
             String gender = params[2];
             String category = params [3];
             String subCategory = params[4];
+            String filters = params[5];
+            String requestURL = params[6];
 
-            String result = getProducts(comingFrom, searchQuery, gender, category, subCategory);
+            String result = getProducts(comingFrom, searchQuery, gender,
+                    category, subCategory, subCategory, requestURL);
             if (result != null) {
 
                 products = fromJSONToCollection(result);

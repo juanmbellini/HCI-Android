@@ -67,42 +67,42 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/prod_brand"
+            android:id="@+id/brand_value"
             style="@style/prod_details_values"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/prod_age"
+            android:id="@+id/age_value"
             style="@style/prod_details_values"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/prod_sex"
+            android:id="@+id/gender_value"
             style="@style/prod_details_values"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/prod_color"
+            android:id="@+id/color_value"
             style="@style/prod_details_values"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/prod_material"
+            android:id="@+id/material_value"
             style="@style/prod_details_values"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/prod_style"
+            android:id="@+id/style_value"
             style="@style/prod_details_values"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/prod_occasion"
+            android:id="@+id/occasion_value"
             style="@style/prod_details_values"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/prod_sizes_disp"
+            android:id="@+id/sizes_value"
             style="@style/prod_details_values"/>
 
 

@@ -3,9 +3,9 @@ package hci.tiendapp.backend;
 import com.google.gson.annotations.Expose;
 
 /**
- * Created by Julian on 11/18/2015.
+ * Created by JuanMarcos on 22/11/15.
  */
-public class Attribute {
+public class Filter {
 
     @Expose
     private int id;
@@ -14,7 +14,7 @@ public class Attribute {
     @Expose
     private String[] values;
 
-    public Attribute(int id, String name, String[] values) {
+    public Filter(int id, String name, String[] values) {
         this.id = id;
         this.name = name;
         this.values = values;

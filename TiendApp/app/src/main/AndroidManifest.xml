@@ -36,6 +36,8 @@
             </intent-filter>
         </receiver>
 
+
+
         <!-- Home Activity -->
         <activity
             android:name=".activities.HomeActivity"
