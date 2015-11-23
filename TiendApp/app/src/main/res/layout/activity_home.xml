@@ -20,24 +20,40 @@
         android:layout_alignParentStart="true">
 
 
-        <!-- Men -->
-
-        <TextView
-            android:id="@+id/men_home"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/gender_men"
-            android:textSize="20sp"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="#000000"
-            />
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/men_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gender_men"
+                android:textSize="20sp"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000000"
+                />
 
-        <View style="@style/Divider"
-            android:id="@+id/div1"
-            android:layout_below="@+id/men_home"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            <Button
+                android:id="@+id/btn_more_men"
+                android:layout_width="130dp"
+                android:layout_height="25dp"
+                android:layout_above="@+id/div1"
+                android:text="@string/btn_see_more"
+                android:background="@color/colorAccent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="280dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+            </Button>
+
+            <View style="@style/Divider"
+                android:id="@+id/div1"
+                android:layout_below="@+id/men_home"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -220,23 +236,41 @@
 
         </HorizontalScrollView>
 
-        <TextView
-            android:id="@+id/women_home"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/gender_women"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="#000000"
-            android:layout_below="@+id/div1"
-            />
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/women_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gender_women"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000000"
+                />
 
-        <View style="@style/Divider"
-            android:id="@+id/div2"
-            android:layout_below="@+id/women_home"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            <Button
+                android:id="@+id/btn_more_women"
+                android:layout_width="130dp"
+                android:layout_height="25dp"
+                android:layout_above="@+id/div2"
+                android:text="@string/btn_see_more"
+                android:background="@color/colorAccent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="280dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+            </Button>
+
+            <View style="@style/Divider"
+                android:id="@+id/div2"
+                android:layout_below="@+id/women_home"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -251,23 +285,42 @@
             </LinearLayout>
         </HorizontalScrollView>
 
-        <TextView
-            android:id="@+id/children_home"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/gender_kids"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="#000000"
-            android:layout_below="@+id/div2"
-            />
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/children_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gender_kids"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000000"
+                />
 
-        <View style="@style/Divider"
-            android:id="@+id/div3"
-            android:layout_below="@+id/children_home"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            <Button
+                android:id="@+id/btn_more_kids"
+                android:layout_width="130dp"
+                android:layout_height="25dp"
+                android:layout_above="@+id/div3"
+                android:text="@string/btn_see_more"
+                android:background="@color/colorAccent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="280dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+            </Button>
+
+            <View style="@style/Divider"
+                android:id="@+id/div3"
+                android:layout_below="@+id/children_home"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
+
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -282,23 +335,40 @@
             </LinearLayout>
         </HorizontalScrollView>
 
-        <TextView
-            android:id="@+id/babies_home"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/gender_babies"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="#000000"
-            android:layout_below="@+id/div3"
-            />
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/babies_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gender_babies"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000000"
+                />
 
-        <View style="@style/Divider"
-            android:id="@+id/div4"
-            android:layout_below="@+id/babies_home"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            <Button
+                android:id="@+id/btn_more_babies"
+                android:layout_width="130dp"
+                android:layout_height="25dp"
+                android:layout_above="@+id/div4"
+                android:text="@string/btn_see_more"
+                android:background="@color/colorAccent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="280dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+            </Button>
+
+            <View style="@style/Divider"
+                android:id="@+id/div4"
+                android:layout_below="@+id/babies_home"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -313,23 +383,41 @@
             </LinearLayout>
         </HorizontalScrollView>
 
-        <TextView
-            android:id="@+id/new_ins_home"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/new_ins"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="#000000"
-            android:layout_below="@+id/div4"
-            />
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/new_ins_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_ins"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000000"
+                />
 
-        <View style="@style/Divider"
-            android:id="@+id/div5"
-            android:layout_below="@+id/new_ins_home"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            <Button
+                android:id="@+id/btn_more_new_ins"
+                android:layout_width="130dp"
+                android:layout_height="25dp"
+                android:layout_above="@+id/div5"
+                android:text="@string/btn_see_more"
+                android:background="@color/colorAccent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="280dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+            </Button>
+
+            <View style="@style/Divider"
+                android:id="@+id/div5"
+                android:layout_below="@+id/new_ins_home"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -344,23 +432,41 @@
             </LinearLayout>
         </HorizontalScrollView>
 
-        <TextView
-            android:id="@+id/sale_home"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/sale"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="#000000"
-            android:layout_below="@+id/div5"
-            />
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/sale_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sale"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000000"
+                />
 
-        <View style="@style/Divider"
-            android:id="@+id/div6"
-            android:layout_below="@+id/sale_home"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            <Button
+                android:id="@+id/btn_more_sale"
+                android:layout_width="130dp"
+                android:layout_height="25dp"
+                android:layout_above="@+id/div6"
+                android:text="@string/btn_see_more"
+                android:background="@color/colorAccent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="280dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+            </Button>
+
+            <View style="@style/Divider"
+                android:id="@+id/div6"
+                android:layout_below="@+id/sale_home"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
 
         <HorizontalScrollView
             android:layout_width="wrap_content"

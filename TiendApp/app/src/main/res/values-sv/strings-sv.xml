@@ -2,6 +2,11 @@
 
     <string name="app_name">TiendApp</string>
 
+
+    <!--Home -->
+    <string name="btn_see_more">Se mer</string>
+
+
     <!-- Menu / Actionbar items -->
     <string name="filter_action">Filter</string>
     <string name="sort_action">Sortering</string>
