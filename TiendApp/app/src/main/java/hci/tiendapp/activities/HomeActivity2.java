@@ -30,6 +30,7 @@ import android.support.v7.widget.SearchView;
 import java.util.Locale;
 
 import hci.tiendapp.R;
+import hci.tiendapp.backend.NotificatorService;
 
 public class HomeActivity2 extends AppCompatActivity{
 
@@ -115,6 +116,7 @@ public class HomeActivity2 extends AppCompatActivity{
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 mDrawerList.setFocusable(true);
+                NotificatorService alarm = new NotificatorService();
             }
 
             @Override

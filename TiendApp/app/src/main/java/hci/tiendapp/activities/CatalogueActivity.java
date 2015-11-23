@@ -40,6 +40,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import hci.tiendapp.R;
+import hci.tiendapp.backend.NotificatorService;
 import hci.tiendapp.backend.Product;
 import hci.tiendapp.background.DrawImageAsyncTask;
 import hci.tiendapp.constants.Constants;
@@ -64,7 +65,6 @@ public class CatalogueActivity extends MyDrawerActivity {
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
-
 
 
 
