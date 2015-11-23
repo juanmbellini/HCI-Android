@@ -1,0 +1,124 @@
+<resources>
+
+    <string name="app_name">TiendApp</string>
+
+    <!-- Menu / Actionbar items -->
+    <string name="filter_action">Filter</string>
+    <string name="sort_action">Sortering</string>
+    <string name="list_view_action">Lista</string>
+    <string name="grid_view_action">Rutnät</string>
+    <string name="share_action">Dela</string>
+    <string name="search_action">Sök</string>
+    <string name="search_hint">Sök...</string>
+    <string name="search_result">Resultat</string>
+
+
+    <!-- Navigation Drawer Stuff -->
+    <string name="drawer_open">Öppen</string>
+    <string name="drawer_close">Stängd</string>
+    <string name="drawer_option_home">Hem</string>
+    <string name="drawer_option_men">Män</string>
+    <string name="drawer_option_women">Kvinnor</string>
+    <string name="drawer_option_kids">Barn</string>
+    <string name="drawer_option_babies">Bäbisar</string>
+    <string name="drawer_option_orders">Mina beställningar</string>
+    <string name="drawer_option_settings">Inställningar</string>
+
+
+    <!-- Categories Fixed Tabs Stuff -->
+    <string name="categories_tab_1">Kategorier</string>
+    <string name="categories_tab_2">Nyinkommet</string>
+    <string name="categories_tab_3">Rea</string>
+
+
+    <!-- Sub Categories Fixed Tabs Stuff -->
+    <string name="sub_categories_tab_1">Underkategorier</string>
+    <string name="sub_categories_tab_2">Nyinkommet</string>
+    <string name="sub_categories_tab_3">Rea</string>
+
+
+    <!-- Fixed Tabs Stuff - Products -->
+    <string name="tab_1_pro">Generellt</string>
+    <string name="tab_2_pro">Detaljer</string>
+
+
+    <!--Genders and Ages -->
+    <string name="gender_men">Män</string>
+    <string name="gender_women">Kvinnor</string>
+    <string name="gender_kids">Barn</string>
+    <string name="gender_babies">Bäbisar</string>
+
+
+    <!-- Sale & New-in's -->
+    <string name="sale">Rea</string>
+    <string name="new_ins">Nyinkommet</string>
+
+
+    <!-- Categories Layout -->
+    <string name="categories_title">Kategorier</string>
+    <string name="all_in">Allt i</string>
+
+
+    <!-- Products - Layout  -->
+    <string name="prod_title">Titel</string>
+    <string name="prod_brand">Märke</string>
+    <string name="qty_abreviation">Antal</string>
+    <string name="add_to_shopping_bag">LÄGG I SHOPPINGVAGNEN</string>
+    <string name="prod_age">År</string>
+    <string name="prod_sex">Kön</string>
+    <string name="prod_color">Färg</string>
+    <string name="prod_material">Material</string>
+    <string name="prod_style">Stil</string>
+    <string name="prod_occasion">Tillfälle</string>
+    <string name="prod_sizes_disp">Tillgängliga storlekar</string>
+    <string name="prod_price">Pris</string>
+
+
+    <!-- Alarm management -->
+    <string name="set_single_alarm">Sätt ind. alarm</string>
+    <string name="set_repeating_alarm">Sätt repeterande alarm</string>
+    <string name="set_inexact_repeating_alarm">Sätt oexakt repeterande alarm</string>
+    <string name="cancel_repeating_alarm">Avbryt repeterande alarm</string>
+
+
+
+    <!-- Languages -->
+    <string name="btn_en">Engelska</string>
+    <string name="btn_es">Spanska</string>
+    <string name="btn_sv">Svenska</string>
+    <string name="hello_world">Hej</string>
+    <string name="languages">Språk</string>
+    <string name="settings">Inställningar</string>
+
+    <!-- Util Stuff -->
+    <string name="loading_message">Laddar</string>
+
+
+    <!-- Strings related to login -->
+    <string name="title_activity_login">Logga in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Lösenord</string>
+    <string name="action_sign_in">Logga in</string>
+    <string name="action_sign_in_short">Logga in</string>
+    <string name="error_invalid_email">Ogiltig emailadress</string>
+    <string name="error_invalid_password">Lösenordet är för kort</string>
+    <string name="error_incorrect_password">Lösenordet är inkorrekt</string>
+    <string name="error_field_required">Nödvändigt fält</string>
+    <string name="permission_rationale">"Kontakttillåtelse är ett krav för att skapa ett konto."</string>
+
+
+    <!-- Cart -->
+    <string name="title_activity_carrito">Kundvagn</string>
+    <string name="payment">Betalning</string>
+    <string name="payment_card">Visa</string>
+    <string name="payment_card_nr">XXXX-XXXX-XXXX-1234</string>
+    <string name="valid_to">Utgång: 09-18</string>
+    <string name="products_cart">Produkter</string>
+    <string name="prod_title1">prod_title1</string>
+    <string name="number_of_items1">number_of_items1</string>
+    <string name="price_cart1">price_cart1</string>
+    <string name="prod_title2">prod_title2</string>
+    <string name="number_of_items2">number_of_items2</string>
+    <string name="price_cart2">price_cart2</string>
+
+</resources>

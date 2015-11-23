@@ -50,8 +50,8 @@
 
 
     <!-- Sale & New-in's -->
-    <string name="sale">Ofertas</string>
-    <string name="new_ins">Novedades</string>
+    <string name="sale">Deals</string>
+    <string name="new_ins">New-Ins</string>
 
 
     <!-- Categories Layout -->
@@ -70,7 +70,7 @@
     <string name="prod_material">Material</string>
     <string name="prod_style">Style</string>
     <string name="prod_occasion">Occasion</string>
-    <string name="prod_sizes_disp">Sizes disponible</string>
+    <string name="prod_sizes_disp">Sizes available</string>
     <string name="prod_price">Price</string>
 
 
@@ -98,7 +98,7 @@
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>

@@ -50,12 +50,11 @@
 
     <Button
         android:id="@+id/btn_sv"
-        android:layout_width="356dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sueco"
+        android:text="@string/btn_sv"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_marginRight="20dp"/>
 
     <!--TextView
         android:id="@+id/txt_hello"
