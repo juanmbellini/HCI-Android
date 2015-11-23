@@ -117,7 +117,7 @@
         <activity android:name=".activities.SettingsActivity" >
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login" >
 
 

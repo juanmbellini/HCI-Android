@@ -1,4 +1,4 @@
-package hci.tiendapp;
+package hci.tiendapp.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 
 import android.content.CursorLoader;
@@ -21,6 +20,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,7 +34,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import hci.tiendapp.activities.HomeActivity;
+import hci.tiendapp.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -70,6 +70,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        EditText password = (EditText) findViewById(R.id.password);
+        password.setTransformationMethod(new PasswordTransformationMethod());
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
