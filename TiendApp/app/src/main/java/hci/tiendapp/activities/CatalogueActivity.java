@@ -78,11 +78,11 @@ public class CatalogueActivity extends MyDrawerActivity {
 
     }
 
-
     @Override
     protected void onResume() {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
 
         String aux = getIntent().getStringExtra(Constants.comingFrom);
 

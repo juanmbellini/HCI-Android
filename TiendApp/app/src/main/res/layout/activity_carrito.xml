@@ -1,21 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/carrito_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="hci.tiendapp.activities.CarritoActivity">
 
-    <TextView
+
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="220dp"
-        android:layout_marginEnd="220dp"
-        android:layout_marginTop="111dp" />
+        android:id="@+id/scrollView_home" >
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/payment"
+                android:textSize="20sp"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000000"
+                />
+
+            <View style="@style/Divider"
+                android:id="@+id/div"
+                android:layout_below="@+id/payment"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/payment_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:text="@string/payment_card"
+                android:textSize="16sp"
+                android:layout_alignTop="@+id/div"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000000"
+                />
+
+            <TextView
+                android:id="@+id/payment_card_nr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:text="@string/payment_card_nr"
+                android:textSize="16sp"
+                android:layout_alignTop="@+id/payment_card"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000000"
+                />
+
+            <TextView
+                android:id="@+id/valid_to"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/valid_to"
+                android:textSize="16sp"
+                android:layout_alignTop="@+id/payment_card_nr"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000000"
+                />
+
+            <TextView
+                android:id="@+id/products_cart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/products_cart"
+                android:layout_below="@+id/valid_to"
+                android:textSize="20sp"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="#000000"
+                />
+
+            <View style="@style/Divider"
+                android:id="@+id/div2"
+                android:layout_below="@+id/products_cart"
+                />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/imageView"
+                android:layout_below="@+id/div2"
+                android:layout_alignLeft="@+id/products_cart"
+                android:layout_alignStart="@+id/products_cart"
+                android:layout_marginTop="32dp" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/imageView2"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/imageView"
+                android:layout_alignLeft="@+id/imageView"
+                android:layout_alignStart="@+id/imageView" />
+
+
+            <!-- First Product -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/prod_title1"
+                android:id="@+id/prod_title1"
+                android:layout_alignTop="@+id/imageView"
+                android:layout_toRightOf="@+id/imageView"
+                android:layout_toEndOf="@+id/imageView"
+                android:layout_marginLeft="32dp"
+                android:layout_marginStart="32dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_of_items1"
+                android:id="@+id/number_of_items1"
+                android:layout_alignTop="@+id/prod_title1"
+                android:layout_toRightOf="@+id/imageView"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="50dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/price_cart1"
+                android:id="@+id/price_cart1"
+                android:layout_alignTop="@+id/number_of_items1"
+                android:layout_toRightOf="@+id/imageView"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"/>
+
+
+            <!-- Second Product -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/prod_title2"
+                android:id="@+id/prod_title2"
+                android:layout_alignTop="@+id/imageView2"
+                android:layout_toRightOf="@+id/imageView2"
+                android:layout_toEndOf="@+id/imageView2"
+                android:layout_marginLeft="32dp"
+                android:layout_marginStart="32dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/number_of_items2"
+                android:id="@+id/number_of_items2"
+                android:layout_alignTop="@+id/prod_title2"
+                android:layout_toRightOf="@+id/imageView"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="50dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/price_cart2"
+                android:id="@+id/price_cart2"
+                android:layout_alignTop="@+id/number_of_items2"
+                android:layout_toRightOf="@+id/imageView"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+    </ScrollView>
+
 </RelativeLayout>

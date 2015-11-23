@@ -20,7 +20,7 @@ public class SettingsActivity extends MyDrawerActivity implements View.OnClickLi
 
     //Language variables
     //private TextView txt_hello;
-    private Button btn_en, btn_es;
+    private Button btn_en, btn_es, btn_sv;
     private Locale myLocale;
     public int fllag = 0;
     private View btn;
@@ -39,10 +39,12 @@ public class SettingsActivity extends MyDrawerActivity implements View.OnClickLi
         //this.txt_hello = (TextView) findViewById(R.id.txt_hello);
         this.btn_en = (Button) findViewById(R.id.btn_en);
         this.btn_es = (Button) findViewById(R.id.btn_es);
+        this.btn_sv = (Button) findViewById(R.id.btn_sv);
 
-
+        this.btn_sv.setOnClickListener(this);
         this.btn_en.setOnClickListener(this);
         this.btn_es.setOnClickListener(this);
+
 
         loadLocale();
     }
@@ -94,9 +96,7 @@ public class SettingsActivity extends MyDrawerActivity implements View.OnClickLi
     private void updateTexts()
     {
 
-        //txt_hello.setText(R.string.hello_world);
-        btn_en.setText(R.string.btn_en);
-        btn_es.setText(R.string.btn_es);
+
 
         //Refresh
         if (fllag != 0){
@@ -109,7 +109,7 @@ public class SettingsActivity extends MyDrawerActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        String lang = "es";
+        String lang = "en";
         switch (v.getId()) {
             case R.id.btn_en:
                 lang = "en";
@@ -117,6 +117,10 @@ public class SettingsActivity extends MyDrawerActivity implements View.OnClickLi
                 break;
             case R.id.btn_es:
                 lang = "es";
+                fllag = 1;
+                break;
+            case R.id.btn_sv:
+                lang = "sv";
                 fllag = 1;
                 break;
             default:

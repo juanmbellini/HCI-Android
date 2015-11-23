@@ -1,20 +1,17 @@
 package hci.tiendapp.activities;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.widget.SearchView;
 import android.view.Menu;
 
 
-import hci.tiendapp.LoginActivity;
 import hci.tiendapp.R;
 
 /**
  * Created by JuanMarcos on 19/11/15.
  */
+
 public class HomeActivity extends MyDrawerActivity {
 
 
@@ -28,7 +25,9 @@ public class HomeActivity extends MyDrawerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-           // Intent k = new Intent(HomeActivity.this, LoginActivity.class);
+        
+
+           // Intent k = new Intent(HomeActivity.this, CarritoActivity.class);
            // startActivity(k);
 
 
