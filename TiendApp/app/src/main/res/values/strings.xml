@@ -2,13 +2,13 @@
 
     <string name="app_name">TiendApp</string>
 
+
+    <!-- Action bar -->
     <string name="filter_action">Filtrar</string>
     <string name="sort_action">Ordenar</string>
     <string name="list_view_action">Lista</string>
     <string name="grid_view_action">Grilla</string>
     <string name="share_action">Compartir</string>
-
-
     <string name="search_action">Buscar</string>
     <string name="search_hint">Buscar...</string>
     <string name="search_result">Resultados</string>
@@ -49,6 +49,9 @@
     <string name="gender_babies">Bebes</string>
 
 
+    <!-- Sale & New-in's -->
+    <string name="sale">Ofertas</string>
+    <string name="new_ins">Novedades</string>
 
     <!-- Categories Layout -->
     <string name="categories_title">Categorías</string>
@@ -70,6 +73,7 @@
     <string name="prod_sizes_disp">Talles disponibles</string>
     <string name="prod_price">Precio</string>
 
+
     <!-- Alarm management -->
     <string name="set_single_alarm">Set Single Alarm</string>
     <string name="set_repeating_alarm">Set Repeating Alarm</string>
@@ -80,13 +84,13 @@
     <!-- Languages -->
     <string name="btn_en">Ingles</string>
     <string name="btn_es">Español</string>
+    <string name="btn_sv">Sueco</string>
     <string name="hello_world">Hola</string>
     <string name="languages">Idiomas</string>
     <string name="settings">Ajustes</string>
 
     <!-- Util Stuff -->
     <string name="loading_message">Cargando</string>
-
 
 
     <!-- Strings related to login -->

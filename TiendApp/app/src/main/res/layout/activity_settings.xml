@@ -48,6 +48,15 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp" />
 
+    <Button
+        android:id="@+id/btn_sv"
+        android:layout_width="356dp"
+        android:layout_height="wrap_content"
+        android:text="Sueco"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="center_horizontal" />
+
     <!--TextView
         android:id="@+id/txt_hello"
         android:layout_width="match_parent"
