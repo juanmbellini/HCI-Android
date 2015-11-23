@@ -86,9 +86,11 @@
 
     <!-- Util Stuff -->
     <string name="loading_message">Cargando</string>
-    <string name="title_activity_login">Sign in</string>
+
+
 
     <!-- Strings related to login -->
+    <string name="title_activity_login">Ingresar</string>
     <string name="prompt_email">Correo</string>
     <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Ingresar</string>
@@ -99,6 +101,21 @@
     <string name="error_field_required">Campo requerido</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."</string>
+
+
+    <!-- Carrito -->
+    <string name="title_activity_carrito">Carrito</string>
+    <string name="payment">Pago</string>
+    <string name="payment_card">Visa</string>
+    <string name="payment_card_nr">XXXX-XXXX-XXXX-1234</string>
+    <string name="valid_to">Vencimiento: 09-18</string>
+    <string name="products_cart">Productos</string>
+    <string name="prod_title1">prod_title1</string>
+    <string name="number_of_items1">number_of_items1</string>
+    <string name="price_cart1">price_cart1</string>
+    <string name="prod_title2">prod_title2</string>
+    <string name="number_of_items2">number_of_items2</string>
+    <string name="price_cart2">price_cart2</string>
 
 
 

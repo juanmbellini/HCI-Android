@@ -11,30 +11,26 @@
     android:paddingTop="@dimen/activity_vertical_margin" tools:context="hci.tiendapp.activities.LoginActivity">
 
     <!-- Login progress -->
-    <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp" android:visibility="gone" />
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
 
-    <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
+    <ScrollView
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout android:id="@+id/email_login_form" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:orientation="vertical"
+        <LinearLayout
+            android:id="@+id/email_login_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:weightSum="1">
 
-            <TextView
-                android:id="@+id/prod_title"
-                android:layout_width="match_parent"
-                android:layout_height="66dp"
-                android:paddingBottom="10dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="30sp"
-                android:text="@string/action_sign_in"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp"
-                android:minLines="2"
-                android:maxLines="2" />
 
             <AutoCompleteTextView android:id="@+id/email"
                 android:layout_width="match_parent"
@@ -51,7 +47,8 @@
                 android:drawablePadding="5dip"
                 />
 
-            <EditText android:id="@+id/password"
+            <EditText
+                android:id="@+id/password"
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
