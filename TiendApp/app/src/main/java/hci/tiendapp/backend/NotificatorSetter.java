@@ -16,5 +16,6 @@ public class NotificatorSetter extends BroadcastReceiver {
         {
             alarm.SetNotifications(context);
         }
+
     }
 }

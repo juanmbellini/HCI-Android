@@ -3,6 +3,7 @@ package hci.tiendapp.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
@@ -55,6 +56,7 @@ import java.util.regex.Pattern;
 import hci.tiendapp.R;
 import hci.tiendapp.TiendApp;
 import hci.tiendapp.backend.Account;
+import hci.tiendapp.backend.Notificator;
 import hci.tiendapp.constants.Constants;
 import hci.tiendapp.util.UtilClass;
 
@@ -188,6 +190,7 @@ public class LoginActivity extends MyDrawerActivity implements LoaderCallbacks<C
      */
     private void attemptLogin() {
         if (mAuthTask != null) {
+            startService(new Intent(LoginActivity.this, Notificator.class));
             return;
         }
 
