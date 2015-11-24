@@ -10,13 +10,13 @@ public class OrderLine {
     @Expose
     int id;
     @Expose
-    Product product;
+    OrderLineProduct product;
     @Expose
     int quantity;
     @Expose
     double price;
 
-    public OrderLine(int id, Product product, int quantity, double price) {
+    public OrderLine(int id, OrderLineProduct product, int quantity, double price) {
         this.id = id;
         this.product = product;
         this.quantity = quantity;
@@ -27,7 +27,7 @@ public class OrderLine {
         return id;
     }
 
-    public Product getProduct() {
+    public OrderLineProduct getProduct() {
         return product;
     }
 
@@ -37,5 +37,34 @@ public class OrderLine {
 
     public double getPrice() {
         return price;
+    }
+
+
+    public class OrderLineProduct {
+
+        @Expose
+        int id;
+        @Expose
+        String name;
+        @Expose
+        String imageUrl;
+
+        public OrderLineProduct(int id, String name, String imageUrl) {
+            this.id = id;
+            this.name = name;
+            this.imageUrl = imageUrl;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public void setImageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
+        }
     }
 }

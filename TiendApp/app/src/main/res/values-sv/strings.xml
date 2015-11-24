@@ -23,6 +23,8 @@
     <string name="drawer_option_babies">Bäbisar</string>
     <string name="drawer_option_orders">Mina beställningar</string>
     <string name="drawer_option_settings">Inställningar</string>
+    <string name="drawer_option_login">Inloggning</string>
+    <string name="drawer_option_logout">Stäng Sessionen</string>
 
 
     <!-- Categories Fixed Tabs Stuff -->
@@ -96,7 +98,7 @@
 
     <!-- Strings related to login -->
     <string name="title_activity_login">Logga in</string>
-    <string name="prompt_email">Email</string>
+    <string name="prompt_email">användarnamn</string>
     <string name="prompt_password">Lösenord</string>
     <string name="action_sign_in">Logga in</string>
     <string name="action_sign_in_short">Logga in</string>
