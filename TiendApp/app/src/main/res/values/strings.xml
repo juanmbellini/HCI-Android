@@ -3,6 +3,10 @@
     <string name="app_name">TiendApp</string>
 
 
+    <!--Home -->
+    <string name="btn_see_more">Ver más</string>
+
+
     <!-- Action bar -->
     <string name="filter_action">Filtrar</string>
     <string name="sort_action">Ordenar</string>
