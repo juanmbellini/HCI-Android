@@ -1,5 +1,6 @@
 package hci.tiendapp.activities;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +37,7 @@ import java.util.Collection;
 import java.util.List;
 
 import hci.tiendapp.R;
+import hci.tiendapp.TiendApp;
 import hci.tiendapp.backend.Account;
 import hci.tiendapp.backend.Category;
 import hci.tiendapp.backend.Order;
@@ -53,14 +55,10 @@ public class OrdersActivity extends MyDrawerActivity {
     String authenticationToken = "";
     OrdersAdapter adapter;
 
-    public OrdersActivity(int layoutId, int childId) {
-        super(R.layout.orders_activity, R.id.orders_layout);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String aux = preferences.getString(Constants.lastLoginAccount, "");
-        if (!aux.equals("")) {
-            account = new Gson().fromJson(aux, Account.class);
-        }
 
+    public OrdersActivity() {
+        super(R.layout.orders_activity, R.id.orders_layout);
+        setContext(this);
 
     }
 
@@ -68,15 +66,30 @@ public class OrdersActivity extends MyDrawerActivity {
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
 
-        if (account == null) {
-            UtilClass.goHome(this,Constants.noAccount);
-            finish();
+
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String aux = preferences.getString(Constants.lastLoginAccount, "");
+        if (!aux.equals("")) {
+            account = new Gson().fromJson(aux, Account.class);
         }
+
+        if (account == null) {
+            UtilClass.goHome(this, Constants.noAccount);
+            finish();
+            //Dialog dialog = new Dialog()
+            return;
+        }
+
+        authenticationToken = preferences.getString(Constants.authenticationToken, "");
+        System.out.println(account.getUserName());
 
         adapter = new OrdersAdapter(this, R.layout.order_item);
         ListView l = (ListView)findViewById(R.id.orders_list);
         l.setAdapter(adapter);
         l.setSaveEnabled(true);
+
+        getSupportActionBar().setTitle(getString(R.string.order_activity_name));
 
     }
 
@@ -162,6 +175,7 @@ public class OrdersActivity extends MyDrawerActivity {
 
             View view = inflater.inflate(layout, null);
 
+
             TextView ticketNumber = (TextView) view.findViewById(R.id.ticket_number);
             TextView state = (TextView) view.findViewById(R.id.state_text);
             TextView buyingDate = (TextView) view.findViewById(R.id.buying_date_text);
@@ -174,6 +188,9 @@ public class OrdersActivity extends MyDrawerActivity {
             buyingDate.setText(orders.get(position).getProcessedDate());
 
             double orderTotal = 0;
+
+            System.out.println(orders.get(position).getItems());
+
             for (OrderLine each : orders.get(position).getItems()) {
                 orderTotal += each.getPrice();
             }
@@ -187,10 +204,7 @@ public class OrdersActivity extends MyDrawerActivity {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(OrdersActivity.this, OrderDetailsActivity.class);
-                    Order result = (Order)getItem(position);
-                    intent.putExtra(Constants.orderSelected, result.getId() + "");
-                    startActivity(intent);
+
 
                 }
             });
@@ -201,8 +215,9 @@ public class OrdersActivity extends MyDrawerActivity {
     private class getAllOrdersAsyncTask extends AsyncTask<String, Long, Collection<Order>> {
 
 
-        final String baseURL = "http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=GetAllOrders&username=";
+        String baseURL = "http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=GetAllOrders&username=";
 
+        ProgressDialog progressDialog = new ProgressDialog(OrdersActivity.this);;
 
         private String getOrdersJSON(URLConnection urlConnection) {
 
@@ -224,9 +239,10 @@ public class OrdersActivity extends MyDrawerActivity {
 
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
-            ProgressDialog progressDialog = new ProgressDialog(OrdersActivity.this);
+
             progressDialog.setMessage(OrdersActivity.this.getString(R.string.loading_message));
+            super.onPreExecute();
+
             progressDialog.show();
         }
 
@@ -235,6 +251,8 @@ public class OrdersActivity extends MyDrawerActivity {
 
 
             String requestURL = baseURL + (params[0] + "&authentication_token=" + params[1]);
+            baseURL = "http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=GetOrderById&username=";
+            baseURL += (params[0] + "&authentication_token=" + params[1]);
 
             System.out.println(requestURL);
 
@@ -271,10 +289,104 @@ public class OrdersActivity extends MyDrawerActivity {
         @Override
         protected void onPostExecute(Collection<Order> orders) {
             super.onPostExecute(orders);
-            adapter.clear();
-            adapter.addAll(orders);
-            adapter.notifyDataSetChanged();
+            new GetRealinformationAsyncTask(progressDialog).execute(orders);
+            //progressDialog.dismiss();
 
+        }
+
+
+        private class GetRealinformationAsyncTask extends AsyncTask<Collection<Order>, Void, Collection<Order>> {
+
+            ProgressDialog progressDialogInternal = new ProgressDialog(OrdersActivity.this);
+
+            public GetRealinformationAsyncTask(ProgressDialog dialog) {
+                progressDialogInternal = dialog;
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progressDialogInternal.setMessage(OrdersActivity.this.getString(R.string.loading_message));
+                super.onPreExecute();
+
+                progressDialog.show();
+            }
+
+            private String getOrdersJSON(URLConnection urlConnection) {
+
+                String result = null;
+
+                try {
+                    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                    JSONObject aux = new JSONObject(UtilClass.readStream(in));
+                    result = aux.getString("order");
+                    if (result == null) {
+                        throw new RuntimeException("Wrong Method");
+                    }
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+
+                return result;
+            }
+
+            @Override
+            protected Collection<Order> doInBackground(Collection<Order>... params) {
+
+                Collection<Order> realCollection = new ArrayList<Order>();
+
+
+
+                for(Order each : params[0]) {
+
+                    if (!each.getStatus().equals("1")) {
+
+                        String requestURL = baseURL + "&id=" + each.getId();
+
+                        System.out.println(requestURL);
+
+                        URL url = null;
+                        try {
+                            url = new URL(requestURL);      // Creates an URL object based on the filter sent
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                            return null;
+                        }
+
+                        HttpURLConnection urlConnection = null;
+                        try {
+                            urlConnection = (HttpURLConnection) url.openConnection();   // Get's data from API
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            return null;
+                        } finally {
+                            if (urlConnection != null) {
+                                urlConnection.disconnect();                     // Finishes connection
+                            }
+                            System.out.println("Disconnected");
+                        }
+
+                        String result = getOrdersJSON(urlConnection);                // Filters fetched data
+
+
+                        realCollection.add(new Gson().fromJson(result, Order.class));
+                    }
+
+                }
+
+                return realCollection;
+
+            }
+
+            @Override
+            protected void onPostExecute(Collection<Order> orders) {
+                super.onPostExecute(orders);
+                adapter.clear();
+                adapter.addAll(orders);
+                adapter.notifyDataSetChanged();
+
+                progressDialogInternal.dismiss();
+            }
         }
     }
 

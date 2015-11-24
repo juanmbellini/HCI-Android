@@ -28,6 +28,8 @@
     <string name="drawer_option_babies">Bebes</string>
     <string name="drawer_option_orders">Mis pedidos</string>
     <string name="drawer_option_settings">Configuración</string>
+    <string name="drawer_option_login">Iniciar Sesión</string>
+    <string name="drawer_option_logout">Cerrar Sesión</string>
 
     <!-- Categories Fixed Tabs Stuff -->
     <string name="categories_tab_1">Categorías</string>
@@ -92,6 +94,11 @@
     <string name="order_confirmed">Confirmada</string>
     <string name="order_shiped">Despachada</string>
     <string name="order_delivered">Entregada</string>
+    <string name="must_login">Debe iniciar sesión para ver sus ordenes</string>
+
+    <string name="no_disponible">No Disponible</string>
+    <string name="added_to_cart">Agregado al Carrito</string>
+    <string name="added_to_favorites">Agregado a Favoritos</string>
 
 
     
@@ -137,16 +144,16 @@
 
     <!-- Strings related to login -->
     <string name="title_activity_login">Ingresar</string>
-    <string name="prompt_email">Correo</string>
+    <string name="prompt_email">Usuario</string>
     <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Ingresar</string>
     <string name="action_sign_in_short">Ingresar</string>
-    <string name="error_invalid_email">Correo invalido</string>
-    <string name="error_invalid_password">Contraseña demasiado corto</string>
-    <string name="error_incorrect_password">Contraseña incorrecto</string>
+    <string name="error_invalid_email">Usuario inválido</string>
+    <string name="error_invalid_password">Contraseña demasiado corta</string>
+    <string name="error_incorrect_password">Contraseña incorrecta</string>
     <string name="error_field_required">Campo requerido</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."</string>
+    <string name="permission_rationale">"Se requieren permisos para acceder a sus contactos
+        para activar la funcionalidad de auto completar"</string>
 
 
     <!-- Carrito -->

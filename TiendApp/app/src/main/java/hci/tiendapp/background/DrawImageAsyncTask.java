@@ -83,7 +83,6 @@ public class DrawImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
             return BitmapFactory.decodeStream((InputStream) new URL(params[0]).getContent());
 
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }

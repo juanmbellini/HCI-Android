@@ -32,46 +32,72 @@
             android:weightSum="1">
 
 
-            <AutoCompleteTextView android:id="@+id/email"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/user_name_wrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimaryDark"
-                android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:singleLine="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="50dp"
-                android:drawableLeft="@drawable/ic_email_black_24dp"
-                android:drawablePadding="5dip"
-                />
+                android:layout_marginTop="80dp">
 
-            <EditText
-                android:id="@+id/password"
-                android:textColor="@color/colorPrimaryDark"
+
+
+
+
+                <AutoCompleteTextView android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:singleLine="true"
+
+                    android:drawableLeft="@drawable/ic_email_black_24dp"
+                    android:drawablePadding="5dip"
+
+                    android:backgroundTint="@color/text" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/password_wrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/prompt_password"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified"
-                android:maxLines="1"
-                android:singleLine="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
-                android:drawablePadding="5dip"
-                />
+                android:layout_marginTop="20dp">
+
+
+                <EditText
+                    android:id="@+id/password"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_password"
+                    android:imeActionId="@+id/login"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified"
+                    android:maxLines="1"
+                    android:singleLine="true"
+
+                    android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+                    android:drawablePadding="5dip"
+
+                    android:backgroundTint="@color/text"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
             <Button android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="80dp"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold"
+                android:textColor="@color/textColorPrimary"
                 android:background="@color/colorAccent"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp" />

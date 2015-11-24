@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +26,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -32,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hci.tiendapp.R;
+import hci.tiendapp.backend.Account;
 import hci.tiendapp.constants.Constants;
 
 /**
@@ -97,7 +102,9 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
         super.onPause();
 
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.navigation_drawer_layout);
-        drawer.closeDrawers();
+        if (drawer != null) {
+            drawer.closeDrawers();
+        }
     }
 
     @Override
@@ -210,6 +217,7 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
 
                 ((MyDrawerActivity)context).drawerLayout.closeDrawers();
 
+
                 switch (position) {
                     case 1:
                         if (context.getClass() != HomeActivity.class) {
@@ -219,24 +227,47 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
                             context.startActivity(intent);
                         }
                         return;
-                    case 2:
+                    case 2: {
+
+                        Intent intent = new Intent(context, LoginActivity.class);
+                        context.startActivity(intent);
+                        //TODO login
+                        return;
+                    }
+                    case 3:
                         option = Constants.menCategory;
                         break;
-                    case 3:
+                    case 4:
                         option = Constants.womenCategory;
                         break;
-                    case 4:
+                    case 5:
                         option = Constants.kidsCategory;
                         break;
-                    case 5:
+                    case 6:
                         option = Constants.babiesCategory;
                         break;
-                    case 6:
+                    case 7: {
+                        Intent intent = new Intent(context, OrdersActivity.class);
+                        context.startActivity(intent);
                         return;
-                    case 7:
+                    }
+                    case 8: {
                         Intent intent = new Intent(context, SettingsActivity.class);
                         context.startActivity(intent);
                         return;
+                    }
+                    case 9:
+
+                        if (context instanceof Activity) {
+                            ((Activity) context).finish();
+                        }
+
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+                        preferences.edit().putString(Constants.lastLoginAccount, "").commit();
+
+                        //TODO log out
+                        return;
+                        //Logout
                     default:
                         return;
                 }
@@ -305,16 +336,39 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
                     NavigationDrawerOptions.NavigationDrawerMainOption aux = null;
                     aux = (NavigationDrawerOptions.NavigationDrawerMainOption) NavigationDrawerOptions.getInstance().getValues()[position - 1];
                     holder.imageView.setImageResource(aux.navigationDrawerOptionIcon);
+
+
                 } else {
                     holder.imageView.setVisibility(View.GONE);
+                }
+
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+                String loged = pref.getString(Constants.lastLoginAccount,"");
+                if (loged.equals("")) {
+                    if(NavigationDrawerOptions.getInstance().getValues()[position - 1].navigationDrawerOptionName == R.string.drawer_option_login) {
+                       holder.textView.setVisibility(View.GONE);
+                        holder.imageView.setVisibility(View.GONE);
+                    }
                 }
 
             }
             else{
 
-                holder.profile.setImageBitmap(NavigationDrawerHeader.getInstance().profile);
-                holder.Name.setText(NavigationDrawerHeader.getInstance().name);
-                holder.email.setText(NavigationDrawerHeader.getInstance().email);
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+                String aux = preferences.getString(Constants.lastLoginAccount, "");
+
+                if (aux != null && !aux.equals("")) {
+
+                    Account account = new Gson().fromJson(aux, Account.class);
+
+                    holder.profile.setImageBitmap(NavigationDrawerHeader.getInstance().profile);
+                    holder.Name.setText(account.getFirstName() + account.getLastName());
+                    holder.email.setText(account.getEmail());
+
+
+
+                }
+
 
             }
         }
@@ -434,6 +488,11 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
                 // Now adding Home
                 currentOption = R.string.drawer_option_home;
                 currentIcon = R.drawable.ic_home;
+                list.add(new NavigationDrawerMainOption(0, currentOption, currentIcon));
+
+                // Now adding Login
+                currentOption = R.string.drawer_option_login;
+                currentIcon = R.drawable.ic_login;
                 list.add(new NavigationDrawerMainOption(1, currentOption, currentIcon));
 
 
@@ -467,6 +526,11 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
                 currentOption = R.string.drawer_option_settings;
                 currentIcon = R.drawable.ic_settings_black_24dp;
                 list.add(new NavigationDrawerMainOption(7, currentOption, currentIcon));
+
+                // Now adding Log Out
+                currentOption = R.string.drawer_option_logout;
+                currentIcon = R.drawable.ic_logout;
+                list.add(new NavigationDrawerMainOption(8, currentOption, currentIcon));
 
             }
 
@@ -507,4 +571,7 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
 
         }
     }
+
+
+
 }

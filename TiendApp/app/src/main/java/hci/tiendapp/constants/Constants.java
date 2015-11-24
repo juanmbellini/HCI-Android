@@ -35,6 +35,9 @@ public class Constants {
     public static final String comingFromSubCategories = "comingFromSubCategories";
     public static final String comingFromHome = "comingFromHome";
 
+    public static final String news = "news";
+    public static final String sales = "sales";
+
     public static final String orderSelected = "orderSelected";
 
 
@@ -53,6 +56,12 @@ public class Constants {
             "[ {\"id\": 2, \"value\": \"Infantil\"}]",                                          // Kids request
             "[ {\"id\": 2, \"value\": \"Bebe\"}]"                                               // Babies request
     };
+
+
+    public static final String salesFilter = "[ {\"id\": 5, \"value\": \"Oferta\"}]";
+    public static final String newsFilter = "[ {\"id\": 6, \"value\": \"Nuevo\"}]";
+
+
 
     public static final String accounts = "accounts";
     public static final String lastLoginAccount = "lastLoginAccount";

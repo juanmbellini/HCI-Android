@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:stretchColumns="*"
+    android:layout_marginLeft="@dimen/content_horizontal_margin"
+    android:layout_marginRight="@dimen/content_horizontal_margin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".HomeActivity"
-    android:id="@+id/home_layout">
+    android:id="@+id/home_layout"
+    android:fillViewport="true">
 
 
     <LinearLayout
@@ -20,9 +22,14 @@
         android:layout_alignParentStart="true">
 
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/men_home"
                 android:layout_width="wrap_content"
@@ -34,207 +41,26 @@
                 android:textColor="#000000"
                 />
 
-            <Button
-                android:id="@+id/btn_more_men"
-                android:layout_width="130dp"
-                android:layout_height="25dp"
-                android:layout_above="@+id/div1"
-                android:text="@string/btn_see_more"
-                android:background="@color/colorAccent"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="280dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true">
-            </Button>
-
             <View style="@style/Divider"
                 android:id="@+id/div1"
                 android:layout_below="@+id/men_home"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
-        </RelativeLayout>
 
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/scrollView_home2">
+            </RelativeLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <hci.tiendapp.customviews.HorizontalListView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_marginLeft="@dimen/content_horizontal_margin"
+                android:layout_marginBottom="@dimen/content_horizontal_margin"
+                android:layout_marginTop="@dimen/content_vertical_margin"
+                android:background="@color/textColorPrimary"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:id="@+id/men_products_home"/>
+        </LinearLayout>
 
-
-                <!-- Product sample with text -->
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp">
-
-                    <ImageView
-                        android:id="@+id/product_image1"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        />
-
-                    <TextView
-                        android:id="@+id/product_name1"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:minLines="2"
-                        android:maxLines="2"
-                        android:layout_below="@+id/product_image1" />
-
-                    <TextView
-                        android:id="@+id/product_price1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:layout_below="@+id/product_name1" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp">
-
-                    <ImageView
-                        android:id="@+id/product_image2"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        />
-
-                    <TextView
-                        android:id="@+id/product_name2"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:minLines="2"
-                        android:maxLines="2"
-                        android:layout_below="@+id/product_image2" />
-
-                    <TextView
-                        android:id="@+id/product_price2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:layout_below="@+id/product_name2" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp">
-
-                    <ImageView
-                        android:id="@+id/product_image3"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        />
-
-                    <TextView
-                        android:id="@+id/product_name3"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:minLines="2"
-                        android:maxLines="2"
-                        android:layout_below="@+id/product_image3" />
-
-                    <TextView
-                        android:id="@+id/product_price3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:layout_below="@+id/product_name3" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp">
-
-                    <ImageView
-                        android:id="@+id/product_image4"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        />
-
-                    <TextView
-                        android:id="@+id/product_name4"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:minLines="2"
-                        android:maxLines="2"
-                        android:layout_below="@+id/product_image4" />
-
-                    <TextView
-                        android:id="@+id/product_price4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:layout_below="@+id/product_name4" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp">
-
-                    <ImageView
-                        android:id="@+id/product_image5"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        />
-
-                    <TextView
-                        android:id="@+id/product_name5"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:minLines="2"
-                        android:maxLines="2"
-                        android:layout_below="@+id/product_image5" />
-
-                    <TextView
-                        android:id="@+id/product_price5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="15dp"
-                        android:textStyle="bold"
-                        android:layout_below="@+id/product_name5" />
-
-                </RelativeLayout>
-
-
-                <!-- End product sample -->
-
-
-            </LinearLayout>
-
-
-        </HorizontalScrollView>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -250,40 +76,27 @@
                 android:textColor="#000000"
                 />
 
-            <Button
-                android:id="@+id/btn_more_women"
-                android:layout_width="130dp"
-                android:layout_height="25dp"
-                android:layout_above="@+id/div2"
-                android:text="@string/btn_see_more"
-                android:background="@color/colorAccent"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="280dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true">
-            </Button>
 
             <View style="@style/Divider"
                 android:id="@+id/div2"
                 android:layout_below="@+id/women_home"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
+
+            <hci.tiendapp.customviews.HorizontalListView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_marginLeft="@dimen/content_horizontal_margin"
+                android:layout_marginBottom="@dimen/content_horizontal_margin"
+                android:layout_marginTop="@dimen/content_vertical_margin"
+                android:background="@color/textColorPrimary"
+                android:divider="@null"
+                android:layout_below="@+id/div2"
+                android:dividerHeight="0dp"
+                android:id="@+id/women_products_home"/>
         </RelativeLayout>
 
 
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/scrollView_home3">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </LinearLayout>
-        </HorizontalScrollView>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -299,41 +112,26 @@
                 android:textColor="#000000"
                 />
 
-            <Button
-                android:id="@+id/btn_more_kids"
-                android:layout_width="130dp"
-                android:layout_height="25dp"
-                android:layout_above="@+id/div3"
-                android:text="@string/btn_see_more"
-                android:background="@color/colorAccent"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="280dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true">
-            </Button>
-
             <View style="@style/Divider"
                 android:id="@+id/div3"
                 android:layout_below="@+id/children_home"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
+
+            <hci.tiendapp.customviews.HorizontalListView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_marginLeft="@dimen/content_horizontal_margin"
+                android:layout_marginBottom="@dimen/content_horizontal_margin"
+                android:layout_marginTop="@dimen/content_vertical_margin"
+                android:background="@color/textColorPrimary"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:layout_below="@+id/div3"
+                android:id="@+id/kids_products_home"/>
         </RelativeLayout>
 
 
-
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/scrollView_home4">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </LinearLayout>
-        </HorizontalScrollView>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -349,39 +147,25 @@
                 android:textColor="#000000"
                 />
 
-            <Button
-                android:id="@+id/btn_more_babies"
-                android:layout_width="130dp"
-                android:layout_height="25dp"
-                android:layout_above="@+id/div4"
-                android:text="@string/btn_see_more"
-                android:background="@color/colorAccent"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="280dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true">
-            </Button>
-
             <View style="@style/Divider"
                 android:id="@+id/div4"
                 android:layout_below="@+id/babies_home"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
+
+            <hci.tiendapp.customviews.HorizontalListView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_marginLeft="@dimen/content_horizontal_margin"
+                android:layout_marginBottom="@dimen/content_horizontal_margin"
+                android:layout_marginTop="@dimen/content_vertical_margin"
+                android:background="@color/textColorPrimary"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:layout_below="@+id/div4"
+                android:id="@+id/babies_products_home"/>
         </RelativeLayout>
 
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/scrollView_home5">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </LinearLayout>
-        </HorizontalScrollView>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -397,40 +181,27 @@
                 android:textColor="#000000"
                 />
 
-            <Button
-                android:id="@+id/btn_more_new_ins"
-                android:layout_width="130dp"
-                android:layout_height="25dp"
-                android:layout_above="@+id/div5"
-                android:text="@string/btn_see_more"
-                android:background="@color/colorAccent"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="280dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true">
-            </Button>
 
             <View style="@style/Divider"
                 android:id="@+id/div5"
                 android:layout_below="@+id/new_ins_home"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
+
+            <hci.tiendapp.customviews.HorizontalListView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_marginLeft="@dimen/content_horizontal_margin"
+                android:layout_marginBottom="@dimen/content_horizontal_margin"
+                android:layout_marginTop="@dimen/content_vertical_margin"
+                android:background="@color/textColorPrimary"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:layout_below="@+id/div5"
+                android:id="@+id/sales_products_home"/>
         </RelativeLayout>
 
 
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/scrollView_home6">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </LinearLayout>
-        </HorizontalScrollView>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -446,40 +217,27 @@
                 android:textColor="#000000"
                 />
 
-            <Button
-                android:id="@+id/btn_more_sale"
-                android:layout_width="130dp"
-                android:layout_height="25dp"
-                android:layout_above="@+id/div6"
-                android:text="@string/btn_see_more"
-                android:background="@color/colorAccent"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="280dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:focusableInTouchMode="true">
-            </Button>
 
             <View style="@style/Divider"
                 android:id="@+id/div6"
                 android:layout_below="@+id/sale_home"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
+
+            <hci.tiendapp.customviews.HorizontalListView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_marginLeft="@dimen/content_horizontal_margin"
+                android:layout_marginBottom="@dimen/content_horizontal_margin"
+                android:layout_marginTop="@dimen/content_vertical_margin"
+                android:background="@color/textColorPrimary"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:layout_below="@+id/div6"
+                android:id="@+id/news_products_home"/>
         </RelativeLayout>
 
 
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/scrollView_home7">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </LinearLayout>
-        </HorizontalScrollView>
     </LinearLayout>
 
 

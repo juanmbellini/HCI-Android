@@ -10,7 +10,7 @@ public class Account {
     @Expose
     int id;
     @Expose
-    String userName;
+    String username;
     @Expose
     String firstName;
     @Expose
@@ -25,9 +25,9 @@ public class Account {
     String birthDate;
 
 
-    public Account(int id, String userName, String firstName, String lastName, String gender, String identityCard, String email, String birthDate) {
+    public Account(int id, String username, String firstName, String lastName, String gender, String identityCard, String email, String birthDate) {
         this.id = id;
-        this.userName = userName;
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -41,7 +41,7 @@ public class Account {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public String getFirstName() {
@@ -66,5 +66,21 @@ public class Account {
 
     public String getBirthDate() {
         return birthDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Account account = (Account) o;
+
+        return id == account.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 }
