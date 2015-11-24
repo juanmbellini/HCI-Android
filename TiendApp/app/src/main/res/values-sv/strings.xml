@@ -101,6 +101,8 @@
     <string name="loading_message">Laddar</string>
 
 
+    <string name="no_disponible">Not Available</string>
+
     <!-- Strings related to login -->
     <string name="title_activity_login">Logga in</string>
     <string name="prompt_email">användarnamn</string>
@@ -113,6 +115,9 @@
     <string name="error_field_required">Nödvändigt fält</string>
     <string name="permission_rationale">"Kontakttillåtelse är ett krav för att skapa ett konto."</string>
 
+
+    <string name="added_to_cart">Agregado al Carrito</string>
+    <string name="added_to_favorites">Agregado a Favoritos</string>
 
     <!-- Cart -->
     <string name="title_activity_carrito">Kundvagn</string>

@@ -95,6 +95,12 @@
     <string name="order_delivered">Entregada</string>
     <string name="must_login">You Must Login to see your Orders</string>
 
+    <string name="added_to_cart">Agregado al Carrito</string>
+    <string name="added_to_favorites">Agregado a Favoritos</string>
+
+
+
+    <string name="no_disponible">Not Available</string>
 
     <!-- Alarm management -->
     <string name="set_single_alarm">Set Single Alarm</string>

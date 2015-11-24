@@ -73,7 +73,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/sub_categories_tab_content_news"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -82,12 +82,13 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="123"/>
+                        android:textSize="@dimen/title_size"
+                        android:text="@string/no_disponible" />
 
 
-                </LinearLayout>
+                </RelativeLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/sub_categories_tab_content_sale"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -96,11 +97,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="fasghh"/>
+                        android:textSize="@dimen/title_size"
+                        android:text="@string/no_disponible"/>
 
 
 
-                </LinearLayout>
+                </RelativeLayout>
             </FrameLayout>
         </LinearLayout>
     </TabHost>

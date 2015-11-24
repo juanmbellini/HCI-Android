@@ -150,19 +150,6 @@ public class CatalogueActivity extends MyDrawerActivity {
                 return true;
             }
 
-            case R.id.filter_action: {
-
-                Intent intent = getIntent();
-                String comingFrom = intent.getStringExtra(Constants.comingFrom);
-                String gender = intent.getStringExtra(Constants.genderSelection);
-                String category = intent.getStringExtra(Constants.categorySelectionName);
-                String subCategory = intent.getStringExtra(Constants.subCategorySelectionId);
-
-                Dialog filterDialog = new FiltersDialogBox(this, comingFrom, gender,
-                        category, subCategory, filtersAvailable, filtersApplied);
-                filterDialog.show();
-
-            }
 
         }
 
@@ -275,7 +262,7 @@ public class CatalogueActivity extends MyDrawerActivity {
 
 
 
-    private class CatalogueAdapter extends BaseAdapter {
+    public class CatalogueAdapter extends BaseAdapter {
 
 
 

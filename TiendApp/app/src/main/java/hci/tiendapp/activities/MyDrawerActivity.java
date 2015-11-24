@@ -26,6 +26,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -34,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hci.tiendapp.R;
+import hci.tiendapp.backend.Account;
 import hci.tiendapp.constants.Constants;
 
 /**
@@ -259,6 +262,9 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
                             ((Activity) context).finish();
                         }
 
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+                        preferences.edit().putString(Constants.lastLoginAccount, "").commit();
+
                         //TODO log out
                         return;
                         //Logout
@@ -348,9 +354,21 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
             }
             else{
 
-                holder.profile.setImageBitmap(NavigationDrawerHeader.getInstance().profile);
-                holder.Name.setText(NavigationDrawerHeader.getInstance().name);
-                holder.email.setText(NavigationDrawerHeader.getInstance().email);
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+                String aux = preferences.getString(Constants.lastLoginAccount, "");
+
+                if (aux != null && !aux.equals("")) {
+
+                    Account account = new Gson().fromJson(aux, Account.class);
+
+                    holder.profile.setImageBitmap(NavigationDrawerHeader.getInstance().profile);
+                    holder.Name.setText(account.getFirstName() + account.getLastName());
+                    holder.email.setText(account.getEmail());
+
+
+
+                }
+
 
             }
         }
@@ -553,4 +571,7 @@ public abstract class MyDrawerActivity extends AppCompatActivity{
 
         }
     }
+
+
+
 }

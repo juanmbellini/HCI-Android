@@ -13,22 +13,6 @@
         />
 
 
-    <item
-        android:title="@string/filter_action"
-        android:id="@+id/filter_action"
-        android:icon="@drawable/ic_filter_list_white_24dp"
-        android:orderInCategory="2"
-        app:showAsAction="ifRoom"
-
-        />
-    <item
-        android:title="@string/sort_action"
-        android:id="@+id/sort_action"
-        android:icon="@drawable/ic_sort_white_24dp"
-        android:orderInCategory="3"
-        app:showAsAction="ifRoom"
-
-        />
 
     <item
         android:title="@string/list_view_action"

@@ -80,6 +80,14 @@ public class ProductActivity extends MyDrawerActivity {
             return;
         }
 
+        RelativeLayout button = (RelativeLayout)findViewById(R.id.prod_add_to_cart_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ProductActivity.this, getString(R.string.added_to_cart),Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         progressDialog = new ProgressDialog(ProductActivity.this);
         progressDialog.setMessage(getString(R.string.loading_message));
@@ -200,6 +208,17 @@ public class ProductActivity extends MyDrawerActivity {
             }
         }
 
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ProductActivity.this, getString(R.string.added_to_favorites), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        ImageView favorites1 = (ImageView)generalBuyingControls.findViewById(R.id.prod_add_to_favorites);
+        ImageView favorites2 = (ImageView)detailsBuyingControls.findViewById(R.id.prod_add_to_favorites);
+        favorites1.setOnClickListener(listener);
+        favorites2.setOnClickListener(listener);
 
     }
 
@@ -280,6 +299,18 @@ public class ProductActivity extends MyDrawerActivity {
 
             }
         }
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ProductActivity.this, getString(R.string.added_to_favorites), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        ImageView favorites1 = (ImageView)upperBuyingControls.findViewById(R.id.prod_add_to_favorites);
+        ImageView favorites2 = (ImageView)lowerBuyingControls.findViewById(R.id.prod_add_to_favorites);
+        favorites1.setOnClickListener(listener);
+        favorites2.setOnClickListener(listener);
 
     }
 
