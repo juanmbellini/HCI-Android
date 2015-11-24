@@ -62,8 +62,6 @@ public class Notificator extends BroadcastReceiver {
 
         String baseURL = "http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=GetAllOrders&username=";
 
-        ProgressDialog progressDialog = new ProgressDialog(OrdersActivity.this);;
-
         private String getOrdersJSON(URLConnection urlConnection) {
 
             String result = null;
@@ -82,14 +80,7 @@ public class Notificator extends BroadcastReceiver {
             return result;
         }
 
-        @Override
-        protected void onPreExecute() {
 
-            progressDialog.setMessage(OrdersActivity.this.getString(R.string.loading_message));
-            super.onPreExecute();
-
-            progressDialog.show();
-        }
 
         @Override
         protected Collection<Order> doInBackground(String... params) {
@@ -131,107 +122,5 @@ public class Notificator extends BroadcastReceiver {
             return list;
         }
 
-        @Override
-        protected void onPostExecute(Collection<Order> orders) {
-            super.onPostExecute(orders);
-            new GetRealinformationAsyncTask(progressDialog).execute(orders);
-            //progressDialog.dismiss();
-
-        }
-
-
-        private class GetRealinformationAsyncTask extends AsyncTask<Collection<Order>, Void, Collection<Order>> {
-
-            ProgressDialog progressDialogInternal = new ProgressDialog(OrdersActivity.this);
-
-            public GetRealinformationAsyncTask(ProgressDialog dialog) {
-                progressDialogInternal = dialog;
-            }
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                progressDialogInternal.setMessage(OrdersActivity.this.getString(R.string.loading_message));
-                super.onPreExecute();
-
-                progressDialog.show();
-            }
-
-            private String getOrdersJSON(URLConnection urlConnection) {
-
-                String result = null;
-
-                try {
-                    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                    JSONObject aux = new JSONObject(UtilClass.readStream(in));
-                    result = aux.getString("order");
-                    if (result == null) {
-                        throw new RuntimeException("Wrong Method");
-                    }
-                } catch (IOException | JSONException e) {
-                    e.printStackTrace();
-                }
-
-                return result;
-            }
-
-            @Override
-            protected Collection<Order> doInBackground(Collection<Order>... params) {
-
-                Collection<Order> realCollection = new ArrayList<Order>();
-
-
-
-                for(Order each : params[0]) {
-
-                    if (!each.getStatus().equals("1")) {
-
-                        String requestURL = baseURL + "&id=" + each.getId();
-
-                        System.out.println(requestURL);
-
-                        URL url = null;
-                        try {
-                            url = new URL(requestURL);      // Creates an URL object based on the filter sent
-                        } catch (MalformedURLException e) {
-                            e.printStackTrace();
-                            return null;
-                        }
-
-                        HttpURLConnection urlConnection = null;
-                        try {
-                            urlConnection = (HttpURLConnection) url.openConnection();   // Get's data from API
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                            return null;
-                        } finally {
-                            if (urlConnection != null) {
-                                urlConnection.disconnect();                     // Finishes connection
-                            }
-                            System.out.println("Disconnected");
-                        }
-
-                        String result = getOrdersJSON(urlConnection);                // Filters fetched data
-
-
-                        realCollection.add(new Gson().fromJson(result, Order.class));
-                    }
-
-                }
-
-                return realCollection;
-
-            }
-
-            @Override
-            protected void onPostExecute(Collection<Order> orders) {
-                super.onPostExecute(orders);
-                adapter.clear();
-                adapter.addAll(orders);
-                adapter.notifyDataSetChanged();
-
-                progressDialogInternal.dismiss();
-            }
-        }
     }
 }
