@@ -3,6 +3,7 @@ package hci.tiendapp.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
@@ -46,7 +47,9 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -55,6 +58,8 @@ import java.util.regex.Pattern;
 import hci.tiendapp.R;
 import hci.tiendapp.TiendApp;
 import hci.tiendapp.backend.Account;
+import hci.tiendapp.backend.Notificator;
+import hci.tiendapp.backend.Order;
 import hci.tiendapp.constants.Constants;
 import hci.tiendapp.util.UtilClass;
 
@@ -325,7 +330,72 @@ public class LoginActivity extends MyDrawerActivity implements LoaderCallbacks<C
         int IS_PRIMARY = 1;
     }
 
+    private class getAllOrdersAsyncTask extends AsyncTask<String, Long, Collection<Order>> {
 
+
+        String baseURL = "http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=GetAllOrders&username=";
+
+        private String getOrdersJSON(URLConnection urlConnection) {
+
+            String result = null;
+
+            try {
+                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                JSONObject aux = new JSONObject(UtilClass.readStream(in));
+                result = aux.getString("orders");
+                if (result == null) {
+                    throw new RuntimeException("Wrong Method");
+                }
+            } catch (IOException | JSONException e) {
+                e.printStackTrace();
+            }
+
+            return result;
+        }
+
+
+
+        @Override
+        protected Collection<Order> doInBackground(String... params) {
+
+
+            String requestURL = baseURL + (params[0] + "&authentication_token=" + params[1]);
+            baseURL = "http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=GetOrderById&username=";
+            baseURL += (params[0] + "&authentication_token=" + params[1]);
+
+            System.out.println(requestURL);
+
+            URL url = null;
+            try {
+                url = new URL(requestURL);      // Creates an URL object based on the filter sent
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                return null;
+            }
+
+            HttpURLConnection urlConnection = null;
+            try {
+                urlConnection = (HttpURLConnection) url.openConnection();   // Get's data from API
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            } finally {
+                if(urlConnection != null) {
+                    urlConnection.disconnect();                     // Finishes connection
+                }
+                System.out.println("Disconnected");
+            }
+
+            String result = getOrdersJSON(urlConnection);                // Filters fetched data
+
+
+            Gson parser = new Gson();
+            Type dataSetListType = new TypeToken<List<Order>>() {}.getType();
+            List<Order> list = parser.fromJson(result, dataSetListType);
+            return list;
+        }
+
+    }
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
@@ -410,6 +480,12 @@ public class LoginActivity extends MyDrawerActivity implements LoaderCallbacks<C
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString(Constants.authenticationToken, token);
+            try {
+                editor.putString("orders", (new getAllOrdersAsyncTask()).getOrdersJSON(new URL("http://eiffel.itba.edu.ar/hci/service3/Order.groovy?method=GetAllOrders&username="
+                        + username + "&authentication_token=" + token.toString()).openConnection()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             editor.commit();
             return account;
 
